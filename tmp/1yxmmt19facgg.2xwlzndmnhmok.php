@@ -10,6 +10,11 @@
     <title>Character Creation</title>
 </head>
 <body>
+<nav class = "navbar bg-light navbar-light">
+    <div class="navbar-nav">
+        <a class="nav-item nav-link" href="/328/fantasyrealms/">Fantasy Realms</a>
+    </div>
+</nav>
     <h1>Make your character</h1>
 
     <label for="name">Name: </label>

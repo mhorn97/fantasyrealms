@@ -10,7 +10,10 @@
     <title>Character Select</title>
 </head>
 <body>
-<h1>FantasyLand</h1>
+<nav class = "navbar bg-light navbar-light">
+        <a class="nav-item nav-link" href="select">Fantasy Realms</a>
+        <a class="nav-item nav-link" href="/328/fantasyrealms/" id="logout">Logout</a>
+</nav>
 <div class="container" id="maindiv">
     <div class="row">
         <div class="col-sm-6" id="col1">
