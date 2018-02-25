@@ -9,13 +9,13 @@ $f3 -> route('GET /', function() {
     echo $view->render('views/loginScreen.html');
 });
 
-$f3 -> route('GET /create', function() {
+$f3 -> route('GET /creation', function() {
     $view = new Template();
     echo $view->render('views/characterCreation.html');
 });
 
 $f3 -> route('GET /select', function() {
-    $template = new Teplate();
+    $template = new Template();
     echo $template->render('views/characterSelect.html');
 });
 
@@ -38,6 +38,22 @@ $f3 -> route('GET /story-final', function() {
     $template = new Template();
     echo $template->render('views/finalPage.html');
 });
+
+$f3 -> route('GET /create-account', function() {
+    $template = new Template();
+    echo $template->render('views/createaccount.html');
+});
+
+$f3 -> route('GET /forgot-password', function() {
+    $template = new Template();
+    echo $template->render('views/forgotpassword.html');
+});
+
+$f3 -> route('GET /summary', function() {
+    $template = new Template();
+    echo $template->render('views/charactersummary.html');
+});
+
 
 //Run Fat-Free Framework
 $f3->run();
