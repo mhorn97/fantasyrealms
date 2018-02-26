@@ -11,10 +11,8 @@
 </head>
 <body>
 <nav class = "navbar bg-light navbar-light">
-    <div class="navbar-nav">
-        <a class="nav-item nav-link" href="select">Fantasy Realms</a>
-        <a class="nav-item nav-link" href="/328/fantasyrealms/" id="logout">Logout</a>
-    </div>
+    <a class="nav-item nav-link" href="select">Fantasy Realms</a>
+    <a class="nav-item nav-link" href="/328/fantasyrealms/" id="logout">Logout</a>
 </nav>
 <p>Welcome to FantasyLand CHARACTERNAME</p>
 <p>You will create your own story as you journey through this harsh, yet mysterious land.</p>

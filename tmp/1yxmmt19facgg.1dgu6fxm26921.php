@@ -30,7 +30,13 @@
             <button name = "delete">Delete</button>
             <br>
             <br>
-            <a href="creation"><button name = "create">Create new character</button></a>
+                <form method="post" action="#">
+                <div class="form-group">
+                    <label class="form-control-label" for="premium">Premium Character</label><br>
+                    <input type="checkbox" name="premium" id="premium"> Sign me up for a Premium Character!
+                </div>
+                <input type="submit" name="submit" value="Create a character!">
+                </form>
             </div>
         </div>
     </div>
