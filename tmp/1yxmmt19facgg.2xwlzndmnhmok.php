@@ -16,6 +16,7 @@
 </nav>
     <h1>Make your character</h1>
 
+    <form method="post" action="#">
     <label for="name">Name: </label>
     <input type="text" name="name" id="name">
 
@@ -46,7 +47,8 @@
 
     <div class="form-group">
     <a href="select"><button name="cancel">Cancel</button></a>
-    <a href="select"><button name="create">Create</button></a>
+    <input type="submit" name="submit" value="Create">
     </div>
+    </form>
 </body>
 </html>

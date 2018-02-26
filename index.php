@@ -14,6 +14,32 @@ $f3 -> route('GET /', function() {
 //CHARACTER CREATION PAGE
 $f3 -> route('GET|POST /creation', function($f3) {
     $f3->set('premium', $_SESSION['premium']);
+
+    if(isset($_POST['submit']))
+    {
+        if(!is_null($_POST['name']) && !is_null($_POST['class']) && !is_null($_POST['race']))
+        {
+            $name = $_POST['name'];
+            $race = $_POST['race'];
+            $class = $_POST['class'];
+            $f3->set('name',$name);
+            $f3->set('race',$race);
+            $f3->set('class',$class);
+            if(isset($_SESSION['premium']))
+            {
+                $skills = $_POST['skills'];
+                $newchar = new PremiumCharacter($name,$class,$race);
+                $newchar->setSkills($skills);
+            }
+            else
+            {
+                $newchar = new Character($name,$class,$race);
+            }
+            $f3->set('newchar',$newchar);
+            $_SESSION['newchar'] = $newchar;
+            header("Location:summary");
+        }
+    }
     $view = new Template();
     echo $view->render('views/characterCreation.html');
 });
@@ -68,7 +94,11 @@ $f3 -> route('GET /forgot-password', function() {
 });
 
 //CHARACTER SUMMARY PAGE
-$f3 -> route('GET /summary', function() {
+$f3 -> route('GET|POST /summary', function($f3) {
+    $char = $_SESSION['newchar'];
+    $f3->set('name',$char->getName());
+    $f3->set('class',$char->getClass());
+    $f3->set('race',$char->getRace());
     $template = new Template();
     echo $template->render('views/charactersummary.html');
 });
