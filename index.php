@@ -1,9 +1,15 @@
 <?php
 
 require_once ('vendor/autoload.php');
+require_once('model/db-functions.php');
 session_start();
 
 $f3 = Base::instance();
+
+$f3->set('DEBUG', 3);
+
+//Connect to the database
+$dbh = connect();
 
 //Login page
 $f3 -> route('GET /', function() {
