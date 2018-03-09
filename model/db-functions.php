@@ -20,3 +20,75 @@ function connect()
         return;
     }
 }
+
+
+//adds character from character object parameter
+function addCharacter($characterobject)
+{
+    global $dbh;
+    $useriduser = $characterobject->getiduser();
+    //$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $sql = "INSERT INTO characters (user_iduser, characterobject)
+            VALUES (:user_iduser, :characterobject)";
+    $statement = $dbh->prepare($sql);
+
+    $statement->bindParam(':user_iduser', $useriduser, PDO::PARAM_INT);
+    $statement->bindParam(':characterobject', $characterobject, PDO::PARAM_STR);
+
+    $success = $statement->execute();
+    return $success;
+}//end addCharacter
+
+
+//adds character from character object parameter
+function addUser($username, $password, $premium)
+{
+    global $dbh;
+
+
+    //$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $sql = "INSERT INTO characters (username, password, premium)
+            VALUES (:username, :password, :premium)";
+    $statement = $dbh->prepare($sql);
+
+    $statement->bindParam(':username', $username, PDO::PARAM_STR);
+    $statement->bindParam(':password', $password, PDO::PARAM_STR);
+    $statement->bindParam(':premium', $premium, PDO::PARAM_INT);
+
+    $success = $statement->execute();
+    $_SESSION['userid'] = $statement->lastInsertId();  //tracks the userid of new users
+    return $success;
+}//end addCharacter
+
+
+
+
+//gets characters from user id
+function getCharacters($useriduser)
+{
+    global $dbh;
+
+    $sql = "SELECT * FROM characters WHERE user_iduser = :user_iduser ORDER BY idcharacter";
+    $statement = $dbh->prepare($sql);
+
+    $statement->bindParam(':user_iduser', $useriduser, PDO::PARAM_INT);
+
+    $statement->execute();
+    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+}//end getCharacters
+
+
+
+//gets all characters from all players
+function getAllCharacters()
+{
+    global $dbh;
+    $sql = "SELECT * FROM characters ORDER BY idcharacter";
+    $statement = $dbh->prepare($sql);
+    $statement->execute();
+    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+}//end getAllCharacters
+
+

@@ -12,12 +12,14 @@ class Character
     protected $class;
     protected $race;
     protected $skills;
+    protected $iduser;
 
-    function __construct($name, $class, $race)
+    function __construct($name, $class, $race, $iduser)
     {
         $this->name = $name;
         $this->class = $class;
         $this->race = $race;
+        $this->iduser = $iduser;
     }
 
     function getName()
@@ -48,6 +50,22 @@ class Character
     function setClass($class)
     {
         $this->class = $class;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIduser()
+    {
+        return $this->iduser;
+    }
+
+    /**
+     * @param mixed $iduser
+     */
+    public function setIduser($iduser)
+    {
+        $this->iduser = $iduser;
     }
 
 

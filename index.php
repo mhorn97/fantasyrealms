@@ -3,6 +3,15 @@
 require_once ('vendor/autoload.php');
 require_once('model/db-functions.php');
 session_start();
+/*
+ * List of all session variables
+ *
+ * username
+ * password
+ * premium
+ * userid
+ * newchar
+ */
 
 $f3 = Base::instance();
 
@@ -34,12 +43,12 @@ $f3 -> route('GET|POST /creation', function($f3) {
             if(isset($_SESSION['premium']))
             {
                 $skills = $_POST['skills'];
-                $newchar = new PremiumCharacter($name,$class,$race);
+                $newchar = new PremiumCharacter($name,$class,$race,1);  //TODO update to userID
                 $newchar->setSkills($skills);
             }
             else
             {
-                $newchar = new Character($name,$class,$race);
+                $newchar = new Character($name,$class,$race,1);
             }
             $f3->set('newchar',$newchar);
             $_SESSION['newchar'] = $newchar;
@@ -59,6 +68,8 @@ $f3 -> route('GET|POST /select', function($f3) {
         $_SESSION['premium'] = $premium;
         header("Location:creation");
     }
+    $useriduser = $_SESSION['userid'];
+    getCharacters($useriduser);
     $template = new Template();
     echo $template->render('views/characterSelect.html');
 });
@@ -88,10 +99,30 @@ $f3 -> route('GET /story-final', function() {
 });
 
 //CREATE ACCOUNT PAGE
-$f3 -> route('GET /create-account', function() {
+$f3 -> route('GET /create-account', function($f3) {
+    if(isset($_POST['submit'])) {
+        if(!is_null($_POST['username']) && !is_null($_POST['password'])) {
+            $username = $_SESSION['username'] = $_POST['username'];
+            $password = $_SESSION['password'] = $_POST['password'];
+            $f3->set('username',$username);
+            $f3->set('password',$password);
+            if(isset($_SESSION['premium'])) {
+                $premium = 1;  //1 = true for database
+            }
+            else {
+                $premium = 0;
+            }
+            $_SESSION['password'] = $premium;
+            //username validated with javascript before POST
+            addUser($username, $password, $premium);
+
+            header("Location:select");
+        }
+    }//end if submit
+
     $template = new Template();
     echo $template->render('views/createaccount.html');
-});
+});//end create-account
 
 //FORGOT PASSWORD PAGE
 $f3 -> route('GET /forgot-password', function() {
