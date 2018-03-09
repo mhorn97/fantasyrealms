@@ -44,7 +44,8 @@ function addCharacter($characterobject)
 function addUser($username, $password, $premium)
 {
     global $dbh;
-
+    
+    $password = sha1($password);  //password encrypted with SHA1
 
     //$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $sql = "INSERT INTO characters (username, password, premium)
