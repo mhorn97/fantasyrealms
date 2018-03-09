@@ -5,7 +5,7 @@
  * Date: 2/27/2018
  * Time: 11:01 AM
  */
-require("/home/athompso/config.php");
+require("db-config-route.php");
 
 function connect()
 {
