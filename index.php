@@ -99,7 +99,7 @@ $f3 -> route('GET /story-final', function() {
 });
 
 //CREATE ACCOUNT PAGE
-$f3 -> route('GET /create-account', function($f3) {
+$f3 -> route('GET|POST /create-account', function($f3) {
     if(isset($_POST['submit'])) {
         if(!is_null($_POST['username']) && !is_null($_POST['password'])) {
             $username = $_SESSION['username'] = $_POST['username'];
