@@ -5,7 +5,7 @@
  * Date: 2/27/2018
  * Time: 11:01 AM
  */
-require("/home/mhorngre/config.php");
+require("/home/athompso/config.php");
 
 function connect()
 {
