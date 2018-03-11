@@ -7,4 +7,4 @@
  */
 
 
-require("/home/mhorngre/config.php");
+require("/home/athompso/config.php");

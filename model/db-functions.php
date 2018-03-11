@@ -93,3 +93,25 @@ function getAllCharacters()
 }//end getAllCharacters
 
 
+function checkUsername($username)
+{
+    global $dbh;
+    $sql = "SELECT * FROM user WHERE username = :username";
+    $statement = $dbh->prepare($sql);
+    $statement->bindValue(':name', $username, PDO::PARAM_STR);
+    $success = $statement->execute();
+    //TODO check if 0 entries returned or more, return true false if exists
+    return $success;
+}//end checkUsername
+
+
+
+
+
+
+
+
+
+
+
+
