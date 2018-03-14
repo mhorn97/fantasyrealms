@@ -140,6 +140,5 @@ $f3 -> route('GET|POST /summary', function($f3) {
     echo $template->render('views/charactersummary.html');
 });
 
-
 //Run Fat-Free Framework
 $f3->run();

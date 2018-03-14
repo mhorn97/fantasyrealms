@@ -54,6 +54,7 @@
                 <div class="form-group">
                     <input type="text" name="username" id="username" class="form-control input-lg"
                            placeholder="Username" tabindex="3">
+                    <span id = "username_status">STATUS</span>
                 </div>
 
                 <div class="row">
@@ -165,12 +166,31 @@
 
 <!--  TODO javascript to check if username is taken  -->
 <script>
-    $("#show").click(function(){
-        var petName = $('#pet-name').val();
-        $.post("../db-functions.php", { petname:petName }, function(result){
-            $("#detail").html(result);
-        });
+
+    $('#username').keyup(function() {
+        var username = $(this).val();
+        //$('#username_status').text('broken');
+        $('#username_status').text('Searching database.');
+
+        if(username != ''){
+            $.post('model/checkuser.php',{ username: username }, function(data) {
+                $('#username_status').text(data);
+                //$('#username_status').text('working');
+            });
+        } else {
+            $('#username_status').text('77');
+        }
+
     });
+
+
+
+    // $("#show").click(function(){
+    //     var petName = $('#pet-name').val();
+    //     $.post("../db-functions.php", { petname:petName }, function(result){
+    //         $("#detail").html(result);
+    //     });
+    // });
 </script>
 
 
