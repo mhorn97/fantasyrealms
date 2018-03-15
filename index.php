@@ -1,6 +1,21 @@
 <?php
+// Turn on error reporting
+ini_set("display_errors", 1);
+error_reporting(E_ALL);
+
 
 require_once ('vendor/autoload.php');
+session_start();
+require("model/db-functions.php");
+
+$f3 = Base::instance();
+
+//Set debug level
+$f3->set('DEBUG', 3);
+
+//Connect to the database
+$dbh = connect();
+/*require_once ('vendor/autoload.php');
 require_once('model/db-functions.php');
 session_start();
 /*
@@ -11,7 +26,7 @@ session_start();
  * premium
  * userid
  * newchar
- */
+
 
 $f3 = Base::instance();
 
@@ -19,7 +34,7 @@ $f3->set('DEBUG', 3);
 
 //Connect to the database
 $dbh = connect();
-
+*/
 //Login page
 $f3 -> route('GET /', function() {
     $view = new View;
@@ -43,7 +58,7 @@ $f3 -> route('GET|POST /creation', function($f3) {
             if(isset($_SESSION['premium']))
             {
                 $skills = $_POST['skills'];
-                $newchar = new PremiumCharacter($name,$class,$race,1);  //TODO update to userID
+                $newchar = new PremiumCharacter($name,$class,$race,$skills);  //TODO update to userID
                 $newchar->setSkills($skills);
             }
             else
