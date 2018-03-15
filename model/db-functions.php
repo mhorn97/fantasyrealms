@@ -7,6 +7,7 @@
  */
 require("db-config-route.php");
 
+//establish database connection
 function connect()
 {
     try {
@@ -45,7 +46,7 @@ function addCharacter($name,$gender,$race,$class,$skills,$userid)
 }//end addCharacter
 
 
-//adds character from character object parameter
+//adds new user account
 function addUser($username, $password, $premium)
 {
     global $dbh;
@@ -69,7 +70,7 @@ function addUser($username, $password, $premium)
 
 
 
-//gets characters from user id
+//gets all characters for a single user id
 function getCharacters($userid)
 {
     global $dbh;
@@ -116,7 +117,7 @@ function checkUsername($username)
     }
 }//end checkUsername
 
-
+//validates login information
 function checkUser($username, $password)
 {
     global $dbh;
@@ -134,14 +135,6 @@ function checkUser($username, $password)
     echo "TEST";
     echo $query_data['username'] . $username;
     return $query_data;
-    if(empty($query_data['username']))
-    {
-        return false;
-    }
-    else
-    {
-        return true;
-    }
 }
 
 
