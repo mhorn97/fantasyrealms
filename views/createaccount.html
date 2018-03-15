@@ -54,7 +54,7 @@
                 <div class="form-group">
                     <input type="text" name="username" id="username" class="form-control input-lg"
                            placeholder="Username" tabindex="3">
-                    <span id = "username_status">STATUS</span>
+                    <span id = "username_status"> </span>
                 </div>
 
                 <div class="row">
@@ -87,7 +87,7 @@
                 <hr class="colorgraph">
                 <div class="row">
                     <div class="col-xs-12 col-md-6">
-                        <input type="submit" value="Register"
+                        <input type="submit" value="Register" id="btnregister"
                             class="btn btn-success btn-block btn-lg" tabindex="7">
                     </div>
                 </div>
@@ -164,33 +164,31 @@
 </script>
 
 
-<!--  TODO javascript to check if username is taken  -->
+<!--  javascript to check if username is taken  -->
 <script>
-
+    document.getElementById("btnregister").disabled = true;
     $('#username').keyup(function() {
         var username = $(this).val();
-        //$('#username_status').text('broken');
-        $('#username_status').text('Searching database.');
+        //$('#username_status').text('Searching database.');
 
         if(username != ''){
             $.post('model/checkuser.php',{ username: username }, function(data) {
-                $('#username_status').text(data);
+                if(data == 1) {
+                    $('#username_status').text('Username unavailable');
+                    document.getElementById("btnregister").disabled = true;
+                } else {
+                    //$('#username_status').text('Username available');
+                    document.getElementById("btnregister").disabled = false;
+                }
+                //$('#username_status').text(data);
                 //$('#username_status').text('working');
             });
         } else {
-            $('#username_status').text('77');
+            document.getElementById("btnregister").disabled = true;
         }
 
     });
 
-
-
-    // $("#show").click(function(){
-    //     var petName = $('#pet-name').val();
-    //     $.post("../db-functions.php", { petname:petName }, function(result){
-    //         $("#detail").html(result);
-    //     });
-    // });
 </script>
 
 

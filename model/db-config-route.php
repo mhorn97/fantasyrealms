@@ -7,4 +7,4 @@
  */
 
 
-require("/home/athompso/config.php");
+require("/home/athompso/config2.php");

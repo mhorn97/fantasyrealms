@@ -61,9 +61,6 @@ function addUser($username, $password, $premium)
     return $success;
 }//end addCharacter
 
-
-
-
 //gets characters from user id
 function getCharacters($useriduser)
 {
@@ -79,8 +76,6 @@ function getCharacters($useriduser)
     return $result;
 }//end getCharacters
 
-
-
 //gets all characters from all players
 function getAllCharacters()
 {
@@ -92,16 +87,19 @@ function getAllCharacters()
     return $result;
 }//end getAllCharacters
 
-
 function checkUsername($username)
 {
     global $dbh;
     $sql = "SELECT * FROM user WHERE username = :username";
     $statement = $dbh->prepare($sql);
-    $statement->bindValue(':name', $username, PDO::PARAM_STR);
+    $statement->bindValue(':username', $username, PDO::PARAM_STR);
     $success = $statement->execute();
-    //TODO check if 0 entries returned or more, return true false if exists
-    return $success;
+    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+    if (count($result) > 0) {
+        echo 1;  //username found existing
+    } else {
+        echo 2;  //username unused
+    }
 }//end checkUsername
 
 
