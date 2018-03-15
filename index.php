@@ -116,7 +116,7 @@ $f3 -> route('GET /story-final', function() {
 //CREATE ACCOUNT PAGE
 $f3 -> route('GET|POST /create-account', function($f3) {
     if(isset($_POST['submit'])) {
-        if(!is_null($_POST['username']) && !is_null($_POST['password'])) {
+
             $username = $_SESSION['username'] = $_POST['username'];
             $password = $_SESSION['password'] = $_POST['password'];
             $f3->set('username',$username);
@@ -127,12 +127,12 @@ $f3 -> route('GET|POST /create-account', function($f3) {
             else {
                 $premium = 0;
             }
-            $_SESSION['password'] = $premium;
+            $_SESSION['premium'] = $premium;
             //username validated with javascript before POST
             addUser($username, $password, $premium);
 
             header("Location:select");
-        }
+
     }//end if submit
 
     $template = new Template();
@@ -154,7 +154,6 @@ $f3 -> route('GET|POST /summary', function($f3) {
     $template = new Template();
     echo $template->render('views/charactersummary.html');
 });
-
 
 //Run Fat-Free Framework
 $f3->run();
