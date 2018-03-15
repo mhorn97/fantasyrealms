@@ -158,7 +158,9 @@ $f3 -> route('GET|POST /create-account', function($f3) {
             else {
                 $premium = 0;
             }
-            $_SESSION['password'] = $premium;
+            //TODO this line below was setting $premium to the session password
+            //was that intended or typo?
+            $_SESSION['premium'] = $premium;
             //username validated with javascript before POST
             echo "ADDING USER!";
             addUser($username, $password, $premium);

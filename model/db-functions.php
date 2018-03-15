@@ -98,16 +98,24 @@ function getAllCharacters()
 }//end getAllCharacters
 
 
+//checks database to see if username already in use
 function checkUsername($username)
 {
     global $dbh;
     $sql = "SELECT * FROM user WHERE username = :username";
     $statement = $dbh->prepare($sql);
-    $statement->bindValue(':name', $username, PDO::PARAM_STR);
+    $statement->bindValue(':username', $username, PDO::PARAM_STR);
     $success = $statement->execute();
-    //TODO check if 0 entries returned or more, return true false if exists
-    return $success;
+
+    //check if 0 entries returned or more, return true false if exists
+    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+    if (count($result) > 0) {
+        echo 1;  //username found existing
+    } else {
+        echo 2;  //username unused
+    }
 }//end checkUsername
+
 
 function checkUser($username, $password)
 {

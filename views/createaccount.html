@@ -86,7 +86,7 @@
                 <hr class="colorgraph">
                 <div class="row">
                     <div class="col-xs-12 col-md-6">
-                        <input type="submit" value="Register"
+                        <input type="submit" value="Register" id="btnregister"
                             name="submit" class="btn btn-success btn-block btn-lg" tabindex="7">
                     </div>
                 </div>
@@ -163,16 +163,35 @@
 </script>
 
 
-<!--  TODO javascript to check if username is taken  -->
+<!-- javascript to check if username is taken  -->
 <script>
-    $("#show").click(function(){
-        var petName = $('#pet-name').val();
-        $.post("../db-functions.php", { petname:petName }, function(result){
-            $("#detail").html(result);
-        });
+    //sets button to be disabled to prevent bad data submission
+    document.getElementById("btnregister").disabled = true;
+    $('#username').keyup(function() {  //checks each time user types
+        var username = $(this).val();
+        //$('#username_status').text('Searching database.');
+
+        if (username != '') {
+            $.post('model/checkuser.php', {username: username}, function (data) {
+                //calls select * where username matches and returns
+                //1 is username exists and 2 if not used yet
+                if (data == 1) {
+                    $('#username_status').text('Username unavailable');
+                    document.getElementById("btnregister").disabled = true;
+                } else {
+                    $('#username_status').text('Username available');
+                    document.getElementById("btnregister").disabled = false;
+                }
+                //$('#username_status').text(data);
+                //$('#username_status').text('working');
+            });
+        } else {
+            document.getElementById("btnregister").disabled = true;
+        }
     });
 </script>
 
+<!-- TODO password validation -->
 
 
 
