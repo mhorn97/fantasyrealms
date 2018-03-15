@@ -54,6 +54,7 @@
                 <div class="form-group">
                     <input type="text" name="username" id="username" class="form-control input-lg"
                            placeholder="Username" tabindex="3">
+                    <span class="text-danger" id="username_status"> </span>
                 </div>
 
                 <div class="row">
@@ -176,11 +177,14 @@
                 //calls select * where username matches and returns
                 //1 is username exists and 2 if not used yet
                 if (data == 1) {
-                    $('#username_status').text('Username unavailable');
+                    $('#username_status').text('Username unavailable')
+                        .removeClass("text-success").addClass("text-danger");
                     document.getElementById("btnregister").disabled = true;
                 } else {
-                    $('#username_status').text('Username available');
+                    $('#username_status').text('Username available')
+                        .removeClass("text-danger").addClass("text-success");
                     document.getElementById("btnregister").disabled = false;
+
                 }
                 //$('#username_status').text(data);
                 //$('#username_status').text('working');
