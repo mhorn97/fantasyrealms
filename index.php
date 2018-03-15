@@ -36,7 +36,27 @@ $f3->set('DEBUG', 3);
 $dbh = connect();
 */
 //Login page
-$f3 -> route('GET /', function() {
+$f3 -> route('GET|POST /', function() {
+
+    if(isset($_POST['submit']))
+    {
+        if(!is_null($_POST['username'] && !is_null($_POST['password'])))
+        {
+            $username = $_POST['username'];
+            $password = $_POST['password'];
+            $success = checkUser($username,$password);
+            if($success)
+            {
+                $_SESSION['username'] = $username;
+                $_SESSION['password'] = $password;
+                header("Location:select");
+            }
+            else
+            {
+                echo "SOMETHING WENT WRONG!";
+            }
+        }
+    }
     $view = new View;
     echo $view->render('views/loginScreen.html');
 });

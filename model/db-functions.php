@@ -45,10 +45,9 @@ function addUser($username, $password, $premium)
 {
     global $dbh;
 
-    $password = sha1($password);  //password encrypted with SHA1
+    //$password = sha1($password);  //password encrypted with SHA1
 
     //$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "Inserting $username and $password into database";
     $sql = "INSERT INTO user (username, password, premium)
             VALUES (:username, :password, :premium)";
     $statement = $dbh->prepare($sql);
@@ -105,6 +104,31 @@ function checkUsername($username)
     return $success;
 }//end checkUsername
 
+function checkUser($username, $password)
+{
+    global $dbh;
+
+    $sql = "SELECT * FROM user WHERE username = :username AND password = :password";
+
+    $statement = $dbh->prepare($sql);
+    $statement->bindValue(':username',$username,PDO::PARAM_STR);
+    $statement->bindValue(':password',$password,PDO::PARAM_STR);
+
+    $statement->execute();
+
+    $query_data = $statement->fetch(PDO::FETCH_ASSOC);
+
+    echo "TEST";
+    echo $query_data['username'] . $username;
+    if(empty($query_data['username']))
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
 
 
 
