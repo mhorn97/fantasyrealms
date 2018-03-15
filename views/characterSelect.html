@@ -23,15 +23,17 @@
             <div class="container" id="character-select">
             <h3>Here are your characters</h3>
 
-                <ol>
+
                     <repeat group="{{ @characters }}" value="{{ @character }}">
-                        <li>{{ @character['name'] }}, {{ @character['race'] }}</a></li>
+                        <ol>
+                            <li><p>{{ @character['name'] }}, {{ @character['race'] }}, {{@character['class']}}</p>
+                                <a href="{{@BASE}}/summary/{{@character['charid']}}"><button name="view">View Character</button></a>
+                                <button name = "edit">Edit Character</button>
+                                <a href="story-part1"><button name = "resume">Resume</button></a>
+                                <button name = "delete">Delete</button>
+                            </li>
+                    </ol>
                     </repeat>
-                    <a href="{{@BASE}}/summary/{{@character['charid']}}"><button name="view">View Character</button>
-            <button name = "edit">Edit Character</button>
-            <a href="story-part1"><button name = "resume">Resume</button></a>
-            <button name = "delete">Delete</button>
-                </ol>
             <br>
             <br>
                 <form method="post" action="#">
