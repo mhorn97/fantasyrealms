@@ -23,17 +23,22 @@ function connect()
 
 
 //adds character from character object parameter
-function addCharacter($characterobject)
+function addCharacter($name,$gender,$race,$class,$skills,$userid)
 {
     global $dbh;
-    $useriduser = $characterobject->getiduser();
+    //$useriduser = $characterobject->getiduser();
     //$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $sql = "INSERT INTO characters (user_iduser, characterobject)
-            VALUES (:user_iduser, :characterobject)";
+    $sql = "INSERT INTO characters (name,gender,class,race,traits,iduser)
+            VALUES (:name, :gender, :class, :race, :traits, :userid)";
+
     $statement = $dbh->prepare($sql);
 
-    $statement->bindParam(':user_iduser', $useriduser, PDO::PARAM_INT);
-    $statement->bindParam(':characterobject', $characterobject, PDO::PARAM_STR);
+    $statement->bindParam(':userid', $userid, PDO::PARAM_INT);
+    $statement->bindParam(':name', $name, PDO::PARAM_STR);
+    $statement->bindParam(':gender', $gender, PDO::PARAM_STR);
+    $statement->bindParam(':race', $race, PDO::PARAM_STR);
+    $statement->bindParam(':class', $class, PDO::PARAM_STR);
+    $statement->bindParam(':traits', $skills, PDO::PARAM_STR);
 
     $success = $statement->execute();
     return $success;
@@ -65,14 +70,14 @@ function addUser($username, $password, $premium)
 
 
 //gets characters from user id
-function getCharacters($useriduser)
+function getCharacters($userid)
 {
     global $dbh;
 
-    $sql = "SELECT * FROM characters WHERE user_iduser = :user_iduser ORDER BY idcharacter";
+    $sql = "SELECT * FROM characters WHERE iduser = :iduser";
     $statement = $dbh->prepare($sql);
 
-    $statement->bindParam(':user_iduser', $useriduser, PDO::PARAM_INT);
+    $statement->bindParam(':iduser', $userid, PDO::PARAM_INT);
 
     $statement->execute();
     $result = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -120,6 +125,7 @@ function checkUser($username, $password)
 
     echo "TEST";
     echo $query_data['username'] . $username;
+    return $query_data;
     if(empty($query_data['username']))
     {
         return false;

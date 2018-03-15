@@ -44,11 +44,12 @@ $f3 -> route('GET|POST /', function() {
         {
             $username = $_POST['username'];
             $password = $_POST['password'];
-            $success = checkUser($username,$password);
-            if($success)
+            $data = checkUser($username,$password);
+            if(!empty($data['username']))
             {
                 $_SESSION['username'] = $username;
                 $_SESSION['password'] = $password;
+                $_SESSION['userid'] = $data['iduser'];
                 header("Location:select");
             }
             else
@@ -67,24 +68,29 @@ $f3 -> route('GET|POST /creation', function($f3) {
 
     if(isset($_POST['submit']))
     {
-        if(!is_null($_POST['name']) && !is_null($_POST['class']) && !is_null($_POST['race']))
+        if(!is_null($_POST['name']) && !is_null($_POST['gender']) && !is_null($_POST['class']) && !is_null($_POST['race']))
         {
             $name = $_POST['name'];
+            $gender= $_POST['gender'];
             $race = $_POST['race'];
             $class = $_POST['class'];
             $f3->set('name',$name);
+            $f3->set('gender',$gender);
             $f3->set('race',$race);
             $f3->set('class',$class);
             if(isset($_SESSION['premium']))
             {
                 $skills = $_POST['skills'];
-                $newchar = new PremiumCharacter($name,$class,$race,$skills);  //TODO update to userID
+                $newchar = new PremiumCharacter($name,$gender,$class,$race,$skills);  //TODO update to userID
                 $newchar->setSkills($skills);
+                addCharacter($name,$gender,$race,$class,$skills,$_SESSION['userid']);
             }
             else
             {
-                $newchar = new Character($name,$class,$race,1);
+                $newchar = new Character($name,$gender,$class,$race);
+                addCharacter($name,$gender,$race,$class,"",$_SESSION['userid']);
             }
+
             $f3->set('newchar',$newchar);
             $_SESSION['newchar'] = $newchar;
             header("Location:summary");
@@ -103,8 +109,12 @@ $f3 -> route('GET|POST /select', function($f3) {
         $_SESSION['premium'] = $premium;
         header("Location:creation");
     }
-    $useriduser = $_SESSION['userid'];
-    getCharacters($useriduser);
+    $username = $_SESSION['username'];
+    $f3->set('username',$username);
+    $userid = $_SESSION['userid'];
+    echo $userid . "TEST";
+    $characters = getCharacters($userid);
+    $f3->set('characters',$characters);
     $template = new Template();
     echo $template->render('views/characterSelect.html');
 });

@@ -17,17 +17,21 @@
 <div class="container" id="maindiv">
     <div class="row">
         <div class="col-sm-6" id="col1">
-            <h2>Welcome Back USERNAME</h2>
+            <h2>Welcome Back {{@username}}</h2>
         </div>
         <div class="col-sm-6" id="col2">
             <div class="container" id="character-select">
             <h3>Here are your characters</h3>
 
-            <p>Name of character</p>
-            <p>Race and Class</p>
+                <ol>
+                    <repeat group="{{ @characters }}" value="{{ @character }}">
+                        <li>{{ @character['name'] }}, {{ @character['race'] }}</a></li>
+                    </repeat>
+                    <a href="{{@BASE}}/summary/{{@character['charid']}}"><button name="view">View Character</button>
             <button name = "edit">Edit Character</button>
             <a href="story-part1"><button name = "resume">Resume</button></a>
             <button name = "delete">Delete</button>
+                </ol>
             <br>
             <br>
                 <form method="post" action="#">

@@ -14,9 +14,10 @@ class Character
     protected $skills;
     protected $iduser;
 
-    function __construct($name, $class, $race, $iduser)
+    function __construct($name, $gender, $class, $race)
     {
         $this->name = $name;
+        $this->gender = $gender;
         $this->class = $class;
         $this->race = $race;
         $this->iduser = $iduser;
@@ -32,6 +33,15 @@ class Character
         $this->name = $name;
     }
 
+    function getGender()
+    {
+        return $this->gender;
+    }
+
+    function setGender($gender)
+    {
+        $this->gender= $gender;
+    }
     function getRace()
     {
         return $this->race;
