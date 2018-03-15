@@ -48,7 +48,8 @@ function addUser($username, $password, $premium)
     $password = sha1($password);  //password encrypted with SHA1
 
     //$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $sql = "INSERT INTO characters (username, password, premium)
+    echo "Inserting $username and $password into database";
+    $sql = "INSERT INTO user (username, password, premium)
             VALUES (:username, :password, :premium)";
     $statement = $dbh->prepare($sql);
 
@@ -57,9 +58,12 @@ function addUser($username, $password, $premium)
     $statement->bindParam(':premium', $premium, PDO::PARAM_INT);
 
     $success = $statement->execute();
-    $_SESSION['userid'] = $statement->lastInsertId();  //tracks the userid of new users
+    //$_SESSION['userid'] = $statement->lastInsertId();  //tracks the userid of new users
     return $success;
 }//end addCharacter
+
+
+
 
 //gets characters from user id
 function getCharacters($useriduser)
@@ -76,6 +80,8 @@ function getCharacters($useriduser)
     return $result;
 }//end getCharacters
 
+
+
 //gets all characters from all players
 function getAllCharacters()
 {
@@ -87,19 +93,16 @@ function getAllCharacters()
     return $result;
 }//end getAllCharacters
 
+
 function checkUsername($username)
 {
     global $dbh;
     $sql = "SELECT * FROM user WHERE username = :username";
     $statement = $dbh->prepare($sql);
-    $statement->bindValue(':username', $username, PDO::PARAM_STR);
+    $statement->bindValue(':name', $username, PDO::PARAM_STR);
     $success = $statement->execute();
-    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-    if (count($result) > 0) {
-        echo 1;  //username found existing
-    } else {
-        echo 2;  //username unused
-    }
+    //TODO check if 0 entries returned or more, return true false if exists
+    return $success;
 }//end checkUsername
 
 
