@@ -126,12 +126,26 @@ $f3 -> route('GET|POST /story-part1/@id', function($f3,$params) {
     $character = getCharacter($id);
     $_SESSION['character'] = $character;
     $f3->set('character',$character);
+    if(isset($_POST['submit']))
+    {
+        if(empty($_POST['choice1']))
+        {
+            echo "EMPTY";
+        }
+        else
+        {
+            $_SESSION['choice1'] = $_POST['choice1'];
+            header("Location:../story-part2");
+        }
+    }
     $template = new Template();
     echo $template->render('views/story1.html');
 });
 
 //STORY-PART 2 PAGE
-$f3 -> route('GET /story-part2', function() {
+$f3 -> route('GET|POST /story-part2', function($f3) {
+    $f3->set('character',$_SESSION['character']);
+    echo $_SESSION['choice1'];
     $template = new Template();
     echo $template->render('views/story2.html');
 });
