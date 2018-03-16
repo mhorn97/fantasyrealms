@@ -7,8 +7,4 @@
  */
 
 
-<<<<<<< HEAD
 require("/home/mhorngre/config.php");
-=======
-require("/home/athompso/config2.php");
->>>>>>> 57caed875461ee6275d8875ee8068c2cbdc91fde
