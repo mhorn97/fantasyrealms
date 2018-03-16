@@ -20,7 +20,7 @@ class Character
         $this->gender = $gender;
         $this->class = $class;
         $this->race = $race;
-        $this->iduser = $iduser;
+        $this->iduser = $iduser;  //TODO
     }
 
     function getName()

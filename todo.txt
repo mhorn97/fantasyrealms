@@ -1,14 +1,12 @@
 Need to do
 *summary for character
-
 *story elements written out
 *story pages built
 *site aesthetics
 *forgot password
+*commenting
 
-
-
-
+*use fat free {{@objects}} for story elements as placeholders
 
 
 Nice to do
@@ -16,5 +14,18 @@ Nice to do
 
 
 
+Project Requirements
+Your website should have the following features:
+
+XSeparates all database/business logic using the MVC pattern.
+XRoutes all URLs and leverages a templating language using the Fat-Free framework.
+XHas a clearly defined database layer using PDO and prepared statements.
+0Data can be viewed, added, updated, and deleted.
+XHas a history of commits from both team members to a Git repository.
+XUses OOP, and defines multiple classes, including at least one inheritance relationship.
+0Contains full Docblocks for all PHP files.
+0Has full validation on the client side through JavaScript and server side through PHP.
+XIncorporates jQuery and Ajax.
+0BONUS:  Utilizes an API
 
 
