@@ -55,7 +55,7 @@ $f3 -> route('GET|POST /', function($f3) {
             }
             else
             {
-                $f3->set('error', 'Incorrect login information.');
+                $f3->set('error', 'Incorrect login.');
             }
         }
     }
