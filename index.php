@@ -145,7 +145,18 @@ $f3 -> route('GET|POST /story-part1/@id', function($f3,$params) {
 //STORY-PART 2 PAGE
 $f3 -> route('GET|POST /story-part2', function($f3) {
     $f3->set('character',$_SESSION['character']);
-    echo $_SESSION['choice1'];
+    if(isset($_POST['submit']))
+    {
+        if(empty($_POST['choice2']))
+        {
+            echo "EMPTY";
+        }
+        else
+        {
+            $_SESSION['choice2'] = $_POST['choice2'];
+            header("Location:story-part3");
+        }
+    }
     $template = new Template();
     echo $template->render('views/story2.html');
 });
