@@ -81,7 +81,7 @@ $f3 -> route('GET|POST /creation', function($f3) {
             if(isset($_SESSION['premium']))
             {
                 $skills = $_POST['skills'];
-                $newchar = new PremiumCharacter($name,$gender,$class,$race,$skills);
+                $newchar = new PremiumCharacter($name,$gender,$class,$race,$skills);  //TODO update to userID
                 $newchar->setSkills($skills);
                 addCharacter($name,$gender,$race,$class,$skills,$_SESSION['userid']);
             }
@@ -113,9 +113,12 @@ $f3 -> route('GET|POST /select', function($f3) {
     $username = $_SESSION['username'];
     $f3->set('username',$username);
     $userid = $_SESSION['userid'];
-
+    $f3->set('userid',$userid);
+    echo $userid;
     $characters = getCharacters($userid);
+    print_r($characters);
     $f3->set('characters',$characters);
+
     $template = new Template();
     echo $template->render('views/characterSelect.html');
 });

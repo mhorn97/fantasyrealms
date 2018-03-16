@@ -91,7 +91,7 @@ function getCharacters($userid)
 function getAllCharacters()
 {
     global $dbh;
-    $sql = "SELECT * FROM characters ORDER BY idcharacter";
+    $sql = "SELECT * FROM characters ORDER BY characterId";
     $statement = $dbh->prepare($sql);
     $statement->execute();
     $result = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -150,9 +150,16 @@ function getCharacter($id)
     return $query_data;
 }
 
+function deleteCharacter($id)
+{
+    global $dbh;
 
+    $sql = "DELETE FROM characters WHERE characterId = :id";
 
+    $statement = $dbh->prepare($sql);
+    $statement->bindValue(':id',$id,PDO::PARAM_INT);
 
-
+    $statement->execute();
+}
 
 
