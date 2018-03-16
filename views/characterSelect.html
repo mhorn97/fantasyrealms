@@ -27,7 +27,7 @@
                     <repeat group="{{ @characters }}" value="{{ @character }}">
                         <ol>
                             <li><p>{{ @character['name'] }}, {{ @character['race'] }}, {{@character['class']}}</p>
-                                <a href="{{@BASE}}/summary/{{@character['charid']}}"><button name="view">View Character</button></a>
+                                <a href="{{@BASE}}/summary/{{@character['characterId']}}"><button name="view">View Character</button></a>
                                 <button name = "edit">Edit Character</button>
                                 <a href="story-part1"><button name = "resume">Resume</button></a>
                                 <button name = "delete">Delete</button>

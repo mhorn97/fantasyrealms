@@ -93,7 +93,7 @@ $f3 -> route('GET|POST /creation', function($f3) {
 
             $f3->set('newchar',$newchar);
             $_SESSION['newchar'] = $newchar;
-            header("Location:summary");
+            header("Location:select");
         }
     }
     $view = new Template();
@@ -109,10 +109,11 @@ $f3 -> route('GET|POST /select', function($f3) {
         $_SESSION['premium'] = $premium;
         header("Location:creation");
     }
+
     $username = $_SESSION['username'];
     $f3->set('username',$username);
     $userid = $_SESSION['userid'];
-    echo $userid . "TEST";
+
     $characters = getCharacters($userid);
     $f3->set('characters',$characters);
     $template = new Template();
@@ -180,11 +181,10 @@ $f3 -> route('GET /forgot-password', function() {
 });
 
 //CHARACTER SUMMARY PAGE
-$f3 -> route('GET|POST /summary', function($f3) {
-    $char = $_SESSION['newchar'];
-    $f3->set('name',$char->getName());
-    $f3->set('class',$char->getClass());
-    $f3->set('race',$char->getRace());
+$f3 -> route('GET|POST /summary/@id', function($f3,$params) {
+    $id = $params['id'];
+    $character = getCharacter($id);
+    $f3->set('character',$character);
     $template = new Template();
     echo $template->render('views/charactersummary.html');
 });

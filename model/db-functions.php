@@ -132,14 +132,23 @@ function checkUser($username, $password)
 
     $query_data = $statement->fetch(PDO::FETCH_ASSOC);
 
-    echo "TEST";
-    echo $query_data['username'] . $username;
     return $query_data;
 }
 
+function getCharacter($id)
+{
+    global $dbh;
 
+    $sql = "SELECT * FROM characters WHERE characterId = :id";
 
+    $statement = $dbh->prepare($sql);
+    $statement->bindValue(':id',$id,PDO::PARAM_INT);
 
+    $statement->execute();
+
+    $query_data = $statement->fetch(PDO::FETCH_ASSOC);
+    return $query_data;
+}
 
 
 
