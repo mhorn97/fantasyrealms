@@ -81,7 +81,7 @@ $f3 -> route('GET|POST /creation', function($f3) {
             if(isset($_SESSION['premium']))
             {
                 $skills = $_POST['skills'];
-                $newchar = new PremiumCharacter($name,$gender,$class,$race,$skills);  //TODO update to userID
+                $newchar = new PremiumCharacter($name,$gender,$class,$race,$skills);
                 $newchar->setSkills($skills);
                 addCharacter($name,$gender,$race,$class,$skills,$_SESSION['userid']);
             }

@@ -6,9 +6,5 @@
  * Time: 11:01 AM
  */
 
-
-<<<<<<< HEAD
-require("/home/mhorngre/config.php");
-=======
+//This file shouldn't be pushed to git
 require("/home/athompso/config2.php");
->>>>>>> 57caed875461ee6275d8875ee8068c2cbdc91fde
