@@ -121,7 +121,11 @@ $f3 -> route('GET|POST /select', function($f3) {
 });
 
 //STORY-PART 1 PAGE
-$f3 -> route('GET /story-part1', function() {
+$f3 -> route('GET|POST /story-part1/@id', function($f3,$params) {
+    $id = $params['id'];
+    $character = getCharacter($id);
+    $_SESSION['character'] = $character;
+    $f3->set('character',$character);
     $template = new Template();
     echo $template->render('views/story1.html');
 });

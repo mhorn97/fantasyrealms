@@ -11,14 +11,29 @@
 </head>
 <body>
 <nav class = "navbar bg-light navbar-light">
-    <a class="nav-item nav-link" href="select">Fantasy Realms</a>
+    <a class="nav-item nav-link" href="{{@BASE}}/select">Fantasy Realms</a>
     <a class="nav-item nav-link" href="/328/fantasyrealms/" id="logout">Logout</a>
 </nav>
 <p>Welcome to FantasyLand CHARACTERNAME</p>
 <p>You will create your own story as you journey through this harsh, yet mysterious land.</p>
 <p>DESCRIPTION OF PLACE DETERMINED BY RACE</p>
 <p>DESCRIPTION OF EVENT DEPENDING ON CLASS</p>
-
+<p>{{@character['race']}}</p>
+<check if="{{@character['race'] == 'human'}}">
+    <true>
+        <h1>You are a human</h1>
+    </true>
+</check>
+<check if="{{@character['race'] == 'elf' }}">
+    <true>
+        <h1>You are a elf</h1>
+    </true>
+</check>
+<check if="{{@character['race'] == 'dwarf' }}">
+    <true>
+    <h1>You are a dwarf</h1>
+    </true>
+</check>
 <button name="choice1">Choice1</button>
 <button name="choice2">Choice2</button>
 
