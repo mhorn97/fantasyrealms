@@ -36,8 +36,9 @@ $f3->set('DEBUG', 3);
 $dbh = connect();
 */
 //Login page
-$f3 -> route('GET|POST /', function() {
+$f3 -> route('GET|POST /', function($f3) {
 
+    $f3->set('error', 'Please Sign In');
     if(isset($_POST['submit']))
     {
         if(!is_null($_POST['username'] && !is_null($_POST['password'])))
@@ -54,12 +55,13 @@ $f3 -> route('GET|POST /', function() {
             }
             else
             {
-                echo "SOMETHING WENT WRONG!";
+                $f3->set('error', 'Incorrect login information.');
             }
         }
     }
-    $view = new View;
-    echo $view->render('views/loginScreen.html');
+
+    $template = new Template();
+    echo $template->render('views/loginScreen.html');
 });
 
 //CHARACTER CREATION PAGE
@@ -96,8 +98,8 @@ $f3 -> route('GET|POST /creation', function($f3) {
             header("Location:select");
         }
     }
-    $view = new Template();
-    echo $view->render('views/characterCreation.html');
+    $template = new Template();
+    echo $template->render('views/characterCreation.html');
 });
 
 //CHARACTER SELECT PAGE
