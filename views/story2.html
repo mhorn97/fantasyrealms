@@ -9,21 +9,50 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
     <title>Story Page 2</title>
 </head>
-<body>
 <nav class = "navbar bg-light navbar-light">
-    <a class="nav-item nav-link" href="select">Fantasy Realms</a>
+    <a class="nav-item nav-link" href="{{BASE}}/select">Fantasy Realms</a>
     <a class="nav-item nav-link" href="/328/fantasyrealms/" id="logout">Logout</a>
 </nav>
-    <h2>Story Page 2</h2>
+    <h2>Class Specialization</h2>
 
-    <p>You did something back when you were younger to make you recognizable</p>
-    <p>The king has asked you to come to his castle</p>
-    <p>As you enter to meet him, the castle is inspiring to look at and walk through</p>
-    <p>The king gives you a pet dragon that his knights found after slaying the mother</p>
-    <p>He hopes to someday have peace between dragons and the humanoids. Hopefully, it can start with you</p>
-    <p>What are the characteristics of your dragon?</p>
-    <h1>CHARACTERISTICS OF DRAGON(NAME, PASSIVE OR AGGRESIVE, etc.)</h1>
-    <a href="select"><button name="exit">Exit</button></a>
-    <a href="story-part3"><button name="continue">Continue</button></a>
+<form method="post" action="#">
+    <check if="{{@character['class'] == 'warrior'}}">
+        <true>
+            <p>As a warrior, you discovered that it is best to deal with your enemies head on, grabbing any weapon you could in the heat of battle. As your skills in battle sharpened you preffered to fight
+                a certain way:</p>
+            <label for="shield">Fight with a sword and shield, able to attack quickly and defend from quick attacks: </label>
+            <input type="radio" name="choice2" value="Shield and Sword" id="shield"><br>
+            <label for="greatsword">Use a great 2-handed sword to quickly take out anything that threatens you: </label>
+            <input type="radio" name="choice2" value="Greatsword" id="greatsword"><br>
+            <label for="warhammer">Pick up a warhammer because.... it's a freaking warhammer!</label>
+            <input type="radio" name="choice2" value="Warhammer" id="warhammer">
+        </true>
+    </check>
+    <check if="{{@character['class'] == 'sorcerer'}}">
+        <true>
+            <p>You quickly learned that you were different from most people. Being able to do extraordinary things with your hands and mind. You quickly picked up books to learn about magic and the rarity of being a sorcerer.
+            What path of magic did you take?</p>
+            <label for="elements">You learned how to master the elements of the world and pull material out of thin air: </label>
+            <input type="radio" name="choice2" value="Elements" id="elements"><br>
+            <label for="blood">You learned about blood magic, being able to make people kneel before you and do your bidding as you please: </label>
+            <input type="radio" name="choice2" value="Blood" id="blood"><br>
+            <label for="necromancy">You learned about the undead and demology, learning how to summon both and make them do your bidding: </label>
+            <input type="radio" name="choice2" value="Necromancy" id="necromancy">
+        </true>
+    </check>
+    <check if="{{@character['class'] == 'rogue'}}">
+        <true>
+            <p>You learned quickly that the best path is one where people never even knew you were there, but what kind of rogue are you?</p>
+            <label for="lockpicker">You learned to unlock doors and chest and master the art of sneaking, rarely killing anyone getting in your way: </label>
+            <input type="radio" name="choice2" value="Lockpicker" id="lockpicker"><br>
+            <label for="backstabber">You learned how to get intel on things that you wanted or people you wanted to kill, and completing that goal quickly and as quiet as possible: </label>
+            <input type="radio" name="choice2" value="Backstabber" id="backstabber"><br>
+            <label for="quick">You learned how to quickly get behind your enemies and stab them in the back, quickly ending any battle. Even groups of your enemies were scared to fight you all at once</label>
+            <input type="radio" name="choice2" value="Quick Fighter" id="quick"><br>
+        </true>
+    </check>
+    <a href="{{@BASE}}/select"><button name="exit">Exit</button></a>
+    <input type="submit" name="submit" value="Continue">
+</form>
 </body>
 </html>
