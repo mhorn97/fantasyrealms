@@ -53,6 +53,7 @@ $f3 -> route('GET|POST /', function($f3) {
             {
                 $_SESSION['username'] = $username;
                 $_SESSION['password'] = $password;
+                $_SESSION['premium'] = $data['premium'];
                 $_SESSION['userid'] = $data['iduser'];
                 header("Location:select");
             } else {
@@ -114,9 +115,6 @@ $f3 -> route('GET|POST /select', function($f3) {
     }
     if(isset($_POST['submit']))
     {
-        $premium = $_POST['premium'];
-        $f3->set('premium',$premium);
-        $_SESSION['premium'] = $premium;
         header("Location:creation");
     }
 
