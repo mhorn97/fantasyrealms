@@ -267,7 +267,7 @@ $f3 -> route('GET|POST /createaccount', function($f3) {
             //echo "ADDING USER!";
             addUser($username, $password, $premium);
 
-            //header("Location:select");
+            header("Location:select");
         }
     }//end if submit
 
