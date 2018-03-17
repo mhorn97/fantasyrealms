@@ -35,7 +35,7 @@
 
     <div class="row">
         <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-            <form role="form" action="create-account" method="post">
+            <form role="form" action="{{@BASE}}/createaccount" method="post">
                 <h2>Please Sign Up
                     <small>It's free and always will be.</small>
                 </h2>
@@ -153,13 +153,37 @@
 <script>
     //sets button to be disabled to prevent bad data submission
     document.getElementById("btnregister").disabled = true;
+<<<<<<< HEAD
     $('#username').keyup(function() {  //checks each time user types
         var username = $(this).val();
         if (username != '') {
+=======
+    var validUser = false;
+    var validPass = false;
+
+    //enables or disables submit button
+    var submit = {
+        valid: function () {
+            if (validPass && validUser) {
+                document.getElementById("btnregister").disabled = false;
+            } else {
+                document.getElementById("btnregister").disabled = true;
+            }
+        }
+    }//end submit
+
+    /*
+    username validation
+     */
+    $('#username').keyup(function () {  //checks each time user types
+        var username = $(this).val();
+
+        if (username !== '') {
+>>>>>>> 6d605a01c3d69c498871c28c1265a690b9dc7c10
             $.post('model/checkuser.php', {username: username}, function (data) {
                 //calls select * where username matches and returns
                 //1 is username exists and 2 if not used yet
-                if (data == 1) {
+                if (data === 1) {
                     $('#username_status').text('Username unavailable')
                         .removeClass("text-success").addClass("text-danger");
                     validUser = false;
@@ -172,39 +196,61 @@
                 }
             });//end post checkuser
         } else {
+            validUser = false;
             submit.valid.call();
         }//end if else blank username
     });//end keyup username
-</script>
 
-<!-- TODO password validation -->
-<script>
-    $('#password').keyup(function() {
+    /*
+    password validation
+     */
+
+
+    $('#password').keyup(function () {
         checkPass.validate.call();
     });//end keyup password
+<<<<<<< HEAD
     $('#password_confirmation').keyup(function() {
+=======
+
+    $('#password_confirmation').keyup(function () {
+>>>>>>> 6d605a01c3d69c498871c28c1265a690b9dc7c10
         checkPass.validate.call();
     });//end keyup password
     //checks if passwords are the same
     var checkPass = {
-        validate: function() {
+        validate: function () {
             var pass1 = document.getElementById('password').value;
             var pass2 = document.getElementById('password_confirmation').value;
+<<<<<<< HEAD
             if (pass1 == pass2) {
                 $('#password_status').text('Passwords match')
                     .removeClass("text-danger").addClass("text-success");
                 validPass = true;
                 submit.valid.call();
+=======
+            if (pass1 !== '') {
+                if (pass1 === pass2) {
+                    $('#password_status').text('Passwords match')
+                        .removeClass("text-danger").addClass("text-success");
+                    validPass = true;
+                    submit.valid.call();
+                } else {
+                    $('#password_status').text('Passwords do not match')
+                        .removeClass("text-success").addClass("text-danger");
+                    validPass = false;
+                    submit.valid.call();
+                }
+>>>>>>> 6d605a01c3d69c498871c28c1265a690b9dc7c10
             } else {
-                $('#password_status').text('Passwords do not match')
-                    .removeClass("text-success").addClass("text-danger");
-                validPass = true;
+                validPass = false;
                 submit.valid.call();
-            }
+            }//end if else blank password
         }
     }//end checkPass
 </script>
 
+<<<<<<< HEAD
 <script>
     var validUser = false;
     var validPass = false;
@@ -218,5 +264,8 @@
         }
     }//end submit
 </script>
+=======
+
+>>>>>>> 6d605a01c3d69c498871c28c1265a690b9dc7c10
 </body>
 </html>

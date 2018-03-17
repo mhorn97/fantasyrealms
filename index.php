@@ -247,9 +247,8 @@ $f3 -> route('GET|POST /story-final', function() {
 });
 
 //CREATE ACCOUNT PAGE
-$f3 -> route('GET|POST /create-account', function($f3) {
+$f3 -> route('GET|POST /createaccount', function($f3) {
     if(isset($_POST['submit'])) {
-        echo"<h1>TEST</h1>";
         if(!is_null($_POST['username']) && !is_null($_POST['password'])) {
             $username = $_SESSION['username'] = $_POST['username'];
             $password = $_SESSION['password'] = $_POST['password'];
@@ -265,16 +264,16 @@ $f3 -> route('GET|POST /create-account', function($f3) {
             //was that intended or typo?
             $_SESSION['premium'] = $premium;
             //username validated with javascript before POST
-            echo "ADDING USER!";
+            //echo "ADDING USER!";
             addUser($username, $password, $premium);
 
-            header("Location:select");
+            //header("Location:select");
         }
     }//end if submit
 
     $template = new Template();
     echo $template->render('views/createaccount.html');
-});//end create-account
+});//end createaccount
 
 //FORGOT PASSWORD PAGE
 $f3 -> route('GET /forgot-password', function() {
