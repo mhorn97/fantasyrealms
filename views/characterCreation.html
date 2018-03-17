@@ -7,6 +7,7 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <title>Character Creation</title>
 </head>
 <body>
@@ -14,47 +15,75 @@
         <a class="nav-item nav-link" href="select">Fantasy Realms</a>
         <a class="nav-item nav-link" href="/328/fantasyrealms/" id="logout">Logout</a>
 </nav>
-    <h1>Make your character</h1>
+    <table>
 
-    <form method="post" action="#">
-    <label for="name">Name: </label>
-    <input type="text" name="name" id="name">
-        <br>
-        <h3>Gender: </h3>
-        <label for="male">Male: </label>
-        <input type="radio" name="gender" value="male" id="male">
-        <label for="female">Female: </label>
-        <input type="radio" name="gender" value="female" id="female">
-        <label for="other">Other: </label>
-        <input type="radio" name="gender" value="other" id="other">
+    </table>
+    <div class="container">
+        <div class="row">
+            <div class="col-4">
+                <h1>Make your character</h1>
 
-    <h3>Race: </h3><br>
-    <label for="human">Human: </label>
-    <input type="radio" name="race" value="human" id="Human">
-    <label for="elf">Elf: </label>
-    <input type="radio" name="race" value="elf" id="elf">
-    <label for="dwarf">Dwarf: </label>
-    <input type="radio" name="race" value="dwarf" id="dwarf">
-    <br><br>
+                <form method="post" action="#">
+                <label for="name">Name: </label>
+                <input type="text" name="name" id="name">
+                    <br>
+                    <h3>Gender: </h3>
+                    <label for="male">Male: </label>
+                    <input type="radio" name="gender" value="male" id="male">
+                    <label for="female">Female: </label>
+                    <input type="radio" name="gender" value="female" id="female">
+                    <label for="other">Other: </label>
+                    <input type="radio" name="gender" value="other" id="other">
 
-    <h3>Class: </h3>
-    <label for="warrior">Warrior: </label>
-    <input type="radio" name="class" value="warrior" id="warrior">
-    <label for="sorcerer">Sorcerer: </label>
-    <input type="radio" name="class" value="sorcerer" id="sorcerer">
-    <label for="rogue">Rogue: </label>
-    <input type="radio" name="class" value="rogue" id="rogue">
-    <check if="{{@premium}}">
-    <h3>Skills/Traits: </h3>
-    <input type="checkbox" name="luck"> Luck
-    <input type="checkbox" name="barter"> Barter
-    <input type="checkbox" name="Charisma"> Charisma
-    </check>
+                <h3>Race: </h3><br>
+                <label for="human">Human: </label>
+                <input type="radio" name="race" value="human" id="Human">
+                <label for="elf">Elf: </label>
+                <input type="radio" name="race" value="elf" id="elf">
+                <label for="dwarf">Dwarf: </label>
+                <input type="radio" name="race" value="dwarf" id="dwarf">
+                <br><br>
 
-    <div class="form-group">
-    <a href="select"><button name="cancel">Cancel</button></a>
-    <input type="submit" name="submit" value="Create">
+                <h3>Class: </h3>
+                <label for="warrior">Warrior: </label>
+                <input type="radio" name="class" value="warrior" id="warrior">
+                <label for="sorcerer">Sorcerer: </label>
+                <input type="radio" name="class" value="sorcerer" id="sorcerer">
+                <label for="rogue">Rogue: </label>
+                <input type="radio" name="class" value="rogue" id="rogue">
+                <check if="{{@premium}}">
+                <h3>Skills/Traits: </h3>
+                <input type="checkbox" name="luck"> Luck
+                <input type="checkbox" name="barter"> Barter
+                <input type="checkbox" name="Charisma"> Charisma
+                </check>
+
+                <div class="form-group">
+                <a href="select"><button name="cancel">Cancel</button></a>
+                <input type="submit" name="submit" value="Create">
+                </div>
+                </form>
+            </div>
+            <div class="col-8" id="img-col">
+
+            </div>
+        </div>
     </div>
-    </form>
+
+    <script>
+        $('#warrior').click(function() {
+            if($('#warrior').is(':checked')) {
+                $('#img-col').html('<img id="warriorimg" src="./images/warrior1.jpg" />')}
+        });
+        $('#sorcerer').click(function() {
+            if($('#sorcerer').is(':checked')) {
+                $('#img-col').html('<img id="sorcererimg" src="./images/sorcerer1.jpg" />')}
+        });
+        $('#rogue').click(function() {
+            if($('#rogue').is(':checked')) {
+                $('#img-col').html('<img id="rogueimg" src="./images/rogue1.jpg" />')}
+        });
+
+    </script>
 </body>
 </html>

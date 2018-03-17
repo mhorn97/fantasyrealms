@@ -2,6 +2,7 @@
     border-radius:10px;
     border:1px solid lightgray;
     padding-bottom:40px;
+    background-color:gray;
 }
 #col2{
     float:right;
@@ -19,4 +20,8 @@ nav{
 nav a{
 
     color:red;
+}
+body {
+    background-image: url("../images/selectScreen.jpg");
+    background-size:100%;
 }

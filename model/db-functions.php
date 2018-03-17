@@ -29,7 +29,7 @@ function addCharacter($name,$gender,$race,$class,$skills,$userid)
     global $dbh;
     //$useriduser = $characterobject->getiduser();
     //$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $sql = "INSERT INTO characters (name,gender,class,race,traits,iduser)
+    $sql = "INSERT INTO characters (name,gender,class,race,skills,iduser)
             VALUES (:name, :gender, :class, :race, :traits, :userid)";
 
     $statement = $dbh->prepare($sql);
