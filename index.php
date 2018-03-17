@@ -58,8 +58,8 @@ $f3 -> route('GET|POST /', function() {
             }
         }
     }
-    $view = new View;
-    echo $view->render('views/loginScreen.html');
+    $template = new Template();
+    echo $template->render('views/loginScreen.html');
 });
 
 //CHARACTER CREATION PAGE
