@@ -13,6 +13,8 @@
     <a class="nav-item nav-link" href="{{@BASE}}/select">Fantasy Realms</a>
     <a class="nav-item nav-link" href="/328/fantasyrealms/" id="logout">Logout</a>
 </nav>
+
+<div class="container" id="main">
     <h2>Class Specialization</h2>
 
 <form method="post" action="#">
@@ -25,7 +27,7 @@
             <label for="greatsword">Use a great 2-handed sword to quickly take out anything that threatens you: </label>
             <input type="radio" name="choice2" value="Greatsword" id="greatsword"><br>
             <label for="warhammer">Pick up a warhammer because.... it's a freaking warhammer!</label>
-            <input type="radio" name="choice2" value="Warhammer" id="warhammer">
+            <input type="radio" name="choice2" value="Warhammer" id="warhammer"><br>
         </true>
     </check>
     <check if="{{@character['class'] == 'sorcerer'}}">
@@ -37,7 +39,7 @@
             <label for="blood">You learned about blood magic, being able to make people kneel before you and do your bidding as you please: </label>
             <input type="radio" name="choice2" value="Blood" id="blood"><br>
             <label for="necromancy">You learned about the undead and demology, learning how to summon both and make them do your bidding: </label>
-            <input type="radio" name="choice2" value="Necromancy" id="necromancy">
+            <input type="radio" name="choice2" value="Necromancy" id="necromancy"><br>
         </true>
     </check>
     <check if="{{@character['class'] == 'rogue'}}">
@@ -51,8 +53,10 @@
             <input type="radio" name="choice2" value="Quick Fighter" id="quick"><br>
         </true>
     </check>
-    <a href="{{@BASE}}/select"><button name="exit">Exit</button></a>
     <input type="submit" name="submit" value="Continue">
 </form>
+    <a href="{{@BASE}}/select"><button name="exit">Exit</button></a>
+
+</div>
 </body>
 </html>

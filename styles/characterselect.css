@@ -1,4 +1,4 @@
-#character-select{
+#character-select,#introduction{
     border-radius:10px;
     border:1px solid lightgray;
     padding-bottom:40px;
@@ -24,4 +24,10 @@ nav a{
 body {
     background-image: url("../images/selectScreen.jpg");
     background-size:100%;
+}
+#characterContainer
+{
+    padding-bottom:30px;
+    border: 2px solid black;
+    border-radius: 5px;
 }

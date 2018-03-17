@@ -12,3 +12,16 @@ nav a{
 
     color:red;
 }
+#main{
+    padding-top: 30px;
+    border-radius:10px;
+    borer:2px solid black;
+    background-color:gray;
+    padding-bottom:20px;
+}
+img
+{
+    background-size: 100%;
+    height:100%;
+    width:100%;
+}
