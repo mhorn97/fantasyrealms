@@ -162,4 +162,17 @@ function deleteCharacter($id)
     $statement->execute();
 }
 
+function addBio($bio,$id)
+{
+    global $dbh;
+
+    $sql = "UPDATE characters SET bio = :bio WHERE characterId = :id";
+
+    $statement = $dbh->prepare($sql);
+    $statement->bindValue(':bio',$bio,PDO::PARAM_STR);
+    $statement->bindValue(':id',$id,PDO::PARAM_INT);
+
+    $statement->execute();
+}
+
 

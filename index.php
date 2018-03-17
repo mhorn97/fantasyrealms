@@ -102,8 +102,8 @@ $f3 -> route('GET|POST /creation', function($f3) {
             header("Location:select");
         }
     }
-    $template = new Template();
-    echo $template->render('views/characterCreation.html');
+    $view = new Template();
+    echo $view->render('views/characterCreation.html');
 });
 
 //CHARACTER SELECT PAGE
@@ -138,6 +138,7 @@ $f3 -> route('GET|POST /story-part1/@id', function($f3,$params) {
         header("Location:/328/fantasyrealms/");
     }
     $id = $params['id'];
+    $_SESSION['characterId'] = $params['id'];
     $character = getCharacter($id);
     $_SESSION['character'] = $character;
     $f3->set('character',$character);
@@ -181,20 +182,65 @@ $f3 -> route('GET|POST /story-part2', function($f3) {
 });
 
 //STORY-PART 3 PAGE
-$f3 -> route('GET /story-part3', function() {
+$f3 -> route('GET|POST /story-part3', function($f3) {
     if(empty($_SESSION['username']) || empty($_SESSION['password']) || empty($_SESSION['userid']))
     {
         header("Location:/328/fantasyrealms/");
+    }
+    $f3->set('character',$_SESSION['character']);
+    if(isset($_POST['submit']))
+    {
+        if(empty($_POST['choice3']))
+        {
+            echo "EMPTY";
+        }
+        else
+        {
+            $_SESSION['choice3'] = $_POST['choice3'];
+            header("Location:story-part4");
+        }
     }
     $template = new Template();
     echo $template->render('views/story3.html');
 });
 
-//STORY-FINAL PAGE
-$f3 -> route('GET /story-final', function() {
+//STORY-PART 4 PAGE
+$f3 -> route('GET|POST /story-part4', function($f3) {
     if(empty($_SESSION['username']) || empty($_SESSION['password']) || empty($_SESSION['userid']))
     {
         header("Location:/328/fantasyrealms/");
+    }
+    $f3->set('character',$_SESSION['character']);
+    if(isset($_POST['submit']))
+    {
+        if(empty($_POST['choice4']))
+        {
+            echo "EMPTY";
+        }
+        else
+        {
+            $_SESSION['choice4'] = $_POST['choice4'];
+            header("Location:story-final");
+        }
+    }
+    $template = new Template();
+    echo $template->render('views/story4.html');
+});
+
+//STORY-FINAL PAGE
+$f3 -> route('GET|POST /story-final', function() {
+    if(empty($_SESSION['username']) || empty($_SESSION['password']) || empty($_SESSION['userid']))
+    {
+        header("Location:/328/fantasyrealms/");
+    }
+    if(isset($_POST['submit']))
+    {
+        if(!empty($_POST['finalChoice']))
+        {
+            $bio = $_SESSION['choice1'] . " --> " . $_SESSION['choice2'] . $_SESSION['choice3'] . $_SESSION['choice4'] . $_SESSION['finalChoice'];
+            addBio($bio, $_SESSION['characterId']);
+            header("Location:summary/" . $_SESSION['characterId']);
+        }
     }
     $template = new Template();
     echo $template->render('views/finalPage.html');
