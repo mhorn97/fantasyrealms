@@ -11,25 +11,25 @@
 </head>
 <body>
 <nav class = "navbar bg-light navbar-light">
-    <a class="nav-item nav-link" href="{{@BASE}}/select">Fantasy Realms</a>
+    <a class="nav-item nav-link" href="<?= ($BASE) ?>/select">Fantasy Realms</a>
     <a class="nav-item nav-link" href="/328/fantasyrealms/" id="logout">Logout</a>
 </nav>
 
-<p>Name: {{@character['name']}}</p>
-<p>Gender: {{@character['gender']}}</p>
-<p>Class: {{@character['class']}}</p>
-<p>Race: {{@character['race']}}</p>
+<p>Name: <?= ($character['name']) ?></p>
+<p>Gender: <?= ($character['gender']) ?></p>
+<p>Class: <?= ($character['class']) ?></p>
+<p>Race: <?= ($character['race']) ?></p>
 
-<check if="{{@character['bio'] == ''}}">
-    <false>
-        <p>Bio: {{@character['bio']}}</p>
-    </false>
-</check>
+<?php if ($character['bio'] == ''): ?>
+    <?php else: ?>
+        <p>Bio: <?= ($character['bio']) ?></p>
+    
+<?php endif; ?>
 
-<check if="{{is_null(@character['skills'])}}">
-    <false>
-        <p>Skills: {{@character['skills']}}</p>
-    </false>
-</check>
+<?php if (is_null($character['skills'])): ?>
+    <?php else: ?>
+        <p>Skills: <?= ($character['skills']) ?></p>
+    
+<?php endif; ?>
 </body>
 </html>

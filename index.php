@@ -75,7 +75,7 @@ $f3 -> route('GET|POST /creation', function($f3) {
 
     if(isset($_POST['submit']))
     {
-        if(!is_null($_POST['name']) && !is_null($_POST['gender']) && !is_null($_POST['class']) && !is_null($_POST['race']))
+        if(!empty($_POST['name']))
         {
             $name = $_POST['name'];
             $gender= $_POST['gender'];
@@ -88,7 +88,8 @@ $f3 -> route('GET|POST /creation', function($f3) {
             if(isset($_SESSION['premium']))
             {
                 $skills = $_POST['skills'];
-                $newchar = new PremiumCharacter($name,$gender,$class,$race,$skills);  //TODO update to userID
+                $skills = implode(",",$skills);
+                $newchar = new PremiumCharacter($name,$gender,$class,$race);  //TODO update to userID
                 $newchar->setSkills($skills);
                 addCharacter($name,$gender,$race,$class,$skills,$_SESSION['userid']);
             }
@@ -233,6 +234,7 @@ $f3 -> route('GET|POST /story-final', function() {
     }
     if(isset($_POST['submit']))
     {
+        $_SESSION['finalChoice'] = $_POST['finalChoice'];
         if(!empty($_POST['finalChoice']))
         {
             $bio = $_SESSION['choice1'] . " --> " . $_SESSION['choice2'] . $_SESSION['choice3'] . $_SESSION['choice4'] . $_SESSION['finalChoice'];

@@ -22,9 +22,9 @@
     <label for="adventure">Continue to journey across various lands, discovering new things and people, living on the edge of danger and death: </label>
     <input type="radio" name="finalChoice" id="adventure" value = "Be an adventurer"><br>
     <label for="guard">Join the guard of your local racial kingdom, protecting it's citizens from any danger: </label>
-    <input type="radio" name="finalChoice" id="guard" value="Guard the realm"><br>
+    <input type="radio" name="finalChoice" id="guard" value="Guard the realms"><br>
 
-    <a href="{{@BASE}}/select"><button name="exit">Exit</button></a>
+    <a href="<?= ($BASE) ?>/select"><button name="exit">Exit</button></a>
     <input type="submit" name="submit" value="Finish">
 
 </form>
