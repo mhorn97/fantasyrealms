@@ -79,7 +79,7 @@
                 <div class="row">
                     <div class="col-xs-12 col-md-6">
                         <input type="submit" value="Register" id="btnregister"
-                            name="submit" class="btn btn-success btn-block btn-lg" tabindex="7">
+                               name="submit" class="btn btn-success btn-block btn-lg" tabindex="7">
                     </div>
                 </div>
             </form><!-- end form -->
@@ -105,7 +105,6 @@
                         icon: 'glyphicon glyphicon-unchecked'
                     }
                 };
-
             // Event Handlers
             $button.on('click', function () {
                 $checkbox.prop('checked', !$checkbox.is(':checked'));
@@ -115,19 +114,15 @@
             $checkbox.on('change', function () {
                 updateDisplay();
             });
-
             // Actions
             function updateDisplay() {
                 var isChecked = $checkbox.is(':checked');
-
                 // Set the button's state
                 $button.data('state', (isChecked) ? "on" : "off");
-
                 // Set the button's icon
                 $button.find('.state-icon')
                     .removeClass()
                     .addClass('state-icon ' + settings[$button.data('state')].icon);
-
                 // Update the button's color
                 if (isChecked) {
                     $button
@@ -140,7 +135,6 @@
                         .addClass('btn-default');
                 }
             }//end updateDisplay
-
             // Initialization
             function init() {
                 updateDisplay();
@@ -159,10 +153,8 @@
 <script>
     //sets button to be disabled to prevent bad data submission
     document.getElementById("btnregister").disabled = true;
-
     $('#username').keyup(function() {  //checks each time user types
         var username = $(this).val();
-
         if (username != '') {
             $.post('model/checkuser.php', {username: username}, function (data) {
                 //calls select * where username matches and returns
@@ -177,7 +169,6 @@
                         .removeClass("text-danger").addClass("text-success");
                     validUser = true;
                     submit.valid.call();
-
                 }
             });//end post checkuser
         } else {
@@ -191,17 +182,14 @@
     $('#password').keyup(function() {
         checkPass.validate.call();
     });//end keyup password
-
     $('#password_confirmation').keyup(function() {
         checkPass.validate.call();
     });//end keyup password
-
     //checks if passwords are the same
     var checkPass = {
         validate: function() {
             var pass1 = document.getElementById('password').value;
             var pass2 = document.getElementById('password_confirmation').value;
-
             if (pass1 == pass2) {
                 $('#password_status').text('Passwords match')
                     .removeClass("text-danger").addClass("text-success");
@@ -220,7 +208,6 @@
 <script>
     var validUser = false;
     var validPass = false;
-
     var submit = {
         valid: function() {
             if (validPass && validUser) {
@@ -230,13 +217,6 @@
             }
         }
     }//end submit
-
 </script>
-
-
-
-
-
-
 </body>
 </html>
