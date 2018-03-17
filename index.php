@@ -36,11 +36,14 @@ $f3->set('DEBUG', 3);
 $dbh = connect();
 */
 //Login page
-$f3 -> route('GET|POST /', function($f3) {
+$f3 -> route('GET|POST /', function() {
 
-    $f3->set('error', 'Please Sign In');
+    $_SESSION['username'] = "";
+    $_SESSION['password'] = "";
+    $_SESSION['userid'] = "";
     if(isset($_POST['submit']))
     {
+
         if(!is_null($_POST['username'] && !is_null($_POST['password'])))
         {
             $username = $_POST['username'];
@@ -53,19 +56,18 @@ $f3 -> route('GET|POST /', function($f3) {
                 $_SESSION['userid'] = $data['iduser'];
                 header("Location:select");
             }
-            else
-            {
-                $f3->set('error', 'Incorrect login.');
-            }
         }
     }
-
-    $template = new Template();
-    echo $template->render('views/loginScreen.html');
+    $view = new View;
+    echo $view->render('views/loginScreen.html');
 });
 
 //CHARACTER CREATION PAGE
 $f3 -> route('GET|POST /creation', function($f3) {
+    if(empty($_SESSION['username']) || empty($_SESSION['password']) || empty($_SESSION['userid']))
+    {
+        header("Location:/328/fantasyrealms/");
+    }
     $f3->set('premium', $_SESSION['premium']);
 
     if(isset($_POST['submit']))
@@ -98,12 +100,16 @@ $f3 -> route('GET|POST /creation', function($f3) {
             header("Location:select");
         }
     }
-    $template = new Template();
-    echo $template->render('views/characterCreation.html');
+    $view = new Template();
+    echo $view->render('views/characterCreation.html');
 });
 
 //CHARACTER SELECT PAGE
 $f3 -> route('GET|POST /select', function($f3) {
+    if(empty($_SESSION['username']) || empty($_SESSION['password']) || empty($_SESSION['userid']))
+    {
+        header("Location:/328/fantasyrealms/");
+    }
     if(isset($_POST['submit']))
     {
         $premium = $_POST['premium'];
@@ -116,9 +122,7 @@ $f3 -> route('GET|POST /select', function($f3) {
     $f3->set('username',$username);
     $userid = $_SESSION['userid'];
     $f3->set('userid',$userid);
-    echo $userid;
     $characters = getCharacters($userid);
-    print_r($characters);
     $f3->set('characters',$characters);
 
     $template = new Template();
@@ -127,6 +131,10 @@ $f3 -> route('GET|POST /select', function($f3) {
 
 //STORY-PART 1 PAGE
 $f3 -> route('GET|POST /story-part1/@id', function($f3,$params) {
+    if(empty($_SESSION['username']) || empty($_SESSION['password']) || empty($_SESSION['userid']))
+    {
+        header("Location:/328/fantasyrealms/");
+    }
     $id = $params['id'];
     $character = getCharacter($id);
     $_SESSION['character'] = $character;
@@ -149,6 +157,10 @@ $f3 -> route('GET|POST /story-part1/@id', function($f3,$params) {
 
 //STORY-PART 2 PAGE
 $f3 -> route('GET|POST /story-part2', function($f3) {
+    if(empty($_SESSION['username']) || empty($_SESSION['password']) || empty($_SESSION['userid']))
+    {
+        header("Location:/328/fantasyrealms/");
+    }
     $f3->set('character',$_SESSION['character']);
     if(isset($_POST['submit']))
     {
@@ -168,12 +180,20 @@ $f3 -> route('GET|POST /story-part2', function($f3) {
 
 //STORY-PART 3 PAGE
 $f3 -> route('GET /story-part3', function() {
+    if(empty($_SESSION['username']) || empty($_SESSION['password']) || empty($_SESSION['userid']))
+    {
+        header("Location:/328/fantasyrealms/");
+    }
     $template = new Template();
     echo $template->render('views/story3.html');
 });
 
 //STORY-FINAL PAGE
 $f3 -> route('GET /story-final', function() {
+    if(empty($_SESSION['username']) || empty($_SESSION['password']) || empty($_SESSION['userid']))
+    {
+        header("Location:/328/fantasyrealms/");
+    }
     $template = new Template();
     echo $template->render('views/finalPage.html');
 });
@@ -216,6 +236,10 @@ $f3 -> route('GET /forgot-password', function() {
 
 //CHARACTER SUMMARY PAGE
 $f3 -> route('GET|POST /summary/@id', function($f3,$params) {
+    if(empty($_SESSION['username']) || empty($_SESSION['password']) || empty($_SESSION['userid']))
+    {
+        header("Location:/328/fantasyrealms/");
+    }
     $id = $params['id'];
     $character = getCharacter($id);
     $f3->set('character',$character);
