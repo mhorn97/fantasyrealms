@@ -61,6 +61,7 @@
                         </div>
                     </div>
                 </div>
+                <span class="text-danger" id="password_status"> </span>
 
                 <div class="row">
                     <div class="col-xs-4 col-sm-3 col-md-3">
@@ -158,9 +159,9 @@
 <script>
     //sets button to be disabled to prevent bad data submission
     document.getElementById("btnregister").disabled = true;
+
     $('#username').keyup(function() {  //checks each time user types
         var username = $(this).val();
-        //$('#username_status').text('Searching database.');
 
         if (username != '') {
             $.post('model/checkuser.php', {username: username}, function (data) {
@@ -169,29 +170,66 @@
                 if (data == 1) {
                     $('#username_status').text('Username unavailable')
                         .removeClass("text-success").addClass("text-danger");
-                    document.getElementById("btnregister").disabled = true;
+                    validUser = false;
+                    submit.valid.call();
                 } else {
                     $('#username_status').text('Username available')
                         .removeClass("text-danger").addClass("text-success");
-                    document.getElementById("btnregister").disabled = false;
+                    validUser = true;
+                    submit.valid.call();
 
                 }
-                //$('#username_status').text(data);
-                //$('#username_status').text('working');
             });//end post checkuser
         } else {
-            document.getElementById("btnregister").disabled = true;
+            submit.valid.call();
         }//end if else blank username
     });//end keyup username
 </script>
 
 <!-- TODO password validation -->
 <script>
-    $('#password').keyuo(function() {
-       var pass1 = $(this).val();
-       var pass2 = $(this).val();
-
+    $('#password').keyup(function() {
+        checkPass.validate.call();
     });//end keyup password
+
+    $('#password_confirmation').keyup(function() {
+        checkPass.validate.call();
+    });//end keyup password
+
+    //checks if passwords are the same
+    var checkPass = {
+        validate: function() {
+            var pass1 = document.getElementById('password').value;
+            var pass2 = document.getElementById('password_confirmation').value;
+
+            if (pass1 == pass2) {
+                $('#password_status').text('Passwords match')
+                    .removeClass("text-danger").addClass("text-success");
+                validPass = true;
+                submit.valid.call();
+            } else {
+                $('#password_status').text('Passwords do not match')
+                    .removeClass("text-success").addClass("text-danger");
+                validPass = true;
+                submit.valid.call();
+            }
+        }
+    }//end checkPass
+</script>
+
+<script>
+    var validUser = false;
+    var validPass = false;
+
+    var submit = {
+        valid: function() {
+            if (validPass && validUser) {
+                document.getElementById("btnregister").disabled = false;
+            } else {
+                document.getElementById("btnregister").disabled = true;
+            }
+        }
+    }//end submit
 
 </script>
 
