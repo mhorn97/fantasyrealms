@@ -36,8 +36,8 @@ $f3->set('DEBUG', 3);
 $dbh = connect();
 */
 //Login page
-$f3 -> route('GET|POST /', function() {
-
+$f3 -> route('GET|POST /', function($f3) {
+    $f3->set('error', 'Please Sign In');
     $_SESSION['username'] = "";
     $_SESSION['password'] = "";
     $_SESSION['userid'] = "";
@@ -55,6 +55,8 @@ $f3 -> route('GET|POST /', function() {
                 $_SESSION['password'] = $password;
                 $_SESSION['userid'] = $data['iduser'];
                 header("Location:select");
+            } else {
+                $f3->set('error', 'Incorrect Login');
             }
         }
     }
@@ -100,8 +102,8 @@ $f3 -> route('GET|POST /creation', function($f3) {
             header("Location:select");
         }
     }
-    $view = new Template();
-    echo $view->render('views/characterCreation.html');
+    $template = new Template();
+    echo $template->render('views/characterCreation.html');
 });
 
 //CHARACTER SELECT PAGE
