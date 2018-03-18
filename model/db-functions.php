@@ -58,7 +58,32 @@ function addCharacter($name,$gender,$race,$class,$skills,$userid)
     return $success;
 }//end addCharacter
 
+/**
+ * edit a character object that is in the database
+ * @param $name name of character
+ * @param $gender gender of character
+ * @param $race race of character
+ * @param $class class of character
+ * @param $skills skills/traits of the character
+ * @param $id user id of the character
+ */
+function editCharacter($name,$gender,$race,$class,$skills, $id)
+{
+    global $dbh;
 
+    $sql = "UPDATE characters SET name = :name , gender = :gender , class = :class , race = :race , skills = :skills WHERE characterId = :id";
+
+    $statement = $dbh->prepare($sql);
+
+    $statement->bindParam(':name', $name, PDO::PARAM_STR);
+    $statement->bindParam(':gender', $gender, PDO::PARAM_STR);
+    $statement->bindParam(':race', $race, PDO::PARAM_STR);
+    $statement->bindParam(':class', $class, PDO::PARAM_STR);
+    $statement->bindParam(':skills', $skills, PDO::PARAM_STR);
+    $statement->bindParam(':id', $id, PDO::PARAM_INT);
+
+    $statement->execute();
+}
 /**
  * Adds a new user to the database
  * @param $username username for the user

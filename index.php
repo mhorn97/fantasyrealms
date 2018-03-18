@@ -95,6 +95,54 @@ $f3 -> route('GET|POST /creation', function($f3) {
     echo $view->render('views/characterCreation.html');
 });
 
+//CHARACTER Edit PAGE
+$f3 -> route('GET|POST /edit/@id', function($f3,$params) {
+    if(empty($_SESSION['username']) || empty($_SESSION['password']) || empty($_SESSION['userid']))
+    {
+        header("Location:/328/fantasyrealms/");
+    }
+    $f3->set('premium', $_SESSION['premium']);
+    $id = $params['id'];
+    $character = getCharacter($id);
+    $f3->set('character',$character);
+    if(isset($_POST['submit']))
+    {
+        if(!empty($_POST['name']))
+        {
+            $name = $_POST['name'];
+            $gender= $_POST['gender'];
+            $race = $_POST['race'];
+            $class = $_POST['class'];
+            $f3->set('name',$name);
+            $f3->set('gender',$gender);
+            $f3->set('race',$race);
+            $f3->set('class',$class);
+            if($_SESSION['premium'] == 1)
+            {
+                $skills = $_POST['skills'];
+                if(!empty($_POST['skills']))
+                {
+                    $skills = implode(",", $skills);
+                }
+                $newchar = new PremiumCharacter($name,$gender,$class,$race);  //TODO update to userID
+                $newchar->setSkills($skills);
+                editCharacter($name,$gender,$race,$class,$skills, $id);
+            }
+            else
+            {
+                $newchar = new Character($name,$gender,$class,$race);
+                editCharacter($name,$gender,$race,$class,"",$id);
+            }
+
+            $f3->set('newchar',$newchar);
+            $_SESSION['newchar'] = $newchar;
+            header("Location:../select");
+        }
+    }
+    $view = new Template();
+    echo $view->render('views/edit.html');
+});
+
 //CHARACTER SELECT PAGE
 $f3 -> route('GET|POST /select', function($f3) {
     if(empty($_SESSION['username']) || empty($_SESSION['password']) || empty($_SESSION['userid']))

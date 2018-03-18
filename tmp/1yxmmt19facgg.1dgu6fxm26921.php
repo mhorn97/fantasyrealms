@@ -35,6 +35,7 @@
                             <p>|Name: <?= ($character['name']) ?> | Race: <?= ($character['race']) ?> | Class: <?= ($character['class']) ?>|</p>
                             <a href="<?= ($BASE) ?>/summary/<?= ($character['characterId']) ?>"><button name="view" class="btn btn-primary">View Character</button></a>
                             <a href="<?= ($BASE) ?>/story-part1/<?= ($character['characterId']) ?>"><button name = "resume" class="btn btn-primary">Story</button></a>
+                            <a href="<?= ($BASE) ?>/edit/<?= ($character['characterId']) ?>"><button name = "edit" class="btn btn-primary">Edit</button></a>
                             <button name = "delete" id="delete<?= ($character['characterId']) ?>" value="<?= ($character['characterId']) ?>" class="btn btn-primary">Delete</button>
                         </div>
                     <?php endforeach; ?>
