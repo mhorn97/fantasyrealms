@@ -49,7 +49,7 @@
             <input type="radio" name="choice2" value="Lockpicker" id="lockpicker" checked><br>
             <label for="backstabber">You learned how to get intel on things that you wanted or people you wanted to kill, and completing that goal quickly and as quiet as possible: </label>
             <input type="radio" name="choice2" value="Backstabber" id="backstabber"><br>
-            <label for="quick">You learned how to quickly get behind your enemies and stab them in the back, quickly ending any battle. Even groups of your enemies were scared to fight you all at once</label>
+            <label for="quick">You learned how to quickly get behind your enemies and stab them in the back, quickly ending any battle: </label>
             <input type="radio" name="choice2" value="Quick Fighter" id="quick"><br>
         </true>
     </check>
@@ -58,5 +58,23 @@
     <a href="{{@BASE}}/select"><button name="exit">Exit</button></a>
 
 </div>
+
+<script type="text/javascript">
+    if("{{@character['class'] == 'warrior'}}" == 1)
+    {
+        $('body').css('background-image', "url('{{@BASE}}/images/warrior2.jpg");
+        $('body').css('background',"size('100%')");
+    };
+    if("{{@character['class'] == 'sorcerer'}}" == 1)
+    {
+        $('body').css('background-image', "url('{{@BASE}}/images/sorcerer2.jpg");
+        $('body').css('background',"size('100%')");
+    };
+    if("{{@character['class'] == 'rogue'}}" == 1)
+    {
+        $('body').css('background-image', "url('{{@BASE}}/images/rogue2.jpg");
+        $('body').css('background',"size('100%')");
+    };
+</script>
 </body>
 </html>
