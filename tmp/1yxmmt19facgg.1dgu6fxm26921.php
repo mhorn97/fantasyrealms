@@ -33,15 +33,15 @@
                     <?php foreach (($characters?:[]) as $character): ?>
                         <div class="charactercontainer" id="characterContainer">
                             <p>|Name: <?= ($character['name']) ?> | Race: <?= ($character['race']) ?> | Class: <?= ($character['class']) ?>|</p>
-                            <a href="<?= ($BASE) ?>/summary/<?= ($character['characterId']) ?>"><button name="view">View Character</button></a>
-                            <a href="<?= ($BASE) ?>/story-part1/<?= ($character['characterId']) ?>"><button name = "resume">Story</button></a>
-                            <button name = "delete" id="delete<?= ($character['characterId']) ?>" value="<?= ($character['characterId']) ?>">Delete</button>
+                            <a href="<?= ($BASE) ?>/summary/<?= ($character['characterId']) ?>"><button name="view" class="btn btn-primary">View Character</button></a>
+                            <a href="<?= ($BASE) ?>/story-part1/<?= ($character['characterId']) ?>"><button name = "resume" class="btn btn-primary">Story</button></a>
+                            <button name = "delete" id="delete<?= ($character['characterId']) ?>" value="<?= ($character['characterId']) ?>" class="btn btn-primary">Delete</button>
                         </div>
                     <?php endforeach; ?>
             <br>
             <br>
                 <form method="post" action="#">
-                <input type="submit" name="submit" value="Create a character!">
+                <input type="submit" name="submit" value="Create a character!" class="btn btn-primary">
                 </form>
             </div>
         </div>

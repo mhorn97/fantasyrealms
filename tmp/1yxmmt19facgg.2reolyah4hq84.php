@@ -53,9 +53,9 @@
             <input type="radio" name="choice2" value="<?= ($character['name']) ?> learned the importance of getting into someone's blindspot before striking. " id="quick"><br>
         
     <?php endif; ?>
-    <input type="submit" name="submit" value="Continue">
+    <input type="submit" name="submit" value="Continue" class="btn btn-primary">
 </form>
-    <a href="<?= ($BASE) ?>/select"><button name="exit">Exit</button></a>
+    <a href="<?= ($BASE) ?>/select"><button name="exit" class="btn btn-primary">Exit</button></a>
 
 </div>
 

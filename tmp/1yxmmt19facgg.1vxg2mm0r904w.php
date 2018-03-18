@@ -20,33 +20,33 @@
     <p>You have had quite the adventure but it is time to settle down into something that will take you until death. How do you want to carry on the rest of you life? </p>
 <form method="post" action="#">
     <label for="settle">Settle down and raise a family in a village: </label>
-    <input type="radio" name="finalChoice" id="settle" value="{{@character['name']}} settled down in a local village to raise a family." checked><br>
+    <input type="radio" name="finalChoice" id="settle" value="<?= ($character['name']) ?> settled down in a local village to raise a family." checked><br>
     <label for="adventure">Continue to journey across various lands, discovering new things and people, living on the edge of danger and death: </label>
-    <input type="radio" name="finalChoice" id="adventure" value = "{{@character['name']}} continued to have adventures across many lands until their final days."><br>
+    <input type="radio" name="finalChoice" id="adventure" value = "<?= ($character['name']) ?> continued to have adventures across many lands until their final days."><br>
     <label for="guard">Join the guard of your local racial kingdom, protecting it's citizens from any danger: </label>
-    <input type="radio" name="finalChoice" id="guard" value="{{@character['name']}} became a guard to their local kingdom. Guarding their realm until their final breath."><br>
-    <input type="submit" name="submit" value="Finish" class="btn btn-primary">
+    <input type="radio" name="finalChoice" id="guard" value="<?= ($character['name']) ?> became a guard to their local kingdom. Guarding their realm until their final breath."><br>
+    <input type="submit" name="submit" value="Finish">
 
 </form>
-<a href="{{@BASE}}/select"><button name="exit" class="btn btn-primary">Exit</button></a>
+<a href="<?= ($BASE) ?>/select"><button name="exit">Exit</button></a>
 </div>
 
 <script>
     $('#settle').click(function() {
         if($('#settle').is(':checked')) {
-            $('body').css('background-image', "url('{{@BASE}}/images/settle.jpg");
+            $('body').css('background-image', "url('<?= ($BASE) ?>/images/settle.jpg");
             $('body').css('background', "size('100%')");
         }
     });
     $('#adventure').click(function() {
         if($('#adventure').is(':checked')) {
-            $('body').css('background-image', "url('{{@BASE}}/images/adventure.jpg");
+            $('body').css('background-image', "url('<?= ($BASE) ?>/images/adventure.jpg");
             $('body').css('background', "size('100%')");
         }
     });
     $('#guard').click(function() {
         if($('#guard').is(':checked')) {
-            $('body').css('background-image', "url('{{@BASE}}/images/guard.jpg");
+            $('body').css('background-image', "url('<?= ($BASE) ?>/images/guard.jpg");
             $('body').css('background',"size('100%')");
         }
     });
