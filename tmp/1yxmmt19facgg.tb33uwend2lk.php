@@ -35,7 +35,7 @@
 
     <div class="row">
         <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-            <form role="form" action="{{@BASE}}/createaccount" method="post">
+            <form role="form" action="<?= ($BASE) ?>/createaccount" method="post">
                 <h2>Please Sign Up
                     <small>It's free and always will be.</small>
                 </h2>
@@ -174,7 +174,7 @@
             $.post('model/checkuser.php', {username: username}, function (data) {
                 //calls select * where username matches and returns
                 //1 is username exists and 2 if not used yet
-                if (data == 1) {
+                if (data === 1) {
                     $('#username_status').text('Username unavailable')
                         .removeClass("text-success").addClass("text-danger");
                     validUser = false;

@@ -20,7 +20,7 @@
 <form method="post" action="#">
 <div class="container" id="main">
     <label for="username">Enter in your username: </label>
-    <input type="text" name="username" id="username" value="{{@username}}">
+    <input type="text" name="username" id="username">
     <input type="submit" name="submit" value="Change Password">
     <span class="text-danger" id="username_status"> </span>
 
@@ -32,6 +32,7 @@
         var username = $(this).val();
         if (username !== '') {
             $.post('model/checkuser.php', {username: username}, function (data) {
+                alert(data);
                 //calls select * where username matches and returns
                 //1 is username exists and 2 if not used yet
                 if (data == 1) {
