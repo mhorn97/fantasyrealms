@@ -175,4 +175,31 @@ function addBio($bio,$id)
     $statement->execute();
 }
 
+function getUser($username)
+{
+    global $dbh;
+    $sql = "SELECT * FROM user WHERE username = :username";
+    $statement = $dbh->prepare($sql);
+    $statement->bindValue(':username', $username, PDO::PARAM_STR);
+    $success = $statement->execute();
 
+    //check if 0 entries returned or more, return true false if exists
+    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+    if (count($result) > 0) {
+        return true;  //username found existing
+    } else {
+        return false;  //username unused
+    }
+}//end checkUsername
+
+function changePassword($username,$password)
+{
+    global $dbh;
+    $sql = "UPDATE user SET password = :password WHERE username = :username";
+
+    $statement = $dbh->prepare($sql);
+    $statement->bindValue(':password',$password,PDO::PARAM_STR);
+    $statement->bindValue(':username',$username,PDO::PARAM_STR);
+
+    $statement->execute();
+}

@@ -276,9 +276,32 @@ $f3 -> route('GET|POST /createaccount', function($f3) {
 });//end createaccount
 
 //FORGOT PASSWORD PAGE
-$f3 -> route('GET /forgot-password', function() {
+$f3 -> route('GET|POST /forgot-password', function() {
+    if(isset($_POST['submit']))
+    {
+        $userExists = getUser($_POST['username']);
+        if($userExists)
+        {
+            $_SESSION['username'] = $_POST['username'];
+            header("Location:changepassword");
+        }
+    }
     $template = new Template();
     echo $template->render('views/forgotpassword.html');
+});
+
+//CHANGE PASSWORD PAGE
+$f3 -> route('GET|POST /changepassword', function() {
+    if(isset($_POST['submit']))
+    {
+        if(!empty($_POST['password']))
+        {
+            changePassword($_SESSION['username'],$_POST['password']);
+            header("Location:/328/fantasyrealms");
+        }
+    }
+    $template = new Template();
+    echo $template->render('views/changepassword.html');
 });
 
 //CHARACTER SUMMARY PAGE
