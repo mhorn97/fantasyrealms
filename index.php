@@ -1,4 +1,10 @@
 <?php
+/**
+ * Controller for fantasy realms
+ * @author Michael Horn & Anthony Thompson
+ * @version 1.0
+ */
+
 // Turn on error reporting
 ini_set("display_errors", 1);
 error_reporting(E_ALL);
@@ -15,26 +21,7 @@ $f3->set('DEBUG', 3);
 
 //Connect to the database
 $dbh = connect();
-/*require_once ('vendor/autoload.php');
-require_once('model/db-functions.php');
-session_start();
-/*
- * List of all session variables
- *
- * username
- * password
- * premium
- * userid
- * newchar
 
-
-$f3 = Base::instance();
-
-$f3->set('DEBUG', 3);
-
-//Connect to the database
-$dbh = connect();
-*/
 //Login page
 $f3 -> route('GET|POST /', function($f3) {
     $f3->set('error', 'Please Sign In');
@@ -85,7 +72,7 @@ $f3 -> route('GET|POST /creation', function($f3) {
             $f3->set('gender',$gender);
             $f3->set('race',$race);
             $f3->set('class',$class);
-            if(isset($_SESSION['premium']))
+            if($_SESSION['premium'] == 1)
             {
                 $skills = $_POST['skills'];
                 $skills = implode(",",$skills);
@@ -106,6 +93,54 @@ $f3 -> route('GET|POST /creation', function($f3) {
     }
     $view = new Template();
     echo $view->render('views/characterCreation.html');
+});
+
+//CHARACTER Edit PAGE
+$f3 -> route('GET|POST /edit/@id', function($f3,$params) {
+    if(empty($_SESSION['username']) || empty($_SESSION['password']) || empty($_SESSION['userid']))
+    {
+        header("Location:/328/fantasyrealms/");
+    }
+    $f3->set('premium', $_SESSION['premium']);
+    $id = $params['id'];
+    $character = getCharacter($id);
+    $f3->set('character',$character);
+    if(isset($_POST['submit']))
+    {
+        if(!empty($_POST['name']))
+        {
+            $name = $_POST['name'];
+            $gender= $_POST['gender'];
+            $race = $_POST['race'];
+            $class = $_POST['class'];
+            $f3->set('name',$name);
+            $f3->set('gender',$gender);
+            $f3->set('race',$race);
+            $f3->set('class',$class);
+            if($_SESSION['premium'] == 1)
+            {
+                $skills = $_POST['skills'];
+                if(!empty($_POST['skills']))
+                {
+                    $skills = implode(",", $skills);
+                }
+                $newchar = new PremiumCharacter($name,$gender,$class,$race);  //TODO update to userID
+                $newchar->setSkills($skills);
+                editCharacter($name,$gender,$race,$class,$skills, $id);
+            }
+            else
+            {
+                $newchar = new Character($name,$gender,$class,$race);
+                editCharacter($name,$gender,$race,$class,"",$id);
+            }
+
+            $f3->set('newchar',$newchar);
+            $_SESSION['newchar'] = $newchar;
+            header("Location:../select");
+        }
+    }
+    $view = new Template();
+    echo $view->render('views/edit.html');
 });
 
 //CHARACTER SELECT PAGE
@@ -249,17 +284,18 @@ $f3 -> route('GET|POST /story-part4', function($f3) {
 });
 
 //STORY-FINAL PAGE
-$f3 -> route('GET|POST /story-final', function() {
+$f3 -> route('GET|POST /story-final', function($f3) {
     if(empty($_SESSION['username']) || empty($_SESSION['password']) || empty($_SESSION['userid']))
     {
         header("Location:/328/fantasyrealms/");
     }
+    $f3->set('character',$_SESSION['character']);
     if(isset($_POST['submit']))
     {
         $_SESSION['finalChoice'] = $_POST['finalChoice'];
         if(!empty($_POST['finalChoice']))
         {
-            $bio = $_SESSION['choice1'] . " --> " . $_SESSION['choice2'] . $_SESSION['choice3'] . $_SESSION['choice4'] . $_SESSION['finalChoice'];
+            $bio = $_SESSION['choice1'] . $_SESSION['choice2'] . $_SESSION['choice3'] . $_SESSION['choice4'] . $_SESSION['finalChoice'];
             addBio($bio, $_SESSION['characterId']);
             header("Location:summary/" . $_SESSION['characterId']);
         }
@@ -298,9 +334,32 @@ $f3 -> route('GET|POST /createaccount', function($f3) {
 });//end createaccount
 
 //FORGOT PASSWORD PAGE
-$f3 -> route('GET /forgot-password', function() {
+$f3 -> route('GET|POST /forgot-password', function() {
+    if(isset($_POST['submit']))
+    {
+        $userExists = getUser($_POST['username']);
+        if($userExists)
+        {
+            $_SESSION['username'] = $_POST['username'];
+            header("Location:changepassword");
+        }
+    }
     $template = new Template();
     echo $template->render('views/forgotpassword.html');
+});
+
+//CHANGE PASSWORD PAGE
+$f3 -> route('GET|POST /changepassword', function() {
+    if(isset($_POST['submit']))
+    {
+        if(!empty($_POST['password']))
+        {
+            changePassword($_SESSION['username'],$_POST['password']);
+            header("Location:/328/fantasyrealms");
+        }
+    }
+    $template = new Template();
+    echo $template->render('views/changepassword.html');
 });
 
 //CHARACTER SUMMARY PAGE

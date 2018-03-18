@@ -14,20 +14,21 @@
     <a class="nav-item nav-link" href="select">Fantasy Realms</a>
     <a class="nav-item nav-link" href="/328/fantasyrealms/" id="logout">Logout</a>
 </nav>
+
+<div class="container" id="main">
 <h2>Adventure 2</h2>
 
 <form method="post" action="#">
     <p>{{@question}}</p>
     <label for="answer1">{{@answer1}}</label>
-    <input type="radio" name="choice4" id="answer1" value="answer1" checked><br>
+    <input type="radio" name="choice4" id="answer1" value="answer1. " checked><br>
     <label for="answer2">{{@answer2}}</label>
-    <input type="radio" name="choice4" id="answer2" value="answer2"><br>
+    <input type="radio" name="choice4" id="answer2" value="answer2. "><br>
     <label for="answer3">{{@answer3}}</label>
-    <input type="radio" name="choice4" id="answer3" value="answer3"><br>
-    <input type="submit" name="submit" value="Continue">
-
+    <input type="radio" name="choice4" id="answer3" value="answer3. "><br>
+    <input type="submit" name="submit" value="Continue" class="btn btn-primary">
 </form>
-    <a href="{{@BASE}}/select"><button name="exit">Exit</button></a>
-
+    <a href="{{@BASE}}/select"><button name="exit" class="btn btn-primary">Exit</button></a>
+</div>
 </body>
 </html>

@@ -20,50 +20,54 @@
     </table>
     <div class="container">
         <div class="row">
-            <div class="col-4">
-                <h1>Make your character</h1>
-
+            <div class="col-4" id="col1">
+                <h1>Character Creation</h1>
+                <p>-----------------------------</p>
                 <form method="post" action="#">
                 <label for="name">Name: </label>
                 <input type="text" name="name" id="name">
                     <div name="nameerror" id="nameerror"></div>
                     <br>
+                    <p>-----------------------------</p>
                     <h3>Gender: </h3>
                     <label for="male">Male: </label>
-                    <input type="radio" name="gender" value="male" id="male" checked>
+                    <input type="radio" name="gender" value="Male" id="male" checked>
                     <label for="female">Female: </label>
-                    <input type="radio" name="gender" value="female" id="female">
+                    <input type="radio" name="gender" value="Female" id="female">
                     <label for="other">Other: </label>
-                    <input type="radio" name="gender" value="other" id="other">
-
-                <h3>Race: </h3><br>
+                    <input type="radio" name="gender" value="Other" id="other">
+                    <p>-----------------------------</p>
+                <h3>Race: </h3>
                 <label for="human">Human: </label>
-                <input type="radio" name="race" value="human" id="Human" checked>
+                <input type="radio" name="race" value="Human" id="Human" checked>
                 <label for="elf">Elf: </label>
-                <input type="radio" name="race" value="elf" id="elf">
+                <input type="radio" name="race" value="Elf" id="elf">
                 <label for="dwarf">Dwarf: </label>
-                <input type="radio" name="race" value="dwarf" id="dwarf">
+                <input type="radio" name="race" value="Dwarf" id="dwarf">
                 <br><br>
-
+                    <p>-----------------------------</p>
                 <h3>Class: </h3>
                 <label for="warrior">Warrior: </label>
-                <input type="radio" name="class" value="warrior" id="warrior" checked>
+                <input type="radio" name="class" value="Warrior" id="warrior" checked>
                 <label for="sorcerer">Sorcerer: </label>
-                <input type="radio" name="class" value="sorcerer" id="sorcerer">
+                <input type="radio" name="class" value="Sorcerer" id="sorcerer">
                 <label for="rogue">Rogue: </label>
-                <input type="radio" name="class" value="rogue" id="rogue">
+                <input type="radio" name="class" value="Rogue" id="rogue">
                 <check if="{{@premium}}">
+                    <p>-----------------------------</p>
                 <h3>Skills/Traits: </h3>
                 <input type="checkbox" name="skills[]" value="Luck"> Luck
                 <input type="checkbox" name="skills[]" value="Barter"> Barter
                 <input type="checkbox" name="skills[]" value="Charisma"> Charisma
+                    <br><br>
                 </check>
 
                 <div class="form-group">
-                <a href="select"><button name="cancel">Cancel</button></a>
-                <input type="submit" name="submit" value="Create" id="submit">
+
+                <input type="submit" name="submit" value="Create" id="submit" class="btn btn-primary">
                 </div>
                 </form>
+                <a href="{{@BASE}}/select"><button name="cancel" class="btn btn-primary">Cancel</button></a>
             </div>
             <div class="col-8" id="img-col">
 

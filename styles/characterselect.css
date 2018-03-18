@@ -1,8 +1,13 @@
+/**
+@author Michael Horn and Anthony Thompson
+@version 1.0
+Style sheet for the character select screen
+ */
 #character-select,#introduction{
     border-radius:10px;
-    border:1px solid lightgray;
+    border:1px solid gray;
     padding-bottom:40px;
-    background-color:gray;
+    background-color:lightgray;
 }
 #col2{
     float:right;
@@ -25,9 +30,10 @@ body {
     background-image: url("../images/selectScreen.jpg");
     background-size:100%;
 }
-#characterContainer
+.charactercontainer
 {
     padding-bottom:30px;
     border: 2px solid black;
     border-radius: 5px;
+    margin-bottom:10px;
 }

@@ -174,7 +174,7 @@
             $.post('model/checkuser.php', {username: username}, function (data) {
                 //calls select * where username matches and returns
                 //1 is username exists and 2 if not used yet
-                if (data === 1) {
+                if (data == 1) {
                     $('#username_status').text('Username unavailable')
                         .removeClass("text-success").addClass("text-danger");
                     validUser = false;
