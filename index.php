@@ -85,7 +85,7 @@ $f3 -> route('GET|POST /creation', function($f3) {
             $f3->set('gender',$gender);
             $f3->set('race',$race);
             $f3->set('class',$class);
-            if(isset($_SESSION['premium']))
+            if($_SESSION['premium'] == 1)
             {
                 $skills = $_POST['skills'];
                 $skills = implode(",",$skills);

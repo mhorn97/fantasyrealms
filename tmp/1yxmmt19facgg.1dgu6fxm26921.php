@@ -19,7 +19,7 @@
     <div class="row">
         <div class="col-sm-6" id="col1">
             <div class="container" id="introduction">
-                <h2>Welcome Back {{@username}}</h2>
+                <h2>Welcome Back <?= ($username) ?></h2>
                 <br><br>
                 <p>Welcome back to Fantasy Realms! A world for the most adventurous and brave. It has magic, monsters, and mysterious unexplored lands. Take up arms and
                 control your journey.</p>
@@ -30,14 +30,14 @@
             <h3>Here are your characters</h3>
 
 
-                    <repeat group="{{ @characters }}" value="{{ @character }}">
+                    <?php foreach (($characters?:[]) as $character): ?>
                         <div class="charactercontainer" id="characterContainer">
-                            <p>|Name: {{@character['name']}} | Race: {{ @character['race'] }} | Class: {{@character['class']}}|</p>
-                            <a href="{{@BASE}}/summary/{{@character['characterId']}}"><button name="view">View Character</button></a>
-                            <a href="{{@BASE}}/story-part1/{{@character['characterId']}}"><button name = "resume">Story</button></a>
-                            <button name = "delete" id="delete{{@character['characterId']}}" value="{{@character['characterId']}}">Delete</button>
+                            <p>|Name: <?= ($character['name']) ?> | Race: <?= ($character['race']) ?> | Class: <?= ($character['class']) ?>|</p>
+                            <a href="<?= ($BASE) ?>/summary/<?= ($character['characterId']) ?>"><button name="view">View Character</button></a>
+                            <a href="<?= ($BASE) ?>/story-part1/<?= ($character['characterId']) ?>"><button name = "resume">Story</button></a>
+                            <button name = "delete" id="delete<?= ($character['characterId']) ?>" value="<?= ($character['characterId']) ?>">Delete</button>
                         </div>
-                    </repeat>
+                    <?php endforeach; ?>
             <br>
             <br>
                 <form method="post" action="#">
@@ -51,9 +51,9 @@
 
 <script>
 
-    <repeat group="{{ @characters }}" value="{{ @character }}">
+    <?php foreach (($characters?:[]) as $character): ?>
 
-    $("#delete{{@character['characterId']}}").click(function()
+    $("#delete<?= ($character['characterId']) ?>").click(function()
     {
         var id = $(this).val();
         var deletion = confirm("Are you sure you want to delete this character");
@@ -66,7 +66,7 @@
             location.reload(true);
         }
     });
-    </repeat>
+    <?php endforeach; ?>
 </script>
 </body>
 </html>

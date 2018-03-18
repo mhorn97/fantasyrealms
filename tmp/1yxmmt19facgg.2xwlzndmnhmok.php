@@ -52,19 +52,19 @@
                 <input type="radio" name="class" value="sorcerer" id="sorcerer">
                 <label for="rogue">Rogue: </label>
                 <input type="radio" name="class" value="rogue" id="rogue">
-                <check if="{{@premium}}">
+                <?php if ($premium): ?>
                 <h3>Skills/Traits: </h3>
                 <input type="checkbox" name="skills[]" value="Luck"> Luck
                 <input type="checkbox" name="skills[]" value="Barter"> Barter
                 <input type="checkbox" name="skills[]" value="Charisma"> Charisma
-                </check>
+                <?php endif; ?>
 
                 <div class="form-group">
 
                 <input type="submit" name="submit" value="Create" id="submit">
                 </div>
                 </form>
-                <a href="{{@BASE}}/select"><button name="cancel">Cancel</button></a>
+                <a href="<?= ($BASE) ?>/select"><button name="cancel">Cancel</button></a>
             </div>
             <div class="col-8" id="img-col">
 
