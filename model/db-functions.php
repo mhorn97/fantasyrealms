@@ -68,8 +68,6 @@ function addUser($username, $password, $premium)
 }//end addCharacter
 
 
-
-
 //gets all characters for a single user id
 function getCharacters($userid)
 {
@@ -84,7 +82,6 @@ function getCharacters($userid)
     $result = $statement->fetchAll(PDO::FETCH_ASSOC);
     return $result;
 }//end getCharacters
-
 
 
 //gets all characters from all players
@@ -174,5 +171,13 @@ function addBio($bio,$id)
 
     $statement->execute();
 }
+
+function getStory() {
+    global $dbh;
+    $sql = "SELECT * FROM story ORDER BY RAND() LIMIT 1";
+    $statement = $dbh->prepare($sql);
+    $statement->execute();
+    return $statement->fetch(PDO::FETCH_ASSOC);
+}//end getStory
 
 

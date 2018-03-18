@@ -199,6 +199,15 @@ $f3 -> route('GET|POST /story-part3', function($f3) {
             header("Location:story-part4");
         }
     }
+    //story part 3 below
+    $story = getStory();
+    $_SESSION['storyid3'] = $story['idstory'];
+    $f3->set('question', $story['story']);
+    $f3->set('answer1', $story['choice1']);
+    $f3->set('answer2', $story['choice2']);
+    $f3->set('answer3', $story['choice3']);
+
+
     $template = new Template();
     echo $template->render('views/story3.html');
 });
@@ -222,6 +231,19 @@ $f3 -> route('GET|POST /story-part4', function($f3) {
             header("Location:story-final");
         }
     }
+    //story part 3 below
+    $s3 = $_SESSION['storyid3'];
+    $story = getStory();
+    while($story['idstory'] == $s3) {  //ensures no duplicates
+        $story = getStory();
+    }
+    $_SESSION['storyid4'] = $story['idstory'];
+    $f3->set('question', $story['story']);
+    $f3->set('answer1', $story['choice1']);
+    $f3->set('answer2', $story['choice2']);
+    $f3->set('answer3', $story['choice3']);
+
+
     $template = new Template();
     echo $template->render('views/story4.html');
 });
