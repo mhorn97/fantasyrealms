@@ -1,3 +1,8 @@
+/**
+@author Michael Horn and Anthony Thompson
+@version 1.0
+Style sheet for the character select screen
+ */
 #character-select,#introduction{
     border-radius:10px;
     border:1px solid lightgray;
