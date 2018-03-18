@@ -14,6 +14,8 @@
     <a class="nav-item nav-link" href="select">Fantasy Realms</a>
     <a class="nav-item nav-link" href="/328/fantasyrealms/" id="logout">Logout</a>
 </nav>
+
+<div class="container" id="main">
     <h2>Final Story Page</h2>
     <p>You have had quite the adventure but it is time to settle down into something that will take you until death. How do you want to carry on the rest of you life? </p>
 <form method="post" action="#">
@@ -27,6 +29,27 @@
 
 </form>
 <a href="{{@BASE}}/select"><button name="exit">Exit</button></a>
+</div>
 
+<script>
+    $('#settle').click(function() {
+        if($('#settle').is(':checked')) {
+            $('body').css('background-image', "url('{{@BASE}}/images/settle.jpg");
+            $('body').css('background', "size('100%')");
+        }
+    });
+    $('#adventure').click(function() {
+        if($('#adventure').is(':checked')) {
+            $('body').css('background-image', "url('{{@BASE}}/images/adventure.jpg");
+            $('body').css('background', "size('100%')");
+        }
+    });
+    $('#guard').click(function() {
+        if($('#guard').is(':checked')) {
+            $('body').css('background-image', "url('{{@BASE}}/images/guard.jpg");
+            $('body').css('background',"size('100%')");
+        }
+    });
+</script>
 </body>
 </html>

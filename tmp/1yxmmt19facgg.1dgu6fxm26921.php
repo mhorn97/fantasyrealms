@@ -31,7 +31,7 @@
 
 
                     <?php foreach (($characters?:[]) as $character): ?>
-                        <div class="container" id="characterContainer">
+                        <div class="charactercontainer" id="characterContainer">
                             <p>|Name: <?= ($character['name']) ?> | Race: <?= ($character['race']) ?> | Class: <?= ($character['class']) ?>|</p>
                             <a href="<?= ($BASE) ?>/summary/<?= ($character['characterId']) ?>"><button name="view">View Character</button></a>
                             <a href="<?= ($BASE) ?>/story-part1/<?= ($character['characterId']) ?>"><button name = "resume">Story</button></a>
