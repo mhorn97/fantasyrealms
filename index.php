@@ -214,17 +214,18 @@ $f3 -> route('GET|POST /story-part4', function($f3) {
 });
 
 //STORY-FINAL PAGE
-$f3 -> route('GET|POST /story-final', function() {
+$f3 -> route('GET|POST /story-final', function($f3) {
     if(empty($_SESSION['username']) || empty($_SESSION['password']) || empty($_SESSION['userid']))
     {
         header("Location:/328/fantasyrealms/");
     }
+    $f3->set('character',$_SESSION['character']);
     if(isset($_POST['submit']))
     {
         $_SESSION['finalChoice'] = $_POST['finalChoice'];
         if(!empty($_POST['finalChoice']))
         {
-            $bio = $_SESSION['choice1'] . " --> " . $_SESSION['choice2'] . $_SESSION['choice3'] . $_SESSION['choice4'] . $_SESSION['finalChoice'];
+            $bio = $_SESSION['choice1'] . $_SESSION['choice2'] . $_SESSION['choice3'] . $_SESSION['choice4'] . $_SESSION['finalChoice'];
             addBio($bio, $_SESSION['characterId']);
             header("Location:summary/" . $_SESSION['characterId']);
         }
