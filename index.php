@@ -126,12 +126,12 @@ $f3 -> route('GET|POST /edit/@id', function($f3,$params) {
                 }
                 $newchar = new PremiumCharacter($name,$gender,$class,$race);  //TODO update to userID
                 $newchar->setSkills($skills);
-                editCharacter($name,$gender,$race,$class,$skills, $id);
+                editCharacter($name,$gender,$race,$class,$skills, $id, "");
             }
             else
             {
                 $newchar = new Character($name,$gender,$class,$race);
-                editCharacter($name,$gender,$race,$class,"",$id);
+                editCharacter($name,$gender,$race,$class,"",$id, "");
             }
 
             $f3->set('newchar',$newchar);

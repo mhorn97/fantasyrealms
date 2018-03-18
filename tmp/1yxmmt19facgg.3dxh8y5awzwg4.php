@@ -45,7 +45,7 @@
                 <input type="radio" name="race" value="Dwarf" id="dwarf" <?php if ($character['race'] == 'Dwarf'): ?>checked<?php endif; ?>>
                 <br><br>
                 <p>-----------------------------</p>
-                <h3>Class: </h3>tt4
+                <h3>Class: </h3>
                 <label for="warrior">Warrior: </label>
                 <input type="radio" name="class" value="Warrior" id="warrior" <?php if ($character['class'] == 'Warrior'): ?>checked<?php endif; ?>>
                 <label for="sorcerer">Sorcerer: </label>
