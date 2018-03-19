@@ -315,13 +315,3 @@ function changePassword($username,$password)
 
     $statement->execute();
 }
-
-
-/* sql to insert stories
-  INSERT INTO `story`(`story`, `choice1`, `choice2`, `choice3`) VALUES (
-    '',
-    '',
-    '',
-    ''
-)
- */
