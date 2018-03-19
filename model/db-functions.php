@@ -67,11 +67,11 @@ function addCharacter($name,$gender,$race,$class,$skills,$userid)
  * @param $skills skills/traits of the character
  * @param $id user id of the character
  */
-function editCharacter($name,$gender,$race,$class,$skills, $id)
+function editCharacter($name,$gender,$race,$class,$skills, $id, $bio)
 {
     global $dbh;
 
-    $sql = "UPDATE characters SET name = :name , gender = :gender , class = :class , race = :race , skills = :skills WHERE characterId = :id";
+    $sql = "UPDATE characters SET name = :name , gender = :gender , class = :class , race = :race , skills = :skills, bio = :bio WHERE characterId = :id";
 
     $statement = $dbh->prepare($sql);
 
@@ -81,6 +81,7 @@ function editCharacter($name,$gender,$race,$class,$skills, $id)
     $statement->bindParam(':class', $class, PDO::PARAM_STR);
     $statement->bindParam(':skills', $skills, PDO::PARAM_STR);
     $statement->bindParam(':id', $id, PDO::PARAM_INT);
+    $statement->bindParam(':bio', $bio, PDO::PARAM_STR);
 
     $statement->execute();
 }
