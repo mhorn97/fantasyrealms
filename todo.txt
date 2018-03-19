@@ -9,6 +9,9 @@ Need to do
 *make Story button on existing characters more prominent so users know to click it to proceed
     can have character creation direct right into story so it can't be missed
 *add opacity to background colors over images
+*get images for stories 3 and 4
+*potentially add more story pages
+*turn password hashing back on sha1
 
 *use fat free {{@objects}} for story elements as placeholders
 
@@ -16,6 +19,11 @@ Need to do
 Nice to do
 *edit character information
 *preloading images so they appear instantly when javascript changes image like on character creation
+
+
+
+
+Completed
 
 
 Project Requirements
