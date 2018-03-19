@@ -55,9 +55,9 @@
                 <check if="{{@premium}}">
                     <p>-----------------------------</p>
                     <h3>Skills/Traits: </h3>
-                    <input type="checkbox" name="skills[]" value="Luck"> Luck
-                    <input type="checkbox" name="skills[]" value="Barter"> Barter
-                    <input type="checkbox" name="skills[]" value="Charisma"> Charisma
+                    <input type="checkbox" name="skills[]" value="Luck" <check if="{{@luck == 1}}"><true>checked</true> </check>> Luck {{@luck}}
+                    <input type="checkbox" name="skills[]" value="Barter" <check if="{{@barter == 1}}"><true>checked</true> </check>> Barter {{@barter}}
+                    <input type="checkbox" name="skills[]" value="Charisma" <check if="{{@charisma == 1}}"><true>checked</true> </check>> Charisma {{@charisma}}
                     <br><br>
                 </check>
 

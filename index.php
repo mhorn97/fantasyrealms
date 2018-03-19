@@ -105,6 +105,21 @@ $f3 -> route('GET|POST /edit/@id', function($f3,$params) {
     $id = $params['id'];
     $character = getCharacter($id);
     $f3->set('character',$character);
+    if($_SESSION['premium'] == 1)
+    {
+        if(strpos($character['skills'], "Luck") !== false)
+        {
+            $f3->set('luck',1);
+        }
+        if(strpos($character['skills'], "Barter") !== false)
+        {
+            $f3->set('barter',1);
+        }
+        if(strpos($character['skills'], "Charisma") !== false)
+        {
+            $f3->set('charisma',1);
+        }
+    }
     if(isset($_POST['submit']))
     {
         if(!empty($_POST['name']))
