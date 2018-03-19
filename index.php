@@ -165,6 +165,20 @@ $f3 -> route('GET|POST /select', function($f3) {
     echo $template->render('views/characterSelect.html');
 });
 
+//View All PAGE
+$f3 -> route('GET|POST /viewall', function($f3) {
+    if(empty($_SESSION['username']) || empty($_SESSION['password']) || empty($_SESSION['userid']))
+    {
+        header("Location:/328/fantasyrealms/");
+    }
+    $characters = getAllCharacters();
+    $f3->set('characters',$characters);
+
+    $template = new Template();
+    echo $template->render('views/viewAll.html');
+});
+
+
 //STORY-PART 1 PAGE
 $f3 -> route('GET|POST /story-part1/@id', function($f3,$params) {
     if(empty($_SESSION['username']) || empty($_SESSION['password']) || empty($_SESSION['userid']))

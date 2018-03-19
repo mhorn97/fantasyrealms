@@ -1,0 +1,36 @@
+/**
+@author Michael Horn and Anthony Thompson
+@version 1.0
+Style sheet for the view all page
+ */
+#head{
+    border-bottom:2px solid lightgray;
+    margin-top:20px;
+}
+nav{
+    margin-bottom:30px;
+}
+#logout{
+    text-align:right;
+}
+nav a{
+
+    color:red;
+}
+body {
+    background-image: url("../images/selectScreen.jpg");
+    background-size:100%;
+}
+.charactercontainer
+{
+    padding-bottom:30px;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin-bottom:10px;
+    background-color: rgba(211, 211, 211, 0.6);
+}
+h4 a{
+    float:right;
+    padding-top:10px;
+    padding-right:10px;
+}
