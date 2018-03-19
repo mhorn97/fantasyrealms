@@ -311,8 +311,8 @@ $f3 -> route('GET|POST /story-final', function($f3) {
             $s4 = $_SESSION['story4'];
             $s3q = $s3['story'];
             $s4q = $s4['story'];
-            $bio = $_SESSION['choice1'] . $_SESSION['choice2'] . $s3q . $_SESSION['choice3']
-                . $s4q . $_SESSION['choice4'] . $_SESSION['finalChoice'];
+            $bio = $_SESSION['choice1'] . $_SESSION['choice2'] . $s3q . ' ' . $_SESSION['choice3']
+                . ' ' . $s4q . ' ' . $_SESSION['choice4'] . ' ' .  $_SESSION['finalChoice'];
             //$character = $_SESSION['character'];
             //$character->setBio($bio);
             addBio($bio, $_SESSION['characterId']);

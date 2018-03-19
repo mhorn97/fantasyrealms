@@ -16,25 +16,25 @@
 </nav>
 
 <div class="container" id="main">
-<h5>Name: {{@character['name']}}</h5><br><br>
+<h4>Name: {{@character['name']}}</h4>
     <hr>
-<h5>Gender: {{@character['gender']}}</h5><br><br>
+<h4>Gender: {{@character['gender']}}</h4>
     <hr>
-<h5>Class: {{@character['class']}}</h5><br><br>
+<h4>Class: {{@character['class']}}</h4>
     <hr>
-<h5>Race: {{@character['race']}}</h5><br><br>
+<h4>Race: {{@character['race']}}</h4>
 
 <check if="{{is_null(@character['skills']) || @character['skills'] == ''}}">
     <false>
         <hr>
-        <h5>Skills: {{@character['skills']}}</h5><br><br>
+        <h4>Skills: {{@character['skills']}}</h4><br><br>
     </false>
 </check>
 
 <check if="{{@character['bio'] == ''}}">
     <false>
         <hr>
-        <h5>Bio: {{@character['bio']}}</h5>
+        <h4>Bio: {{@character['bio']}}</h4>
     </false>
 </check>
 

@@ -7,7 +7,7 @@ Style sheet for the character select screen
     border-radius:10px;
     border:1px solid gray;
     padding-bottom:40px;
-    background-color: rgba(211, 211, 211, 0.4);
+    background-color: rgba(211, 211, 211, 0.6);
 }
 #col2{
     float:right;
