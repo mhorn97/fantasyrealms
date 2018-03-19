@@ -17,26 +17,57 @@
 
 <div class="container" id="main">
 <h1>Name: {{@character['name']}}</h1><br><br>
-    <p>----------------------------------------</p>
+    <hr>
 <h1>Gender: {{@character['gender']}}</h1><br><br>
-    <p>----------------------------------------</p>
+    <hr>
 <h1>Class: {{@character['class']}}</h1><br><br>
-    <p>----------------------------------------</p>
+    <hr>
 <h1>Race: {{@character['race']}}</h1><br><br>
 
 <check if="{{is_null(@character['skills']) || @character['skills'] == ''}}">
     <false>
-        <p>----------------------------------------</p>
+        <hr>
         <h1>Skills: {{@character['skills']}}</h1><br><br>
     </false>
 </check>
 
 <check if="{{@character['bio'] == ''}}">
     <false>
-        <p>----------------------------------------</p>
+        <hr>
         <h1>Bio: {{@character['bio']}}</h1>
     </false>
 </check>
+
+    <!--  STORIES  -->
+    <check if="{{@character['story3id'] == ''}}">
+        <false>
+            <hr>
+            <h1>{{@character['story3id']}}</h1>
+        </false>
+    </check>
+    <check if="{{@character['choice3'] == ''}}">
+        <false>
+            <h1>{{@character['choice3']}}</h1>
+        </false>
+    </check>
+
+    <check if="{{@character['story4id'] == ''}}">
+        <false>
+            <hr>
+            <h1>{{@character['story4id']}}</h1>
+        </false>
+    </check>
+    <check if="{{@character['choice4'] == ''}}">
+        <false>
+            <h1>{{@character['choice4']}}</h1>
+        </false>
+    </check>
+
+
+
+
+
+
 </div>
 <script>
     if("{{@character['class'] == 'Warrior'}}" == 1)
