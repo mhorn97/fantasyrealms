@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitb115c2c491fa0948b504ece5545cea6d
+class ComposerStaticInit18ca9b9e93dccae02372137d25d3e6aa
 {
     public static $classMap = array (
         'Audit' => __DIR__ . '/..' . '/bcosca/fatfree-core/audit.php',
@@ -55,7 +55,7 @@ class ComposerStaticInitb115c2c491fa0948b504ece5545cea6d
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->classMap = ComposerStaticInitb115c2c491fa0948b504ece5545cea6d::$classMap;
+            $loader->classMap = ComposerStaticInit18ca9b9e93dccae02372137d25d3e6aa::$classMap;
 
         }, null, ClassLoader::class);
     }

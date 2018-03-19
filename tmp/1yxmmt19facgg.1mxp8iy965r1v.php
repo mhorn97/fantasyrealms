@@ -65,10 +65,10 @@
 
             <br>
             <a href="forgot-password">
-                <button class="btn btn-primary" name="forgot">Forgot Password?</button>
+                <button class="btn btn-default" name="forgot">Forgot Password?</button>
             </a>
             <a href="createaccount">
-                <button class="btn btn-primary" name="create">Create an account</button>
+                <button class="btn btn-default" name="create">Create an account</button>
             </a>
         </div><!-- end col -->
     </div><!-- end row -->
@@ -79,25 +79,6 @@
 
 </div><!-- end main container -->
 </body>
-
-<!--
-*old code*
-<h2>Welcome to Fantasy Realms!</h2>
-
-<form method="post" action="#">
-    <input type="text" name="username" placeholder="Username: "><br>
-    <input type="text" name="password" placeholder="Password: "><br>
-    <input type="submit" name="submit" value="Log In"><br><br>
-</form>
-<a href="forgot-password">
-    <button name="forgot">Forgot Password?</button>
-</a>
-<a href="create-account">
-    <button name="create">Create an account</button>
-</a>
-
--->
-
 </html>
 
 

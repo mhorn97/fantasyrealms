@@ -13,6 +13,7 @@
 <body>
 <nav class = "navbar bg-light navbar-light">
         <a class="nav-item nav-link" href="select">Fantasy Realms</a>
+        <a class="nav-item nav-link" href="viewall">View All</a>
         <a class="nav-item nav-link" href="/328/fantasyrealms/" id="logout">Logout</a>
 </nav>
 <div class="container" id="maindiv">
@@ -32,17 +33,17 @@
 
                     <?php foreach (($characters?:[]) as $character): ?>
                         <div class="charactercontainer" id="characterContainer">
-                            <p>|Name: <?= ($character['name']) ?> | Race: <?= ($character['race']) ?> | Class: <?= ($character['class']) ?>|</p>
-                            <a href="<?= ($BASE) ?>/summary/<?= ($character['characterId']) ?>"><button name="view" class="btn btn-primary">View Character</button></a>
-                            <a href="<?= ($BASE) ?>/story-part1/<?= ($character['characterId']) ?>"><button name = "resume" class="btn btn-primary">Story</button></a>
-                            <a href="<?= ($BASE) ?>/edit/<?= ($character['characterId']) ?>"><button name = "edit" class="btn btn-primary">Edit</button></a>
-                            <button name = "delete" id="delete<?= ($character['characterId']) ?>" value="<?= ($character['characterId']) ?>" class="btn btn-primary">Delete</button>
+                            <p>&nbsp Name: <?= ($character['name']) ?> | Race: <?= ($character['race']) ?> | Class: <?= ($character['class']) ?></p>
+                            <a href="<?= ($BASE) ?>/story-part1/<?= ($character['characterId']) ?>"><button name = "resume" class="btn btn-warning btn-lg">Story</button></a>
+                            <a href="<?= ($BASE) ?>/summary/<?= ($character['characterId']) ?>"><button name="view" class="btn btn-default">View Character</button></a>
+                            <a href="<?= ($BASE) ?>/edit/<?= ($character['characterId']) ?>"><button name = "edit" class="btn btn-default">Edit</button></a>
+                            <button name = "delete" id="delete<?= ($character['characterId']) ?>" value="<?= ($character['characterId']) ?>" class="btn btn-default">Delete</button>
                         </div>
                     <?php endforeach; ?>
             <br>
             <br>
                 <form method="post" action="#">
-                <input type="submit" name="submit" value="Create a character!" class="btn btn-primary">
+                <input type="submit" name="submit" value="Create a character!" class="btn btn-default">
                 </form>
             </div>
         </div>

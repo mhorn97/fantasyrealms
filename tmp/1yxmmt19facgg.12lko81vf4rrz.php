@@ -16,27 +16,31 @@
 </nav>
 
 <div class="container" id="main">
-<h1>Name: <?= ($character['name']) ?></h1><br><br>
-    <p>----------------------------------------</p>
-<h1>Gender: <?= ($character['gender']) ?></h1><br><br>
-    <p>----------------------------------------</p>
-<h1>Class: <?= ($character['class']) ?></h1><br><br>
-    <p>----------------------------------------</p>
-<h1>Race: <?= ($character['race']) ?></h1><br><br>
+<h4>Name: <?= ($character['name']) ?></h4>
+    <hr>
+<h4>Gender: <?= ($character['gender']) ?></h4>
+    <hr>
+<h4>Class: <?= ($character['class']) ?></h4>
+    <hr>
+<h4>Race: <?= ($character['race']) ?></h4>
 
 <?php if (is_null($character['skills']) || $character['skills'] == ''): ?>
     <?php else: ?>
-        <p>----------------------------------------</p>
-        <h1>Skills: <?= ($character['skills']) ?></h1><br><br>
+        <hr>
+        <h4>Skills: <?= ($character['skills']) ?></h4><br><br>
     
 <?php endif; ?>
 
 <?php if ($character['bio'] == ''): ?>
     <?php else: ?>
-        <p>----------------------------------------</p>
-        <h1>Bio: <?= ($character['bio']) ?></h1>
+        <hr>
+        <h4>Bio: <?= ($character['bio']) ?></h4>
     
 <?php endif; ?>
+
+
+
+
 </div>
 <script>
     if("<?= ($character['class'] == 'Warrior') ?>" == 1)
