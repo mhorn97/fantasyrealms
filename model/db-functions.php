@@ -7,6 +7,7 @@
  * @author Michael Horn & Anthony Thompson
  * @version 1.0
  */
+
 require("db-config-route.php");
 
 /**
@@ -19,13 +20,12 @@ function connect()
         //Instantiate a database object
         $dbh = new PDO(DB_DSN, DB_USERNAME,
             DB_PASSWORD);
-        //echo "Connected to database!!!";
         return $dbh;
     } catch (PDOException $e) {
         echo $e->getMessage();
         return;
     }
-}
+}//end connect
 
 /**
  * Adds a character object to the database
@@ -37,23 +37,18 @@ function connect()
  * @param $userid user id of the character
  * @return bool if the character was added properly
  */
-function addCharacter($name,$gender,$race,$class,$skills,$userid)
+function addCharacter($name, $gender, $race, $class, $skills, $userid)
 {
     global $dbh;
-    //$useriduser = $characterobject->getiduser();
-    //$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $sql = "INSERT INTO characters (name,gender,class,race,skills,iduser)
             VALUES (:name, :gender, :class, :race, :traits, :userid)";
-
     $statement = $dbh->prepare($sql);
-
     $statement->bindParam(':userid', $userid, PDO::PARAM_INT);
     $statement->bindParam(':name', $name, PDO::PARAM_STR);
     $statement->bindParam(':gender', $gender, PDO::PARAM_STR);
     $statement->bindParam(':race', $race, PDO::PARAM_STR);
     $statement->bindParam(':class', $class, PDO::PARAM_STR);
     $statement->bindParam(':traits', $skills, PDO::PARAM_STR);
-
     $success = $statement->execute();
     return $success;
 }//end addCharacter
@@ -67,14 +62,11 @@ function addCharacter($name,$gender,$race,$class,$skills,$userid)
  * @param $skills skills/traits of the character
  * @param $id user id of the character
  */
-function editCharacter($name,$gender,$race,$class,$skills, $id, $bio)
+function editCharacter($name, $gender, $race, $class, $skills, $id, $bio)
 {
     global $dbh;
-
     $sql = "UPDATE characters SET name = :name , gender = :gender , class = :class , race = :race , skills = :skills, bio = :bio WHERE characterId = :id";
-
     $statement = $dbh->prepare($sql);
-
     $statement->bindParam(':name', $name, PDO::PARAM_STR);
     $statement->bindParam(':gender', $gender, PDO::PARAM_STR);
     $statement->bindParam(':race', $race, PDO::PARAM_STR);
@@ -82,9 +74,9 @@ function editCharacter($name,$gender,$race,$class,$skills, $id, $bio)
     $statement->bindParam(':skills', $skills, PDO::PARAM_STR);
     $statement->bindParam(':id', $id, PDO::PARAM_INT);
     $statement->bindParam(':bio', $bio, PDO::PARAM_STR);
-
     $statement->execute();
 }
+
 /**
  * Adds a new user to the database
  * @param $username username for the user
@@ -95,25 +87,18 @@ function editCharacter($name,$gender,$race,$class,$skills, $id, $bio)
 function addUser($username, $password, $premium)
 {
     global $dbh;
-
-    //$password = sha1($password);  //password encrypted with SHA1
-
-    //$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $password = sha1($password);  //password encrypted with SHA1
     $sql = "INSERT INTO user (username, password, premium)
             VALUES (:username, :password, :premium)";
     $statement = $dbh->prepare($sql);
-
     $statement->bindParam(':username', $username, PDO::PARAM_STR);
     $statement->bindParam(':password', $password, PDO::PARAM_STR);
     $statement->bindParam(':premium', $premium, PDO::PARAM_INT);
-
     $success = $statement->execute();
-    //$_SESSION['userid'] = $statement->lastInsertId();  //tracks the userid of new users
     return $success;
 }//end addCharacter
 
 
-//gets all characters for a single user id
 /**
  * Gets all of the characters linked by a user id
  * @param $userid of the user logging in
@@ -122,19 +107,15 @@ function addUser($username, $password, $premium)
 function getCharacters($userid)
 {
     global $dbh;
-
     $sql = "SELECT * FROM characters WHERE iduser = :iduser";
     $statement = $dbh->prepare($sql);
-
     $statement->bindParam(':iduser', $userid, PDO::PARAM_INT);
-
     $statement->execute();
     $result = $statement->fetchAll(PDO::FETCH_ASSOC);
     return $result;
 }//end getCharacters
 
 
-//gets all characters from all players
 /**
  * Gets all of the character for all of the users
  * @return array of characters
@@ -159,7 +140,7 @@ function checkUsername($username)
     $sql = "SELECT * FROM user WHERE username = :username";
     $statement = $dbh->prepare($sql);
     $statement->bindValue(':username', $username, PDO::PARAM_STR);
-    $success = $statement->execute();
+    $statement->execute();
 
     //check if 0 entries returned or more, return true false if exists
     $result = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -170,8 +151,9 @@ function checkUsername($username)
     }
 }//end checkUsername
 
-//validates login information
+
 /**
+ * validates login information
  * Checks if there is a user in the database with matching credentials
  * @param $username username to be checked with password
  * @param $password password to be checked with username
@@ -180,17 +162,13 @@ function checkUsername($username)
 function checkUser($username, $password)
 {
     global $dbh;
-
+    $password = sha1($password);
     $sql = "SELECT * FROM user WHERE username = :username AND password = :password";
-
     $statement = $dbh->prepare($sql);
-    $statement->bindValue(':username',$username,PDO::PARAM_STR);
-    $statement->bindValue(':password',$password,PDO::PARAM_STR);
-
+    $statement->bindValue(':username', $username, PDO::PARAM_STR);
+    $statement->bindValue(':password', $password, PDO::PARAM_STR);
     $statement->execute();
-
     $query_data = $statement->fetch(PDO::FETCH_ASSOC);
-
     return $query_data;
 }
 
@@ -202,14 +180,10 @@ function checkUser($username, $password)
 function getCharacter($id)
 {
     global $dbh;
-
     $sql = "SELECT * FROM characters WHERE characterId = :id";
-
     $statement = $dbh->prepare($sql);
-    $statement->bindValue(':id',$id,PDO::PARAM_INT);
-
+    $statement->bindValue(':id', $id, PDO::PARAM_INT);
     $statement->execute();
-
     $query_data = $statement->fetch(PDO::FETCH_ASSOC);
     return $query_data;
 }
@@ -221,12 +195,9 @@ function getCharacter($id)
 function deleteCharacter($id)
 {
     global $dbh;
-
     $sql = "DELETE FROM characters WHERE characterId = :id";
-
     $statement = $dbh->prepare($sql);
-    $statement->bindValue(':id',$id,PDO::PARAM_INT);
-
+    $statement->bindValue(':id', $id, PDO::PARAM_INT);
     $statement->execute();
 }
 
@@ -235,16 +206,13 @@ function deleteCharacter($id)
  * @param $bio of the character to be added
  * @param $id character id of character
  */
-function addBio($bio,$id)
+function addBio($bio, $id)
 {
     global $dbh;
-
     $sql = "UPDATE characters SET bio = :bio WHERE characterId = :id";
-
     $statement = $dbh->prepare($sql);
-    $statement->bindValue(':bio',$bio,PDO::PARAM_STR);
-    $statement->bindValue(':id',$id,PDO::PARAM_INT);
-
+    $statement->bindValue(':bio', $bio, PDO::PARAM_STR);
+    $statement->bindValue(':id', $id, PDO::PARAM_INT);
     $statement->execute();
 }
 
@@ -252,7 +220,8 @@ function addBio($bio,$id)
  * randomly returns a story from the database
  * @return mixed single line from db with story info
  */
-function getRandStory() {
+function getRandStory()
+{
     global $dbh;
     $sql = "SELECT * FROM story ORDER BY RAND() LIMIT 1";
     $statement = $dbh->prepare($sql);
@@ -265,12 +234,12 @@ function getRandStory() {
  * @param $idstory int id of story to retrieve
  * @return mixed single line from db with story info
  */
-function getStory($idstory) {
+function getStory($idstory)
+{
     global $dbh;
     $sql = "SELECT * FROM story WHERE idstory = :idstory";
     $statement = $dbh->prepare($sql);
-    $statement->bindValue(':idstory',$idstory,PDO::PARAM_STR);
-
+    $statement->bindValue(':idstory', $idstory, PDO::PARAM_STR);
     $statement->execute();
     return $statement->fetch(PDO::FETCH_ASSOC);
 }//end getStory
@@ -287,8 +256,7 @@ function getUser($username)
     $sql = "SELECT * FROM user WHERE username = :username";
     $statement = $dbh->prepare($sql);
     $statement->bindValue(':username', $username, PDO::PARAM_STR);
-    $success = $statement->execute();
-
+    $statement->execute();
 
     //check if 0 entries returned or more, return true false if exists
     $result = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -304,15 +272,14 @@ function getUser($username)
  * @param $username username of the user
  * @param $password password of the user
  */
-function changePassword($username,$password)
+function changePassword($username, $password)
 {
     global $dbh;
+    $password = sha1($password);
     $sql = "UPDATE user SET password = :password WHERE username = :username";
-
     $statement = $dbh->prepare($sql);
-    $statement->bindValue(':password',$password,PDO::PARAM_STR);
-    $statement->bindValue(':username',$username,PDO::PARAM_STR);
-
+    $statement->bindValue(':password', $password, PDO::PARAM_STR);
+    $statement->bindValue(':username', $username, PDO::PARAM_STR);
     $statement->execute();
 }
 
