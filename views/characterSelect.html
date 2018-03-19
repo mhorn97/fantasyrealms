@@ -33,8 +33,8 @@
                     <repeat group="{{ @characters }}" value="{{ @character }}">
                         <div class="charactercontainer" id="characterContainer">
                             <p>&nbsp Name: {{@character['name']}} | Race: {{ @character['race'] }} | Class: {{@character['class']}}</p>
+                            <a href="{{@BASE}}/story-part1/{{@character['characterId']}}"><button name = "resume" class="btn btn-warning btn-lg">Story</button></a>
                             <a href="{{@BASE}}/summary/{{@character['characterId']}}"><button name="view" class="btn btn-default">View Character</button></a>
-                            <a href="{{@BASE}}/story-part1/{{@character['characterId']}}"><button name = "resume" class="btn btn-default">Story</button></a>
                             <a href="{{@BASE}}/edit/{{@character['characterId']}}"><button name = "edit" class="btn btn-default">Edit</button></a>
                             <button name = "delete" id="delete{{@character['characterId']}}" value="{{@character['characterId']}}" class="btn btn-default">Delete</button>
                         </div>

@@ -87,18 +87,6 @@
         if($('#rogue').is(':checked')) {
             $('#img-col').html('<img id="rogueimg" src="{{@BASE}}/images/rogue1.jpg" />')}
     });
-    if($('#name').html() == "")
-    {
-        $('#nameerror').html("The name needs to be filled out!");
-        $('#submit').disabled = true;
-    }
-    else
-    {
-        $('#submit').disabled = false;
-    }
-    if($('#name').keypress(function() {
-            $('#nameerror').html("");
-        }));
 </script>
 </body>
 </html>

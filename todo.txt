@@ -20,7 +20,11 @@ Nice to do
 *edit character information
 *preloading images so they appear instantly when javascript changes image like on character creation
 
-
+Bugs:
+    Edit Page:
+        Mistype in the edit page right next to classes.
+        "This needs to be filled out" is below the edit name
+        The checkboxes for skills do not get checkmarked
 
 
 Completed
