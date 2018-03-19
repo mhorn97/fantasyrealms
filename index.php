@@ -76,7 +76,7 @@ $f3 -> route('GET|POST /creation', function($f3) {
             {
                 $skills = $_POST['skills'];
                 $skills = implode(",",$skills);
-                $newchar = new PremiumCharacter($name,$gender,$class,$race);  //TODO update to userID
+                $newchar = new PremiumCharacter($name,$gender,$class,$race);
                 $newchar->setSkills($skills);
                 addCharacter($name,$gender,$race,$class,$skills,$_SESSION['userid']);
             }
@@ -185,7 +185,8 @@ $f3 -> route('GET|POST /story-part1/@id', function($f3,$params) {
         else
         {
             $_SESSION['choice1'] = $_POST['choice1'];
-            $character->setChoice1($_POST['choice1']);
+            //$char = $_SESSION['character'];
+            //$char->setChoice1($_POST['choice1']);
             header("Location:../story-part2");
         }
     }
@@ -209,8 +210,8 @@ $f3 -> route('GET|POST /story-part2', function($f3) {
         else
         {
             $_SESSION['choice2'] = $_POST['choice2'];
-            $character = $_SESSION['character'];
-            $character->setChoice2($_POST['choice2']);
+            //$character = $_SESSION['character'];
+            //$character->setChoice2($_POST['choice2']);
             header("Location:story-part3");
         }
     }
@@ -225,7 +226,7 @@ $f3 -> route('GET|POST /story-part3', function($f3) {
         header("Location:/328/fantasyrealms/");
     }
     $f3->set('character',$_SESSION['character']);
-    $character = $_SESSION['character'];
+    //$character = $_SESSION['character'];
     if(isset($_POST['submit']))
     {
         if(empty($_POST['choice3']))
@@ -235,7 +236,7 @@ $f3 -> route('GET|POST /story-part3', function($f3) {
         else
         {
             $_SESSION['choice3'] = $_POST['choice3'];
-            $character->setChoice3($_POST['choice3']);
+            //$character->setChoice3($_POST['choice3']);
         }
         header("Location:story-part4");
     }
@@ -243,7 +244,7 @@ $f3 -> route('GET|POST /story-part3', function($f3) {
     $story = getRandStory();
     $_SESSION['story3'] = $story;
     $_SESSION['storyid3'] = $story['idstory'];
-    $character->setStory3id($story['story']);
+    //$character->setStory3id($story['story']);
     $f3->set('question', $story['story']);
     $f3->set('answer1', $story['choice1']);
     $f3->set('answer2', $story['choice2']);
@@ -261,7 +262,7 @@ $f3 -> route('GET|POST /story-part4', function($f3) {
         header("Location:/328/fantasyrealms/");
     }
     $f3->set('character',$_SESSION['character']);
-    $character = $_SESSION['character'];
+    //$character = $_SESSION['character'];
     if(isset($_POST['submit']))
     {
         if(empty($_POST['choice4']))
@@ -271,7 +272,7 @@ $f3 -> route('GET|POST /story-part4', function($f3) {
         else
         {
             $_SESSION['choice4'] = $_POST['choice4'];
-            $character->setChoice4($_POST['choice4']);
+            //$character->setChoice4($_POST['choice4']);
         }
         header("Location:story-final");
     }
@@ -283,7 +284,7 @@ $f3 -> route('GET|POST /story-part4', function($f3) {
     }
     $_SESSION['story4'] = $story;
     $_SESSION['storyid4'] = $story['idstory'];
-    $character->setStory4id($story['story']);
+    //$character->setStory4id($story['story']);
     $f3->set('question', $story['story']);
     $f3->set('answer1', $story['choice1']);
     $f3->set('answer2', $story['choice2']);
@@ -306,7 +307,14 @@ $f3 -> route('GET|POST /story-final', function($f3) {
         $_SESSION['finalChoice'] = $_POST['finalChoice'];
         if(!empty($_POST['finalChoice']))
         {
-            $bio = $_SESSION['choice1'] . $_SESSION['choice2'] . $_SESSION['choice3'] . $_SESSION['choice4'] . $_SESSION['finalChoice'];
+            $s3 = $_SESSION['story3'];
+            $s4 = $_SESSION['story4'];
+            $s3q = $s3['story'];
+            $s4q = $s4['story'];
+            $bio = $_SESSION['choice1'] . $_SESSION['choice2'] . $s3q . $_SESSION['choice3']
+                . $s4q . $_SESSION['choice4'] . $_SESSION['finalChoice'];
+            //$character = $_SESSION['character'];
+            //$character->setBio($bio);
             addBio($bio, $_SESSION['characterId']);
             header("Location:summary/" . $_SESSION['characterId']);
         }

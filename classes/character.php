@@ -24,6 +24,9 @@ class Character
     protected $choice2;
     protected $choice3;
     protected $choice4;
+    protected $bio;
+
+
 
     /**
      * Character constructor. Construction of the user requires 4 parameters
@@ -227,6 +230,22 @@ class Character
     public function setChoice4($choice4)
     {
         $this->choice4 = $choice4;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBio()
+    {
+        return $this->bio;
+    }
+
+    /**
+     * @param mixed $bio
+     */
+    public function setBio($bio)
+    {
+        $this->bio = $bio;
     }
 
 
