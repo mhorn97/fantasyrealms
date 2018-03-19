@@ -18,14 +18,6 @@ class Character
     protected $race;
     protected $skills;
     protected $iduser;
-    protected $story3id;
-    protected $story4id;
-    protected $choice1;
-    protected $choice2;
-    protected $choice3;
-    protected $choice4;
-    protected $bio;
-
 
 
     /**
@@ -131,121 +123,6 @@ class Character
     public function setIduser($iduser)
     {
         $this->iduser = $iduser;
-    }
-
-
-/****** STORY CHOICES ******/
-
-    /**
-     * @return mixed
-     */
-    public function getStory3id()
-    {
-        return $this->story3id;
-    }
-
-    /**
-     * @param mixed $story3id
-     */
-    public function setStory3id($story3id)
-    {
-        $this->story3id = $story3id;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getStory4id()
-    {
-        return $this->story4id;
-    }
-
-    /**
-     * @param mixed $story4id
-     */
-    public function setStory4id($story4id)
-    {
-        $this->story4id = $story4id;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getChoice1()
-    {
-        return $this->choice1;
-    }
-
-    /**
-     * @param mixed $choice1
-     */
-    public function setChoice1($choice1)
-    {
-       $this->choice1 = $choice1;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getChoice2()
-    {
-        return $this->choice2;
-    }
-
-    /**
-     * @param mixed $choice2
-     */
-    public function setChoice2($choice2)
-    {
-        $this->choice2 = $choice2;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getChoice3()
-    {
-        return $this->choice3;
-    }
-
-    /**
-     * @param mixed $choice3
-     */
-    public function setChoice3($choice3)
-    {
-        $this->choice3 = $choice3;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getChoice4()
-    {
-        return $this->choice4;
-    }
-
-    /**
-     * @param mixed $choice4
-     */
-    public function setChoice4($choice4)
-    {
-        $this->choice4 = $choice4;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getBio()
-    {
-        return $this->bio;
-    }
-
-    /**
-     * @param mixed $bio
-     */
-    public function setBio($bio)
-    {
-        $this->bio = $bio;
     }
 
 
