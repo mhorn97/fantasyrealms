@@ -1,7 +1,7 @@
 /**
 @author Michael Horn and Anthony Thompson
 @version 1.0
-Style sheet for Story page 3 and 4
+Style sheet for Story page 4
  */
 #head{
     border-bottom:2px solid lightgray;
@@ -31,6 +31,6 @@ img
     width:100%;
 }
 body {
-    background-image: url("../images/general_fantasy2.jpg");
+    background-image: url("../images/general_fantasy3.jpg");
     background-size:100%;
 }

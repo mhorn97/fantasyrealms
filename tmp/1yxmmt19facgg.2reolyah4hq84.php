@@ -35,13 +35,13 @@
                     <label for="shield"><input type="radio" name="choice2"
                                                value="<?= ($character['name']) ?> took up the sword and shield for combat. "
                                                id="shield" checked>
-                        Fight with a sword and shield, able to attack quickly and defend from quick attacks: </label>
+                        Fight with a sword and shield, able to attack quickly and defend from quick attacks </label>
                 </div>
                 <div class="radio">
                     <label for="greatsword"><input type="radio" name="choice2"
                                                    value="<?= ($character['name']) ?> took up the Greatsword for combat. "
                                                    id="greatsword">
-                        Use a great 2-handed sword to quickly take out anything that threatens you: </label>
+                        Use a great 2-handed sword to quickly take out anything that threatens you </label>
                 </div>
                 <div class="radio">
                     <label for="warhammer"><input type="radio" name="choice2"
@@ -62,21 +62,21 @@
                     <label for="elements"><input type="radio" name="choice2"
                                                  value="<?= ($character['name']) ?> learned how control the elements. "
                                                  id="elements" checked>
-                        You learned how to master the elements of the world and pull material out of thin air: </label>
+                        You learned how to master the elements of the world and pull material out of thin air </label>
                 </div>
                 <div class="radio">
                     <label for="blood"><input type="radio" name="choice2"
                                               value="<?= ($character['name']) ?> learned blood magic to control any creature they wanted. "
                                               id="blood">
                         You learned about blood magic, being able to make people kneel before you and do your bidding as
-                        you please: </label>
+                        you please </label>
                 </div>
                 <div class="radio">
                     <label for="necromancy"><input type="radio" name="choice2"
                                                    value="<?= ($character['name']) ?> learned how to summon the dead and demons and control them. "
                                                    id="necromancy">
                         You learned about the undead and demology, learning how to summon both and make them do your
-                        bidding: </label>
+                        bidding </label>
                 </div>
             
         <?php endif; ?>
@@ -89,26 +89,27 @@
                                                    value="<?= ($character['name']) ?> lockpicked their way to the lands greatest treasures. "
                                                    id="lockpicker" checked>
                         You learned to unlock doors and chest and master the art of sneaking, rarely killing anyone
-                        getting in your way: </label>
+                        getting in your way </label>
                 </div>
                 <div class="radio">
                     <label for="detective"><input type="radio" name="choice2"
                                                   value="<?= ($character['name']) ?> learned how to gain intel on targets, and creating a plan to kill them. "
                                                   id="detective">
                         You learned how to get intel on things that you wanted or people you wanted to kill, and
-                        completing that goal quickly and as quiet as possible: </label>
+                        completing that goal quickly and as quiet as possible </label>
                 </div>
                 <div class="radio">
                     <label for="quick"><input type="radio" name="choice2"
                                               value="<?= ($character['name']) ?> learned the importance of getting into someone's blindspot before striking. "
                                               id="quick">
                         You learned how to quickly get behind your enemies and stab them in the back, quickly ending any
-                        battle: </label>
+                        battle </label>
                 </div>
             
         <?php endif; ?>
         <input type="submit" name="submit" value="Continue" class="btn btn-default">
     </form>
+    <br>
     <a href="<?= ($BASE) ?>/select">
         <button name="exit" class="btn btn-default">Exit</button>
     </a>
