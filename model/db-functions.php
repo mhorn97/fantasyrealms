@@ -113,8 +113,6 @@ function addUser($username, $password, $premium)
 }//end addCharacter
 
 
-
-
 //gets all characters for a single user id
 /**
  * Gets all of the characters linked by a user id
@@ -134,7 +132,6 @@ function getCharacters($userid)
     $result = $statement->fetchAll(PDO::FETCH_ASSOC);
     return $result;
 }//end getCharacters
-
 
 
 //gets all characters from all players
@@ -252,6 +249,34 @@ function addBio($bio,$id)
 }
 
 /**
+ * randomly returns a story from the database
+ * @return mixed single line from db with story info
+ */
+function getRandStory() {
+    global $dbh;
+    $sql = "SELECT * FROM story ORDER BY RAND() LIMIT 1";
+    $statement = $dbh->prepare($sql);
+    $statement->execute();
+    return $statement->fetch(PDO::FETCH_ASSOC);
+}//end getRandStory
+
+/**
+ * pulls back a specific story from the database
+ * @param $idstory int id of story to retrieve
+ * @return mixed single line from db with story info
+ */
+function getStory($idstory) {
+    global $dbh;
+    $sql = "SELECT * FROM story WHERE idstory = :idstory";
+    $statement = $dbh->prepare($sql);
+    $statement->bindValue(':idstory',$idstory,PDO::PARAM_STR);
+
+    $statement->execute();
+    return $statement->fetch(PDO::FETCH_ASSOC);
+}//end getStory
+
+
+/**
  * Gets a particular use by searching by username
  * @param $username of the user to find
  * @return bool if the user was found with that username
@@ -263,6 +288,7 @@ function getUser($username)
     $statement = $dbh->prepare($sql);
     $statement->bindValue(':username', $username, PDO::PARAM_STR);
     $success = $statement->execute();
+
 
     //check if 0 entries returned or more, return true false if exists
     $result = $statement->fetchAll(PDO::FETCH_ASSOC);
