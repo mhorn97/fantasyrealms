@@ -22,3 +22,23 @@ Story: Clicking the story button will take your character through the journey of
 
 View all: Clicking the view all button will take you to a page with all of the characters that have been created and clicking a character's attached view button will take you to their summary page.
 
+Requirements:
+
+Seperates all db/business logic using the MVC pattern: We are using fat free and have different locations for the Model, Views, and Controller.
+
+Routes all URLs and leverages a templating language using the Fat-Free framework: Strong user of php with the controller (index.php)
+
+Has a clearly defined database layer using PDO and prepared statements: In the model, there is a db-functions.php which uses PDO to communicate with the database
+
+Data can be viewed, added, updated, and deleted: Characters and users can be created, they can both be edited and updated, and characters can be deleted
+
+Has a history of commits from both team members to a Git repository: We both committed close to equally amount of commits. https://github.com/mhorn97/fantasyrealms/commits/master
+
+Uses OOP, and defines multiple classes, including at least one inheritance relationship
+
+Contains full Docblocks for all php files: Each php file has a docblock for the file, methods, and classes if they have them'
+
+Has full validation on the client side through javascript and server side through php: We show the user what is wrong with their input using javascript. We do not continue if there is an issue on the server side.
+
+Incorporates jQuery and Ajax: Most of our javascript uses jquery. We use Ajax post.
+
