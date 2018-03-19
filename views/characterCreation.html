@@ -64,10 +64,10 @@
 
                 <div class="form-group">
 
-                <input type="submit" name="submit" value="Create" id="submit" class="btn btn-primary">
+                <input type="submit" name="submit" value="Create" id="submit" class="btn btn-default">
                 </div>
                 </form>
-                <a href="{{@BASE}}/select"><button name="cancel" class="btn btn-primary">Cancel</button></a>
+                <a href="{{@BASE}}/select"><button name="cancel" class="btn btn-default">Cancel</button></a>
             </div>
             <div class="col-8" id="img-col">
 
@@ -76,6 +76,7 @@
     </div>
 
     <script>
+        $('#img-col').html('<img id="warriorimg" src="./images/warrior1.jpg" />');
         $('#warrior').click(function() {
             if($('#warrior').is(':checked')) {
                 $('#img-col').html('<img id="warriorimg" src="./images/warrior1.jpg" />')}
