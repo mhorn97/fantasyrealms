@@ -235,7 +235,7 @@ $f3 -> route('GET|POST /story-part3', function($f3) {
         }
     }
     //story part 3 below
-    $story = getStory();
+    $story = getRandStory();
     $_SESSION['storyid3'] = $story['idstory'];
     $f3->set('question', $story['story']);
     $f3->set('answer1', $story['choice1']);
@@ -268,9 +268,9 @@ $f3 -> route('GET|POST /story-part4', function($f3) {
     }
     //story part 3 below
     $s3 = $_SESSION['storyid3'];
-    $story = getStory();
+    $story = getRandStory();
     while($story['idstory'] == $s3) {  //ensures no duplicates
-        $story = getStory();
+        $story = getRandStory();
     }
     $_SESSION['storyid4'] = $story['idstory'];
     $f3->set('question', $story['story']);
