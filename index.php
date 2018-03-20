@@ -242,8 +242,6 @@ $f3 -> route('GET|POST /story-part1/@id', function($f3,$params) {
         else
         {
             $_SESSION['choice1'] = $_POST['choice1'];
-            //$char = $_SESSION['character'];
-            //$char->setChoice1($_POST['choice1']);
             header("Location:../story-part2");
         }
     }
@@ -270,6 +268,11 @@ $f3 -> route('GET|POST /story-part2', function($f3) {
         else
         {
             $_SESSION['choice2'] = $_POST['choice2'];
+
+            //story part 3 below
+            $story = getRandStory();
+            $_SESSION['story3'] = $story;
+            $_SESSION['storyid3'] = $story['idstory'];
             header("Location:story-part3");
         }
     }
@@ -287,7 +290,6 @@ $f3 -> route('GET|POST /story-part3', function($f3) {
     }
 
     $f3->set('newchar',$_SESSION['newchar']);
-    //$character = $_SESSION['character'];
     if(isset($_POST['submit']))
     {
         if(empty($_POST['choice3']))
@@ -297,16 +299,12 @@ $f3 -> route('GET|POST /story-part3', function($f3) {
         else
         {
             $_SESSION['choice3'] = $_POST['choice3'];
-            //$character->setChoice3($_POST['choice3']);
         }
         header("Location:story-part4");
     }
-
     //story part 3 below
-    $story = getRandStory();
-    $_SESSION['story3'] = $story;
-    $_SESSION['storyid3'] = $story['idstory'];
-    //$character->setStory3id($story['story']);
+    $story = $_SESSION['story3'];
+    echo $_SESSION['storyid3'];
     $f3->set('question', $story['story']);
     $f3->set('answer1', $story['choice1']);
     $f3->set('answer2', $story['choice2']);
@@ -319,7 +317,7 @@ $f3 -> route('GET|POST /story-part3', function($f3) {
 
 //STORY-PART 4 PAGE
 $f3 -> route('GET|POST /story-part4', function($f3) {
-
+    echo $_SESSION['storyid3'];
     if(empty($_SESSION['username']) || empty($_SESSION['password']) || empty($_SESSION['userid']))
     {
         header("Location:/328/fantasyrealms/");
@@ -342,12 +340,14 @@ $f3 -> route('GET|POST /story-part4', function($f3) {
     //story part 4 below
     $s3 = $_SESSION['storyid3'];
     $story = getRandStory();
-    while($story['idstory'] == $s3) {  //ensures no duplicates
+    while($story['idstory'] === $s3) {  //ensures no duplicates
         $story = getRandStory();
     }
+    echo $story['idstory'];
+    echo $s3;
+    echo $_SESSION['storyid3'];
     $_SESSION['story4'] = $story;
     $_SESSION['storyid4'] = $story['idstory'];
-    //$character->setStory4id($story['story']);
     $f3->set('question', $story['story']);
     $f3->set('answer1', $story['choice1']);
     $f3->set('answer2', $story['choice2']);

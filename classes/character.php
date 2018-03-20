@@ -126,6 +126,7 @@ class Character
         $this->iduser = $iduser;
     }
 
+
     public function setBio($bio)
     {
         $this->bio = $bio;
