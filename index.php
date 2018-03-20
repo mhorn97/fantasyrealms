@@ -97,25 +97,38 @@ $f3 -> route('GET|POST /creation', function($f3) {
 
 //CHARACTER Edit PAGE
 $f3 -> route('GET|POST /edit/@id', function($f3,$params) {
+
     if(empty($_SESSION['username']) || empty($_SESSION['password']) || empty($_SESSION['userid']))
     {
         header("Location:/328/fantasyrealms/");
     }
+
     $f3->set('premium', $_SESSION['premium']);
     $id = $params['id'];
     $character = getCharacter($id);
-    $f3->set('character',$character);
+
     if($_SESSION['premium'] == 1)
     {
-        if(strpos($character['skills'], "Luck") !== false)
+        $newchar = new PremiumCharacter($character['name'],$character['gender'],$character['class'],$character['race'], "");
+        $newchar->setSkills($character['skills']);
+    }
+    else
+    {
+        $newchar = new Character($character['name'],$character['gender'],$character['class'],$character['race'], "");
+    }
+
+    $f3->set('newchar',$newchar);
+    if($_SESSION['premium'] == 1)
+    {
+        if(strpos($newchar->getSkills(), "Luck") !== false)
         {
             $f3->set('luck',1);
         }
-        if(strpos($character['skills'], "Barter") !== false)
+        if(strpos($newchar->getSkills(), "Barter") !== false)
         {
             $f3->set('barter',1);
         }
-        if(strpos($character['skills'], "Charisma") !== false)
+        if(strpos($newchar->getSkills(), "Charisma") !== false)
         {
             $f3->set('charisma',1);
         }
@@ -139,14 +152,12 @@ $f3 -> route('GET|POST /edit/@id', function($f3,$params) {
                 {
                     $skills = implode(",", $skills);
                 }
-                $newchar = new PremiumCharacter($name,$gender,$class,$race);  //TODO update to userID
                 $newchar->setSkills($skills);
-                editCharacter($name,$gender,$race,$class,$skills, $id, "");
+                editCharacter($name,$gender,$race,$class,$skills, $id);
             }
             else
             {
-                $newchar = new Character($name,$gender,$class,$race);
-                editCharacter($name,$gender,$race,$class,"",$id, "");
+                editCharacter($name,$gender,$race,$class,"",$id);
             }
 
             $f3->set('newchar',$newchar);

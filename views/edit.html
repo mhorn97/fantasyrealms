@@ -24,34 +24,34 @@
             <p>-----------------------------</p>
             <form method="post" action="#">
                 <label for="name">Name: </label>
-                <input type="text" name="name" id="name" value="{{@character['name']}}">
+                <input type="text" name="name" id="name" value="{{@newchar->getName()}}">
                 <div name="nameerror" id="nameerror"></div>
                 <br>
                 <p>-----------------------------</p>
                 <h3>Gender: </h3>
                 <label for="male">Male: </label>
-                <input type="radio" name="gender" value="Male" id="male" <check if="{{@character['gender'] == 'Male'}}"><true>checked</true></check>>
+                <input type="radio" name="gender" value="Male" id="male" <check if="{{@newchar->getGender() == 'Male'}}"><true>checked</true></check>>
                 <label for="female">Female: </label>
-                <input type="radio" name="gender" value="Female" id="female" <check if="{{@character['gender'] == 'Female'}}"><true>checked</true></check>>
+                <input type="radio" name="gender" value="Female" id="female" <check if="{{@newchar->getGender() == 'Female'}}"><true>checked</true></check>>
                 <label for="other">Other: </label>
-                <input type="radio" name="gender" value="Other" id="other" <check if="{{@character['gender'] == 'Other'}}"><true>checked</true></check>>
+                <input type="radio" name="gender" value="Other" id="other" <check if="{{@newchar->getGender() == 'Other'}}"><true>checked</true></check>>
                 <p>-----------------------------</p>
                 <h3>Race: </h3>
                 <label for="human">Human: </label>
-                <input type="radio" name="race" value="Human" id="Human" <check if="{{@character['race'] == 'Human'}}"><true>checked</true></check>>
+                <input type="radio" name="race" value="Human" id="Human" <check if="{{@newchar->getRace() == 'Human'}}"><true>checked</true></check>>
                 <label for="elf">Elf: </label>
-                <input type="radio" name="race" value="Elf" id="elf" <check if="{{@character['race'] == 'Elf'}}"><true>checked</true></check>>
+                <input type="radio" name="race" value="Elf" id="elf" <check if="{{@newchar->getRace() == 'Elf'}}"><true>checked</true></check>>
                 <label for="dwarf">Dwarf: </label>
-                <input type="radio" name="race" value="Dwarf" id="dwarf" <check if="{{@character['race'] == 'Dwarf'}}"><true>checked</true></check>>
+                <input type="radio" name="race" value="Dwarf" id="dwarf" <check if="{{@newchar->getRace() == 'Dwarf'}}"><true>checked</true></check>>
                 <br><br>
                 <p>-----------------------------</p>
                 <h3>Class: </h3>
                 <label for="warrior">Warrior: </label>
-                <input type="radio" name="class" value="Warrior" id="warrior" <check if="{{@character['class'] == 'Warrior'}}"><true>checked</true></check>>
+                <input type="radio" name="class" value="Warrior" id="warrior" <check if="{{@newchar->getClass() == 'Warrior'}}"><true>checked</true></check>>
                 <label for="sorcerer">Sorcerer: </label>
-                <input type="radio" name="class" value="Sorcerer" id="sorcerer" <check if="{{@character['class'] == 'Sorcerer'}}"><true>checked</true></check>>
+                <input type="radio" name="class" value="Sorcerer" id="sorcerer" <check if="{{@newchar->getClass() == 'Sorcerer'}}"><true>checked</true></check>>
                 <label for="rogue">Rogue: </label>
-                <input type="radio" name="class" value="Rogue" id="rogue" <check if="{{@character['class'] == 'Rogue'}}"><true>checked</true></check>>
+                <input type="radio" name="class" value="Rogue" id="rogue" <check if="{{@newchar->getClass() == 'Rogue'}}"><true>checked</true></check>>
                 <check if="{{@premium}}">
                     <p>-----------------------------</p>
                     <h3>Skills/Traits: </h3>
