@@ -34,7 +34,7 @@ Data can be viewed, added, updated, and deleted: Characters and users can be cre
 
 Has a history of commits from both team members to a Git repository: We both committed close to equally amount of commits. https://github.com/mhorn97/fantasyrealms/commits/master
 
-Uses OOP, and defines multiple classes, including at least one inheritance relationship
+Uses OOP, and defines multiple classes, including at least one inheritance relationship: Premium character and regular characters. Premium characters also have skills
 
 Contains full Docblocks for all php files: Each php file has a docblock for the file, methods, and classes if they have them'
 
