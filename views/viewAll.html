@@ -11,10 +11,11 @@
     <title>All Characters</title>
 </head>
 <body>
-    <nav class = "navbar bg-light navbar-light">
-        <a class="nav-item nav-link" href="select">Fantasy Realms</a>
-        <a class="nav-item nav-link" href="/328/fantasyrealms/" id="logout">Logout</a>
-    </nav>
+<nav class = "navbar bg-light navbar-light">
+    <a class="nav-item nav-link" href="select">Fantasy Realms</a>
+    <a class="nav-item nav-link" href="viewall">View All</a>
+    <a class="nav-item nav-link" href="/328/fantasyrealms/" id="logout">Logout</a>
+</nav>
 
     <div class="container" id="main">
         <repeat group="{{ @characters }}" value="{{ @character }}">

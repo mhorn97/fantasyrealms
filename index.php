@@ -294,7 +294,7 @@ $f3 -> route('GET|POST /story-part3', function($f3) {
     {
         if(empty($_POST['choice3']))
         {
-            $_SESSION['choice3'] = '';  //will display nothing instead of f3 {{@choice3}}
+            $_SESSION['choice3'] = '';
         }
         else
         {
@@ -308,7 +308,6 @@ $f3 -> route('GET|POST /story-part3', function($f3) {
     $f3->set('answer1', $story['choice1']);
     $f3->set('answer2', $story['choice2']);
     $f3->set('answer3', $story['choice3']);
-
 
     $template = new Template();
     echo $template->render('views/story3.html');
@@ -347,7 +346,6 @@ $f3 -> route('GET|POST /story-part4', function($f3) {
     $f3->set('answer1', $story['choice1']);
     $f3->set('answer2', $story['choice2']);
     $f3->set('answer3', $story['choice3']);
-
 
     $template = new Template();
     echo $template->render('views/story4.html');
