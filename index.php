@@ -153,11 +153,11 @@ $f3 -> route('GET|POST /edit/@id', function($f3,$params) {
                     $skills = implode(",", $skills);
                 }
                 $newchar->setSkills($skills);
-                editCharacter($name,$gender,$race,$class,$skills, $id);
+                editCharacter($name,$gender,$race,$class,$skills, $id,"");
             }
             else
             {
-                editCharacter($name,$gender,$race,$class,"",$id);
+                editCharacter($name,$gender,$race,$class,"",$id,"");
             }
 
             $f3->set('newchar',$newchar);
