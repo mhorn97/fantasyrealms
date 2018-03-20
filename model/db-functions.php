@@ -124,7 +124,7 @@ function getCharacters($userid)
 function getAllCharacters()
 {
     global $dbh;
-    $sql = "SELECT * FROM characters ORDER BY characterId";
+    $sql = "SELECT * FROM characters ORDER BY characterId DESC";
     $statement = $dbh->prepare($sql);
     $statement->execute();
     $result = $statement->fetchAll(PDO::FETCH_ASSOC);
