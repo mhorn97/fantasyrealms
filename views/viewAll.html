@@ -19,8 +19,9 @@
     <div class="container" id="main">
         <repeat group="{{ @characters }}" value="{{ @character }}">
             <div class="charactercontainer" id="characterContainer">
-                <h4>&nbsp Name: {{@character['name']}} | Race: {{ @character['race'] }} | Class: {{@character['class']}} <a href="{{@BASE}}/summary/{{@character['characterId']}}"><button name="view" class="btn btn-default">View Character</button></a></h4>
-
+                <h4>&nbsp Name: {{@character['name']}} | Race: {{ @character['race'] }} | Class: {{@character['class']}}
+                    <a href="{{@BASE}}/summary/{{@character['characterId']}}">
+                        <button name="view" class="btn btn-default">View Character</button></a></h4>
             </div>
         </repeat>
     </div>
