@@ -304,7 +304,6 @@ $f3 -> route('GET|POST /story-part3', function($f3) {
     }
     //story part 3 below
     $story = $_SESSION['story3'];
-    echo $_SESSION['storyid3'];
     $f3->set('question', $story['story']);
     $f3->set('answer1', $story['choice1']);
     $f3->set('answer2', $story['choice2']);
@@ -317,7 +316,6 @@ $f3 -> route('GET|POST /story-part3', function($f3) {
 
 //STORY-PART 4 PAGE
 $f3 -> route('GET|POST /story-part4', function($f3) {
-    echo $_SESSION['storyid3'];
     if(empty($_SESSION['username']) || empty($_SESSION['password']) || empty($_SESSION['userid']))
     {
         header("Location:/328/fantasyrealms/");
@@ -343,9 +341,6 @@ $f3 -> route('GET|POST /story-part4', function($f3) {
     while($story['idstory'] === $s3) {  //ensures no duplicates
         $story = getRandStory();
     }
-    echo $story['idstory'];
-    echo $s3;
-    echo $_SESSION['storyid3'];
     $_SESSION['story4'] = $story;
     $_SESSION['storyid4'] = $story['idstory'];
     $f3->set('question', $story['story']);
