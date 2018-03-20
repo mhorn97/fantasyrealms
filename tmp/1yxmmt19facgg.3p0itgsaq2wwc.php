@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="{{@BASE}}/styles/story1.css" type="text/css">
+    <link rel="stylesheet" href="<?= ($BASE) ?>/styles/story1.css" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"
           integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -19,15 +19,15 @@
 </head>
 <body>
 <nav class="navbar bg-light navbar-light">
-    <a class="nav-item nav-link" href="{{@BASE}}/select">Fantasy Realms</a>
+    <a class="nav-item nav-link" href="<?= ($BASE) ?>/select">Fantasy Realms</a>
     <a class="nav-item nav-link" href="/328/fantasyrealms/" id="logout">Logout</a>
 </nav>
 
 <div class="container" id="main">
     <h2>Origins</h2>
     <form method="post" action="#">
-        <check if="{{@newchar->getRace() == 'Human'}}">
-            <true>
+        <?php if ($newchar->getRace() == 'Human'): ?>
+            
                 <p>You are a human. Humans in this world control all of the land that is not surrounded by trees or
                     mountains. They settle in either castles or villages. There are many kings to many
                     kingdoms. Let us choose your path: </p>
@@ -46,10 +46,10 @@
                                                  id="civilian">
                         Be from a village, contributing to the community</label>
                 </div>
-            </true>
-        </check>
-        <check if="{{@newchar->getRace() == 'Elf' }}">
-            <true>
+            
+        <?php endif; ?>
+        <?php if ($newchar->getRace() == 'Elf'): ?>
+            
                 <p>You are an elf. They either thrive in forests, serve as slaves for the rich and noble humans, or live
                     in the slums of a castle, fighting for survival. Let us choose your path: </p>
                 <div class="radio">
@@ -66,10 +66,10 @@
                         Be from the slums of a castle, surviving day to day, afraid to be taken from the castle guard to
                         be a slave </label>
                 </div>
-            </true>
-        </check>
-        <check if="{{@newchar->getRace() == 'Dwarf' }}">
-            <true>
+            
+        <?php endif; ?>
+        <?php if ($newchar->getRace() == 'Dwarf'): ?>
+            
                 <div>
                     <p>You are a dwarf. Dwarves are filled with the most pride. They build their kingdoms into the sides
                         of mountains and volcanoes. They venture off and trade with other races but are confused by the
@@ -93,31 +93,31 @@
                         Adventure outside of the mountains, trading constantly with humans and elves, exploring the
                         land. You are never sure will you will end up next </label>
                 </div>
-            </true>
-        </check>
+            
+        <?php endif; ?>
         <input type="submit" name="submit" value="Continue" class="btn btn-default">
     </form>
     <br>
-    <a href="{{@BASE}}/select">
+    <a href="<?= ($BASE) ?>/select">
         <button name="exit" class="btn btn-default">Exit</button>
     </a>
 
 </div>
 
 <script type="text/javascript">
-    if ("{{@newchar->getRace() == 'Human'}}" == 1) {
-        $('body').css('background-image', "url('{{@BASE}}/images/human1.jpg");
-        $('body').css('background', "100%");
+    if ("<?= ($newchar->getRace() == 'Human') ?>" == 1) {
+        $('body').css('background-image', "url('<?= ($BASE) ?>/images/human1.jpg");
+        $('body').css('background', "size('100%')");
     }
     ;
-    if ("{{@newchar->getRace() == 'Elf'}}" == 1) {
-        $('body').css('background-image', "url('{{@BASE}}/images/elf1.jpg");
-        $('body').css('background', "100%");
+    if ("<?= ($newchar->getRace() == 'Elf') ?>" == 1) {
+        $('body').css('background-image', "url('<?= ($BASE) ?>/images/elf1.jpg");
+        $('body').css('background', "size('100%')");
     }
     ;
-    if ("{{@newchar->getRace() == 'Dwarf'}}" == 1) {
-        $('body').css('background-image', "url('{{@BASE}}/images/dwarf1.jpg");
-        $('body').css('background', "100%");
+    if ("<?= ($newchar->getRace() == 'Dwarf') ?>" == 1) {
+        $('body').css('background-image', "url('<?= ($BASE) ?>/images/dwarf1.jpg");
+        $('body').css('background', "size('100%')");
     }
     ;
 </script>

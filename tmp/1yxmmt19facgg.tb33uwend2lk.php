@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./styles/createaccount.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"
+          integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"
+            integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4"
+            crossorigin="anonymous"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
+    <title>Account Creation</title>
+</head>
+
+<body>
+    <!-- navbar -->
+    <nav class="navbar bg-light navbar-light">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link" href="/328/fantasyrealms/">Fantasy Realms</a>
+        </div>
+    </nav>
+
+    <!-- main container -->
+    <div class="container" id="maindiv">
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+                <form role="form" action="<?= ($BASE) ?>/createaccount" method="post">
+                    <h2>Please Sign Up
+                        <small>It's free and always will be.</small>
+                    </h2>
+                    <hr class="colorgraph">
+
+                    <div class="form-group">
+                        <input type="text" name="username" id="username" class="form-control input-lg"
+                               placeholder="Username" tabindex="3">
+                        <span class="text-danger" id="username_status"> </span>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input type="password" name="password" id="password" class="form-control input-lg"
+                                       placeholder="Password" tabindex="5">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input type="password" name="password_confirmation" id="password_confirmation"
+                                       class="form-control input-lg" placeholder="Confirm Password" tabindex="6">
+                            </div>
+                        </div>
+                    </div>
+                    <span class="text-danger" id="password_status"> </span>
+
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-3 col-md-3">
+    					<span class="button-checkbox">
+    						<button type="button" class="btn" data-color="info" tabindex="7">Premium User</button>
+                            <input type="checkbox" name="premium" id="premium" class="hidden" value="1">
+    					</span>
+                        </div>
+                        <div class="col-xs-8 col-sm-9 col-md-9">
+                            Premium users can add skills to their characters!
+                        </div>
+                    </div>
+
+                    <hr class="colorgraph">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6">
+                            <input type="submit" value="Register" id="btnregister"
+                                   name="submit" class="btn btn-success btn-block btn-lg" tabindex="7">
+                        </div>
+                    </div>
+                </form><!-- end form -->
+            </div><!-- end col -->
+        </div><!-- end row -->
+
+    </div><!-- end container -->
+
+
+    <script>
+        $(function () {
+            $('.button-checkbox').each(function () {
+                // Settings
+                var $widget = $(this),
+                    $button = $widget.find('button'),
+                    $checkbox = $widget.find('input:checkbox'),
+                    color = $button.data('color'),
+                    settings = {
+                        on: {
+                            icon: 'glyphicon glyphicon-check'
+                        },
+                        off: {
+                            icon: 'glyphicon glyphicon-unchecked'
+                        }
+                    };
+                // Event Handlers
+                $button.on('click', function () {
+                    $checkbox.prop('checked', !$checkbox.is(':checked'));
+                    $checkbox.triggerHandler('change');
+                    updateDisplay();
+                });
+                $checkbox.on('change', function () {
+                    updateDisplay();
+                });
+                // Actions
+                function updateDisplay() {
+                    var isChecked = $checkbox.is(':checked');
+                    // Set the button's state
+                    $button.data('state', (isChecked) ? "on" : "off");
+                    // Set the button's icon
+                    $button.find('.state-icon')
+                        .removeClass()
+                        .addClass('state-icon ' + settings[$button.data('state')].icon);
+                    // Update the button's color
+                    if (isChecked) {
+                        $button
+                            .removeClass('btn-default')
+                            .addClass('btn-' + color + ' active');
+                    }
+                    else {
+                        $button
+                            .removeClass('btn-' + color + ' active')
+                            .addClass('btn-default');
+                    }
+                }//end updateDisplay
+                // Initialization
+                function init() {
+                    updateDisplay();
+                    // Inject the icon if applicable
+                    if ($button.find('.state-icon').length == 0) {
+                        $button.prepend('<i class="state-icon ' + settings[$button.data('state')].icon + '"></i>');
+                    }
+                }//end init
+                init();
+            });
+        });
+    </script>
+
+
+    <!-- javascript to check if username is taken  -->
+    <script>
+        //sets button to be disabled to prevent bad data submission
+        document.getElementById("btnregister").disabled = true;
+        var validUser = false;
+        var validPass = false;
+        //enables or disables submit button
+        var submit = {
+            valid: function () {
+                if (validPass && validUser) {
+                    document.getElementById("btnregister").disabled = false;
+                } else {
+                    document.getElementById("btnregister").disabled = true;
+                }
+            }
+        }//end submit
+        /*
+        username validation
+         */
+        $('#username').keyup(function () {  //checks each time user types
+            var username = $(this).val();
+            if (username !== '') {
+                $.post('model/checkuser.php', {username: username}, function (data) {
+                    //calls select * where username matches and returns
+                    //1 is username exists and 2 if not used yet
+                    if (data == 1) {
+                        $('#username_status').text('Username unavailable')
+                            .removeClass("text-success").addClass("text-danger");
+                        validUser = false;
+                        submit.valid.call();
+                    } else {
+                        $('#username_status').text('Username available')
+                            .removeClass("text-danger").addClass("text-success");
+                        validUser = true;
+                        submit.valid.call();
+                    }
+                });//end post checkuser
+            } else {
+                $('#username_status').text('');
+                validUser = false;
+                submit.valid.call();
+            }//end if else blank username
+        });//end keyup username
+        /*
+        password validation
+         */
+        $('#password').keyup(function () {
+            checkPass.validate.call();
+        });//end keyup password
+        $('#password_confirmation').keyup(function () {
+            checkPass.validate.call();
+        });//end keyup password
+        //checks if passwords are the same
+        var checkPass = {
+            validate: function () {
+                var pass1 = document.getElementById('password').value;
+                var pass2 = document.getElementById('password_confirmation').value;
+                if (pass1 !== '') {
+                    if (pass1 === pass2) {
+                        $('#password_status').text('Passwords match')
+                            .removeClass("text-danger").addClass("text-success");
+                        validPass = true;
+                        submit.valid.call();
+                    } else {
+                        $('#password_status').text('Passwords do not match')
+                            .removeClass("text-success").addClass("text-danger");
+                        validPass = false;
+                        submit.valid.call();
+                    }
+                } else {
+                    validPass = false;
+                    submit.valid.call();
+                }//end if else blank password
+            }
+        }//end checkPass
+    </script>
+
+
+</body>
+</html>

@@ -17,7 +17,7 @@
     <title>Story Page 2</title>
 </head>
 <nav class="navbar bg-light navbar-light">
-    <a class="nav-item nav-link" href="{{@BASE}}/select">Fantasy Realms</a>
+    <a class="nav-item nav-link" href="<?= ($BASE) ?>/select">Fantasy Realms</a>
     <a class="nav-item nav-link" href="/328/fantasyrealms/" id="logout">Logout</a>
 </nav>
 
@@ -25,8 +25,8 @@
     <h2>Class Specialization</h2>
 
     <form method="post" action="#">
-        <check if="{{@newchar->getClass() == 'Warrior'}}">
-            <true>
+        <?php if ($newchar->getClass() == 'Warrior'): ?>
+            
                 <p>As a warrior, you discovered that it is best to deal with your enemies head on, grabbing any weapon
                     you could in the heat of battle. As your skills in battle sharpened you preffered to fight
                     a certain way:</p>
@@ -49,10 +49,10 @@
                                                   id="warhammer">
                         Pick up a warhammer because.... it's a freaking warhammer!</label>
                 </div>
-            </true>
-        </check>
-        <check if="{{@newchar->getClass() == 'Sorcerer'}}">
-            <true>
+            
+        <?php endif; ?>
+        <?php if ($newchar->getClass() == 'Sorcerer'): ?>
+            
                 <p>You quickly learned that you were different from most people. Being able to do extraordinary things
                     with your hands and mind. You quickly picked up books to learn about magic and the rarity of being a
                     sorcerer.
@@ -78,10 +78,10 @@
                         You learned about the undead and demology, learning how to summon both and make them do your
                         bidding </label>
                 </div>
-            </true>
-        </check>
-        <check if="{{@newchar->getClass() == 'Rogue'}}">
-            <true>
+            
+        <?php endif; ?>
+        <?php if ($newchar->getClass() == 'Rogue'): ?>
+            
                 <p>You learned quickly that the best path is one where people never even knew you were there, but what
                     kind of rogue are you?</p>
                 <div class="radio">
@@ -105,31 +105,31 @@
                         You learned how to quickly get behind your enemies and stab them in the back, quickly ending any
                         battle </label>
                 </div>
-            </true>
-        </check>
+            
+        <?php endif; ?>
         <input type="submit" name="submit" value="Continue" class="btn btn-default">
     </form>
     <br>
-    <a href="{{@BASE}}/select">
+    <a href="<?= ($BASE) ?>/select">
         <button name="exit" class="btn btn-default">Exit</button>
     </a>
 
 </div>
 
 <script type="text/javascript">
-    if ("{{@newchar->getClass() == 'Warrior'}}" == 1) {
-        $('body').css('background-image', "url('{{@BASE}}/images/warrior2.jpg");
+    if ("<?= ($newchar->getClass() == 'Warrior') ?>" == 1) {
+        $('body').css('background-image', "url('<?= ($BASE) ?>/images/warrior2.jpg");
+        $('body').css('background', "100%");
+    }
+    ;
+    if ("<?= ($newchar->getClass() == 'Sorcerer') ?>" == 1) {
+        $('body').css('background-image', "url('<?= ($BASE) ?>/images/sorcerer2.jpg");
         $('body').css('background-size', "100%");
     }
     ;
-    if ("{{@newchar->getClass() == 'Sorcerer'}}" == 1) {
-        $('body').css('background-image', "url('{{@BASE}}/images/sorcerer2.jpg");
-        $('body').css('background-size', "100%");
-    }
-    ;
-    if ("{{@newchar->getClass() == 'Rogue'}}" == 1) {
-        $('body').css('background-image', "url('{{@BASE}}/images/rogue2.jpg");
-        $('body').css('background-size', "100%");
+    if ("<?= ($newchar->getClass() == 'Rogue') ?>" == 1) {
+        $('body').css('background-image', "url('<?= ($BASE) ?>/images/rogue2.jpg");
+        $('body').css('background', "100%");
     }
     ;
 </script>

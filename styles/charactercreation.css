@@ -32,4 +32,5 @@ img {
 body {
     background-image: url("../images/selectScreen.jpg");
     background-size:100%;
+    background-repeat: no-repeat;
 }

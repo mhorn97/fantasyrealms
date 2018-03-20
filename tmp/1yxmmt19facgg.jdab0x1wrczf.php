@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./styles/forgotpassword.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <title>Forgot Password</title>
+</head>
+<body>
+    <nav class="navbar bg-light navbar-light">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link" href="/328/fantasyrealms/">Fantasy Realms</a>
+        </div>
+    </nav>
+
+    <form method="post" action="#">
+        <div class="container" id="main">
+            <label for="username">Enter in your username: </label>
+            <input type="text" name="username" id="username" value="<?= ($username) ?>">
+            <span class="text-danger" id="username_status"> </span>
+            <br>
+            <input type="submit" name="submit" value="Change Password"  >
+        </div>
+    </form>
+
+    <script>
+        $('#username').keyup(function () {  //checks each time user types
+            var username = $(this).val();
+            if (username !== '') {
+                $.post('model/checkuser.php', {username: username}, function (data) {
+                    //calls select * where username matches and returns
+                    //1 is username exists and 2 if not used yet
+                    if (data == 1) {
+                        $('#username_status').text('Username Found')
+                            .removeClass("text-danger").addClass("text-success");
+                        validUser = false;
+                        submit.valid.call();
+                    } else {
+                        $('#username_status').text('Username Not Found')
+                            .removeClass("text-success").addClass("text-danger");
+                        validUser = true;
+                        submit.valid.call();
+                    }
+                });//end post checkuser
+            } else {
+                validUser = false;
+                submit.valid.call();
+            }//end if else blank username
+        });//end keyup username
+    </script>
+</body>
+</html>

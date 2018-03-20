@@ -445,7 +445,7 @@ $f3 -> route('GET|POST /summary/@id', function($f3,$params) {
     {
         header("Location:/328/fantasyrealms/");
     }
-
+    $f3->set('premium', $_SESSION['premium']);
     $id = $params['id'];
     $character = getCharacter($id);
 

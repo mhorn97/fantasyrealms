@@ -33,4 +33,5 @@ img
 body {
     background-image: url("../images/general_fantasy2.jpg");
     background-size:100%;
+    background-repeat: no-repeat;
 }

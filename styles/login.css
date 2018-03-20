@@ -30,4 +30,5 @@ nav{
 body {
     background-image: url("../images/general_fantasy1.jpg");
     background-size:100%;
+    background-repeat: no-repeat;
 }
