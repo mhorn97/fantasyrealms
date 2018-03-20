@@ -27,12 +27,13 @@ class Character
      * @param $class of the character
      * @param $race of the character
      */
-    function __construct($name, $gender, $class, $race)
+    function __construct($name, $gender, $class, $race,$bio)
     {
         $this->name = $name;
         $this->gender = $gender;
         $this->class = $class;
         $this->race = $race;
+        $this->bio = $bio;
     }
 
     /**
@@ -125,5 +126,14 @@ class Character
         $this->iduser = $iduser;
     }
 
+    public function setBio($bio)
+    {
+        $this->bio = $bio;
+    }
+
+    public function getBio()
+    {
+        return $this->bio;
+    }
 
 }

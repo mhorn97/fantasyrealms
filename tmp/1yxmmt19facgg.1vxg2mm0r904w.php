@@ -29,26 +29,26 @@
     <form method="post" action="#">
         <div class="radio">
             <label for="settle"><input type="radio" name="finalChoice" id="settle"
-                                       value="{{@newchar->getName()}} settled down in a local village to raise a family."
+                                       value="<?= ($newchar->getName()) ?> settled down in a local village to raise a family."
                                        checked>
                 Settle down and raise a family in a village </label>
         </div>
         <div class="radio">
             <label for="adventure"><input type="radio" name="finalChoice" id="adventure"
-                                          value="{{@newchar->getName()}} continued to have adventures across many lands until their final days.">
+                                          value="<?= ($newchar->getName()) ?> continued to have adventures across many lands until their final days.">
                 Continue to journey across various lands, discovering new things and people, living on the edge of
                 danger and death </label>
         </div>
         <div class="radio">
             <label for="guard"><input type="radio" name="finalChoice" id="guard"
-                                      value="{{@newchar->getName()}} became a guard to their local kingdom. Guarding their realm until their final breath.">
+                                      value="<?= ($newchar->getName()) ?> became a guard to their local kingdom. Guarding their realm until their final breath.">
                 Join the guard of your local racial kingdom, protecting it's citizens from any danger </label>
         </div>
         <input type="submit" name="submit" value="Finish" class="btn btn-default">
 
     </form>
     <br>
-    <a href="{{@BASE}}/select">
+    <a href="<?= ($BASE) ?>/select">
         <button name="exit" class="btn btn-default">Exit</button>
     </a>
 </div>
@@ -56,19 +56,19 @@
 <script>
     $('#settle').click(function () {
         if ($('#settle').is(':checked')) {
-            $('body').css('background-image', "url('{{@BASE}}/images/settle.jpg");
+            $('body').css('background-image', "url('<?= ($BASE) ?>/images/settle.jpg");
             $('body').css('background', "size('100%')");
         }
     });
     $('#adventure').click(function () {
         if ($('#adventure').is(':checked')) {
-            $('body').css('background-image', "url('{{@BASE}}/images/adventure.jpg");
+            $('body').css('background-image', "url('<?= ($BASE) ?>/images/adventure.jpg");
             $('body').css('background', "size('100%')");
         }
     });
     $('#guard').click(function () {
         if ($('#guard').is(':checked')) {
-            $('body').css('background-image', "url('{{@BASE}}/images/guard.jpg");
+            $('body').css('background-image', "url('<?= ($BASE) ?>/images/guard.jpg");
             $('body').css('background', "size('100%')");
         }
     });

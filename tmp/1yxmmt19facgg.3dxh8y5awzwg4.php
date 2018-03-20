@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="{{@BASE}}/styles/charactercreation.css" type="text/css">
+    <link rel="stylesheet" href="<?= ($BASE) ?>/styles/charactercreation.css" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -24,49 +24,52 @@
             <p>-----------------------------</p>
             <form method="post" action="#">
                 <label for="name">Name: </label>
-                <input type="text" name="name" id="name" value="{{@character['name']}}">
+                <input type="text" name="name" id="name" value="<?= ($character['name']) ?>">
                 <div name="nameerror" id="nameerror"></div>
                 <br>
                 <p>-----------------------------</p>
                 <h3>Gender: </h3>
                 <label for="male">Male: </label>
-                <input type="radio" name="gender" value="Male" id="male" <check if="{{@character['gender'] == 'Male'}}"><true>checked</true></check>>
+                <input type="radio" name="gender" value="Male" id="male" <?php if ($character['gender'] == 'Male'): ?>checked<?php endif; ?>>
                 <label for="female">Female: </label>
-                <input type="radio" name="gender" value="Female" id="female" <check if="{{@character['gender'] == 'Female'}}"><true>checked</true></check>>
+                <input type="radio" name="gender" value="Female" id="female" <?php if ($character['gender'] == 'Female'): ?>checked<?php endif; ?>>
                 <label for="other">Other: </label>
-                <input type="radio" name="gender" value="Other" id="other" <check if="{{@character['gender'] == 'Other'}}"><true>checked</true></check>>
+                <input type="radio" name="gender" value="Other" id="other" <?php if ($character['gender'] == 'Other'): ?>checked<?php endif; ?>>
                 <p>-----------------------------</p>
                 <h3>Race: </h3>
                 <label for="human">Human: </label>
-                <input type="radio" name="race" value="Human" id="Human" <check if="{{@character['race'] == 'Human'}}"><true>checked</true></check>>
+                <input type="radio" name="race" value="Human" id="Human" <?php if ($character['race'] == 'Human'): ?>checked<?php endif; ?>>
                 <label for="elf">Elf: </label>
-                <input type="radio" name="race" value="Elf" id="elf" <check if="{{@character['race'] == 'Elf'}}"><true>checked</true></check>>
+                <input type="radio" name="race" value="Elf" id="elf" <?php if ($character['race'] == 'Elf'): ?>checked<?php endif; ?>>
                 <label for="dwarf">Dwarf: </label>
-                <input type="radio" name="race" value="Dwarf" id="dwarf" <check if="{{@character['race'] == 'Dwarf'}}"><true>checked</true></check>>
+                <input type="radio" name="race" value="Dwarf" id="dwarf" <?php if ($character['race'] == 'Dwarf'): ?>checked<?php endif; ?>>
                 <br><br>
                 <p>-----------------------------</p>
                 <h3>Class: </h3>
                 <label for="warrior">Warrior: </label>
-                <input type="radio" name="class" value="Warrior" id="warrior" <check if="{{@character['class'] == 'Warrior'}}"><true>checked</true></check>>
+                <input type="radio" name="class" value="Warrior" id="warrior" <?php if ($character['class'] == 'Warrior'): ?>checked<?php endif; ?>>
                 <label for="sorcerer">Sorcerer: </label>
-                <input type="radio" name="class" value="Sorcerer" id="sorcerer" <check if="{{@character['class'] == 'Sorcerer'}}"><true>checked</true></check>>
+                <input type="radio" name="class" value="Sorcerer" id="sorcerer" <?php if ($character['class'] == 'Sorcerer'): ?>checked<?php endif; ?>>
                 <label for="rogue">Rogue: </label>
-                <input type="radio" name="class" value="Rogue" id="rogue" <check if="{{@character['class'] == 'Rogue'}}"><true>checked</true></check>>
-                <check if="{{@premium}}">
+                <input type="radio" name="class" value="Rogue" id="rogue" <?php if ($character['class'] == 'Rogue'): ?>checked<?php endif; ?>>
+                <?php if ($premium): ?>
                     <p>-----------------------------</p>
                     <h3>Skills/Traits: </h3>
-                    <input type="checkbox" name="skills[]" value="Luck" <check if="{{@luck == 1}}"><true>checked</true> </check>> Luck
-                    <input type="checkbox" name="skills[]" value="Barter" <check if="{{@barter == 1}}"><true>checked</true> </check>> Barter
-                    <input type="checkbox" name="skills[]" value="Charisma" <check if="{{@charisma == 1}}"><true>checked</true> </check>> Charisma
+                    <input type="checkbox" name="skills[]" value="Luck" <?php if ($luck == 1): ?>checked <?php endif; ?>> Luck <?= ($luck)."
+" ?>
+                    <input type="checkbox" name="skills[]" value="Barter" <?php if ($barter == 1): ?>checked <?php endif; ?>> Barter <?= ($barter)."
+" ?>
+                    <input type="checkbox" name="skills[]" value="Charisma" <?php if ($charisma == 1): ?>checked <?php endif; ?>> Charisma <?= ($charisma)."
+" ?>
                     <br><br>
-                </check>
+                <?php endif; ?>
 
                 <div class="form-group">
 
                     <input type="submit" name="submit" value="Edit" id="submit" class="btn btn-default">
                 </div>
             </form>
-            <a href="{{@BASE}}/select"><button name="cancel" class="btn btn-default">Cancel</button></a>
+            <a href="<?= ($BASE) ?>/select"><button name="cancel" class="btn btn-default">Cancel</button></a>
         </div>
         <div class="col-8" id="img-col">
 
@@ -77,15 +80,15 @@
 <script>
     $('#warrior').click(function() {
         if($('#warrior').is(':checked')) {
-            $('#img-col').html('<img id="warriorimg" src="{{@BASE}}/images//warrior1.jpg" />')}
+            $('#img-col').html('<img id="warriorimg" src="<?= ($BASE) ?>/images//warrior1.jpg" />')}
     });
     $('#sorcerer').click(function() {
         if($('#sorcerer').is(':checked')) {
-            $('#img-col').html('<img id="sorcererimg" src="{{@BASE}}/images/sorcerer1.jpg" />')}
+            $('#img-col').html('<img id="sorcererimg" src="<?= ($BASE) ?>/images/sorcerer1.jpg" />')}
     });
     $('#rogue').click(function() {
         if($('#rogue').is(':checked')) {
-            $('#img-col').html('<img id="rogueimg" src="{{@BASE}}/images/rogue1.jpg" />')}
+            $('#img-col').html('<img id="rogueimg" src="<?= ($BASE) ?>/images/rogue1.jpg" />')}
     });
 </script>
 </body>

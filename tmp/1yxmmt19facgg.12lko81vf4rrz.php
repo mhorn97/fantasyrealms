@@ -16,25 +16,25 @@
 </nav>
 
 <div class="container" id="main">
-<h4>Name: <?= ($character['name']) ?></h4>
+<h4>Name: <?= ($newchar->getName()) ?></h4>
     <hr>
-<h4>Gender: <?= ($character['gender']) ?></h4>
+<h4>Gender: <?= ($newchar->getGender()) ?></h4>
     <hr>
-<h4>Class: <?= ($character['class']) ?></h4>
+<h4>Class: <?= ($newchar->getClass()) ?></h4>
     <hr>
-<h4>Race: <?= ($character['race']) ?></h4>
+<h4>Race: <?= ($newchar->getRace()) ?></h4>
 
-<?php if (is_null($character['skills']) || $character['skills'] == ''): ?>
+<?php if (is_null($newchar->getSkills()) || $newchar->getSkills() == ''): ?>
     <?php else: ?>
         <hr>
-        <h4>Skills: <?= ($character['skills']) ?></h4><br><br>
+        <h4>Skills: <?= ($newchar->getSkills()) ?></h4><br><br>
     
 <?php endif; ?>
 
-<?php if ($character['bio'] == ''): ?>
+<?php if ($newchar->getBio() == ''): ?>
     <?php else: ?>
         <hr>
-        <h4>Bio: <?= ($character['bio']) ?></h4>
+        <h4>Bio: <?= ($newchar->getBio()) ?></h4>
     
 <?php endif; ?>
 
@@ -43,17 +43,17 @@
 
 </div>
 <script>
-    if("<?= ($character['class'] == 'Warrior') ?>" == 1)
+    if("<?= ($newchar->getClass() == 'Warrior') ?>" == 1)
     {
     $('body').css('background-image', "url('<?= ($BASE) ?>/images/warrior2.jpg");
     $('body').css('background',"size('100%')");
     };
-    if("<?= ($character['class'] == 'Sorcerer') ?>" == 1)
+    if("<?= ($newchar->getClass() == 'Sorcerer') ?>" == 1)
     {
     $('body').css('background-image', "url('<?= ($BASE) ?>/images/sorcerer2.jpg");
     $('body').css('background',"size('100%')");
     };
-    if("<?= ($character['class'] == 'Rogue') ?>" == 1)
+    if("<?= ($newchar->getClass() == 'Rogue') ?>" == 1)
     {
     $('body').css('background-image', "url('<?= ($BASE) ?>/images/rogue2.jpg");
     $('body').css('background',"size('100%')");

@@ -76,14 +76,14 @@ $f3 -> route('GET|POST /creation', function($f3) {
             {
                 $skills = $_POST['skills'];
                 $skills = implode(",",$skills);
-                $newchar = new PremiumCharacter($name,$gender,$class,$race);
+                $newchar = new PremiumCharacter($name,$gender,$class,$race, "");
                 $newchar->setSkills($skills);
-                addCharacter($name,$gender,$race,$class,$skills,$_SESSION['userid']);
+                addCharacter($newchar->getName(),$newchar->getGender(),$newchar->getRace(),$newchar->getClass(),$newchar->getSkills(),$_SESSION['userid']);
             }
             else
             {
-                $newchar = new Character($name,$gender,$class,$race);
-                addCharacter($name,$gender,$race,$class,"",$_SESSION['userid']);
+                $newchar = new Character($name,$gender,$class,$race, "");
+                addCharacter($newchar->getName(),$newchar->getGender(),$newchar->getRace(),$newchar->getClass(),"",$_SESSION['userid']);
             }
 
             $f3->set('newchar',$newchar);
@@ -196,15 +196,32 @@ $f3 -> route('GET|POST /viewall', function($f3) {
 
 //STORY-PART 1 PAGE
 $f3 -> route('GET|POST /story-part1/@id', function($f3,$params) {
+
     if(empty($_SESSION['username']) || empty($_SESSION['password']) || empty($_SESSION['userid']))
     {
         header("Location:/328/fantasyrealms/");
     }
+
     $id = $params['id'];
     $_SESSION['characterId'] = $params['id'];
     $character = getCharacter($id);
+
+    if($_SESSION['premium'] == 1)
+    {
+        $newchar = new PremiumCharacter($character['name'],$character['gender'],$character['class'],$character['race'], "");
+        $newchar->setSkills($character['skills']);
+    }
+    else
+    {
+        $newchar = new Character($character['name'],$character['gender'],$character['class'],$character['race'], "");
+    }
+
     $_SESSION['character'] = $character;
+    $_SESSION['newchar'] = $newchar;
+
     $f3->set('character',$character);
+    $f3->set('newchar',$newchar);
+
     if(isset($_POST['submit']))
     {
         if(empty($_POST['choice1']))
@@ -225,11 +242,14 @@ $f3 -> route('GET|POST /story-part1/@id', function($f3,$params) {
 
 //STORY-PART 2 PAGE
 $f3 -> route('GET|POST /story-part2', function($f3) {
+
     if(empty($_SESSION['username']) || empty($_SESSION['password']) || empty($_SESSION['userid']))
     {
         header("Location:/328/fantasyrealms/");
     }
-    $f3->set('character',$_SESSION['character']);
+
+    $f3->set('newchar',$_SESSION['newchar']);
+
     if(isset($_POST['submit']))
     {
         if(empty($_POST['choice2']))
@@ -239,22 +259,23 @@ $f3 -> route('GET|POST /story-part2', function($f3) {
         else
         {
             $_SESSION['choice2'] = $_POST['choice2'];
-            //$character = $_SESSION['character'];
-            //$character->setChoice2($_POST['choice2']);
             header("Location:story-part3");
         }
     }
+
     $template = new Template();
     echo $template->render('views/story2.html');
 });
 
 //STORY-PART 3 PAGE
 $f3 -> route('GET|POST /story-part3', function($f3) {
+
     if(empty($_SESSION['username']) || empty($_SESSION['password']) || empty($_SESSION['userid']))
     {
         header("Location:/328/fantasyrealms/");
     }
-    $f3->set('character',$_SESSION['character']);
+
+    $f3->set('newchar',$_SESSION['newchar']);
     //$character = $_SESSION['character'];
     if(isset($_POST['submit']))
     {
@@ -269,6 +290,7 @@ $f3 -> route('GET|POST /story-part3', function($f3) {
         }
         header("Location:story-part4");
     }
+
     //story part 3 below
     $story = getRandStory();
     $_SESSION['story3'] = $story;
@@ -286,12 +308,14 @@ $f3 -> route('GET|POST /story-part3', function($f3) {
 
 //STORY-PART 4 PAGE
 $f3 -> route('GET|POST /story-part4', function($f3) {
+
     if(empty($_SESSION['username']) || empty($_SESSION['password']) || empty($_SESSION['userid']))
     {
         header("Location:/328/fantasyrealms/");
     }
-    $f3->set('character',$_SESSION['character']);
-    //$character = $_SESSION['character'];
+
+    $f3->set('newchar',$_SESSION['newchar']);
+
     if(isset($_POST['submit']))
     {
         if(empty($_POST['choice4']))
@@ -301,7 +325,6 @@ $f3 -> route('GET|POST /story-part4', function($f3) {
         else
         {
             $_SESSION['choice4'] = $_POST['choice4'];
-            //$character->setChoice4($_POST['choice4']);
         }
         header("Location:story-final");
     }
@@ -326,11 +349,14 @@ $f3 -> route('GET|POST /story-part4', function($f3) {
 
 //STORY-FINAL PAGE
 $f3 -> route('GET|POST /story-final', function($f3) {
+
     if(empty($_SESSION['username']) || empty($_SESSION['password']) || empty($_SESSION['userid']))
     {
         header("Location:/328/fantasyrealms/");
     }
-    $f3->set('character',$_SESSION['character']);
+
+    $f3->set('newchar',$_SESSION['newchar']);
+
     if(isset($_POST['submit']))
     {
         $_SESSION['finalChoice'] = $_POST['finalChoice'];
@@ -342,12 +368,12 @@ $f3 -> route('GET|POST /story-final', function($f3) {
             $s4q = $s4['story'];
             $bio = $_SESSION['choice1'] . $_SESSION['choice2'] . $s3q . ' ' . $_SESSION['choice3']
                 . ' ' . $s4q . ' ' . $_SESSION['choice4'] . ' ' .  $_SESSION['finalChoice'];
-            //$character = $_SESSION['character'];
-            //$character->setBio($bio);
+
             addBio($bio, $_SESSION['characterId']);
             header("Location:summary/" . $_SESSION['characterId']);
         }
     }
+
     $template = new Template();
     echo $template->render('views/finalPage.html');
 });
@@ -408,13 +434,27 @@ $f3 -> route('GET|POST /changepassword', function() {
 
 //CHARACTER SUMMARY PAGE
 $f3 -> route('GET|POST /summary/@id', function($f3,$params) {
+
     if(empty($_SESSION['username']) || empty($_SESSION['password']) || empty($_SESSION['userid']))
     {
         header("Location:/328/fantasyrealms/");
     }
+
     $id = $params['id'];
     $character = getCharacter($id);
-    $f3->set('character',$character);
+
+    if($_SESSION['premium'] == 1)
+    {
+        $newchar = new PremiumCharacter($character['name'],$character['gender'],$character['class'],$character['race'],$character['bio']);
+        $newchar->setSkills($character['skills']);
+    }
+    else
+    {
+        $newchar = new Character($character['name'],$character['gender'],$character['class'],$character['race'], $character['bio']);
+    }
+
+    $f3->set('newchar',$newchar);
+
     $template = new Template();
     echo $template->render('views/charactersummary.html');
 });

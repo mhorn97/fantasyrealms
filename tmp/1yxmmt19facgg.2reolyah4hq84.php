@@ -25,7 +25,7 @@
     <h2>Class Specialization</h2>
 
     <form method="post" action="#">
-        <?php if ($character['class'] == 'Warrior'): ?>
+        <?php if ($newchar->getClass() == 'Warrior'): ?>
             
                 <p>As a warrior, you discovered that it is best to deal with your enemies head on, grabbing any weapon
                     you could in the heat of battle. As your skills in battle sharpened you preffered to fight
@@ -51,7 +51,7 @@
                 </div>
             
         <?php endif; ?>
-        <?php if ($character['class'] == 'Sorcerer'): ?>
+        <?php if ($newchar->getClass() == 'Sorcerer'): ?>
             
                 <p>You quickly learned that you were different from most people. Being able to do extraordinary things
                     with your hands and mind. You quickly picked up books to learn about magic and the rarity of being a
@@ -80,7 +80,7 @@
                 </div>
             
         <?php endif; ?>
-        <?php if ($character['class'] == 'Rogue'): ?>
+        <?php if ($newchar->getClass() == 'Rogue'): ?>
             
                 <p>You learned quickly that the best path is one where people never even knew you were there, but what
                     kind of rogue are you?</p>
@@ -117,17 +117,17 @@
 </div>
 
 <script type="text/javascript">
-    if ("<?= ($character['class'] == 'Warrior') ?>" == 1) {
+    if ("<?= ($newchar->getClass() == 'Warrior') ?>" == 1) {
         $('body').css('background-image', "url('<?= ($BASE) ?>/images/warrior2.jpg");
         $('body').css('background', "size('100%')");
     }
     ;
-    if ("<?= ($character['class'] == 'Sorcerer') ?>" == 1) {
+    if ("<?= ($newchar->getClass() == 'Sorcerer') ?>" == 1) {
         $('body').css('background-image', "url('<?= ($BASE) ?>/images/sorcerer2.jpg");
         $('body').css('background', "size('100%')");
     }
     ;
-    if ("<?= ($character['class'] == 'Rogue') ?>" == 1) {
+    if ("<?= ($newchar->getClass() == 'Rogue') ?>" == 1) {
         $('body').css('background-image', "url('<?= ($BASE) ?>/images/rogue2.jpg");
         $('body').css('background', "size('100%')");
     }

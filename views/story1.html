@@ -26,7 +26,7 @@
 <div class="container" id="main">
     <h2>Origins</h2>
     <form method="post" action="#">
-        <check if="{{@character['race'] == 'Human'}}">
+        <check if="{{@newchar->getRace() == 'Human'}}">
             <true>
                 <p>You are a human. Humans in this world control all of the land that is not surrounded by trees or
                     mountains. They settle in either castles or villages. There are many kings to many
@@ -48,7 +48,7 @@
                 </div>
             </true>
         </check>
-        <check if="{{@character['race'] == 'Elf' }}">
+        <check if="{{@newchar->getRace() == 'Elf' }}">
             <true>
                 <p>You are an elf. They either thrive in forests, serve as slaves for the rich and noble humans, or live
                     in the slums of a castle, fighting for survival. Let us choose your path: </p>
@@ -68,7 +68,7 @@
                 </div>
             </true>
         </check>
-        <check if="{{@character['race'] == 'Dwarf' }}">
+        <check if="{{@newchar->getRace() == 'Dwarf' }}">
             <true>
                 <div>
                     <p>You are a dwarf. Dwarves are filled with the most pride. They build their kingdoms into the sides
@@ -105,17 +105,17 @@
 </div>
 
 <script type="text/javascript">
-    if ("{{@character['race'] == 'Human'}}" == 1) {
+    if ("{{@newchar->getRace() == 'Human'}}" == 1) {
         $('body').css('background-image', "url('{{@BASE}}/images/human1.jpg");
         $('body').css('background', "size('100%')");
     }
     ;
-    if ("{{@character['race'] == 'Elf'}}" == 1) {
+    if ("{{@newchar->getRace() == 'Elf'}}" == 1) {
         $('body').css('background-image', "url('{{@BASE}}/images/elf1.jpg");
         $('body').css('background', "size('100%')");
     }
     ;
-    if ("{{@character['race'] == 'Dwarf'}}" == 1) {
+    if ("{{@newchar->getRace() == 'Dwarf'}}" == 1) {
         $('body').css('background-image', "url('{{@BASE}}/images/dwarf1.jpg");
         $('body').css('background', "size('100%')");
     }
