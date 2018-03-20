@@ -26,6 +26,7 @@ class Character
      * @param $gender of the character
      * @param $class of the character
      * @param $race of the character
+     * @param $bio of the character
      */
     function __construct($name, $gender, $class, $race,$bio)
     {
@@ -126,12 +127,19 @@ class Character
         $this->iduser = $iduser;
     }
 
-
+    /**
+     * Changes the bio for the character
+     * @param $bio new bio of the character
+     */
     public function setBio($bio)
     {
         $this->bio = $bio;
     }
 
+    /**
+     * Gets the bio of the character
+     * @return mixed bio of character
+     */
     public function getBio()
     {
         return $this->bio;

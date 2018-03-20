@@ -10,54 +10,51 @@
     <title>Character Summary</title>
 </head>
 <body>
-<nav class = "navbar bg-light navbar-light">
-    <a class="nav-item nav-link" href="{{@BASE}}/select">Fantasy Realms</a>
-    <a class="nav-item nav-link" href="/328/fantasyrealms/" id="logout">Logout</a>
-</nav>
+    <nav class = "navbar bg-light navbar-light">
+        <a class="nav-item nav-link" href="{{@BASE}}/select">Fantasy Realms</a>
+        <a class="nav-item nav-link" href="/328/fantasyrealms/" id="logout">Logout</a>
+    </nav>
 
-<div class="container" id="main">
-<h4>Name: {{@newchar->getName()}}</h4>
-    <hr>
-<h4>Gender: {{@newchar->getGender()}}</h4>
-    <hr>
-<h4>Class: {{@newchar->getClass()}}</h4>
-    <hr>
-<h4>Race: {{@newchar->getRace()}}</h4>
+    <div class="container" id="main">
+        <h4>Name: {{@newchar->getName()}}</h4>
+            <hr>
+        <h4>Gender: {{@newchar->getGender()}}</h4>
+            <hr>
+        <h4>Class: {{@newchar->getClass()}}</h4>
+            <hr>
+        <h4>Race: {{@newchar->getRace()}}</h4>
 
-<check if="{{is_null(@newchar->getSkills()) || @newchar->getSkills() == ''}}">
-    <false>
-        <hr>
-        <h4>Skills: {{@newchar->getSkills()}}</h4><br><br>
-    </false>
-</check>
+        <check if="{{is_null(@newchar->getSkills()) || @newchar->getSkills() == ''}}">
+            <false>
+                <hr>
+                <h4>Skills: {{@newchar->getSkills()}}</h4><br><br>
+            </false>
+        </check>
 
-<check if="{{@newchar->getBio() == ''}}">
-    <false>
-        <hr>
-        <h4>Bio: {{@newchar->getBio()}}</h4>
-    </false>
-</check>
+        <check if="{{@newchar->getBio() == ''}}">
+            <false>
+                <hr>
+                <h4>Bio: {{@newchar->getBio()}}</h4>
+            </false>
+        </check>
+    </div>
 
-
-
-
-</div>
-<script>
-    if("{{@newchar->getClass() == 'Warrior'}}" == 1)
-    {
-    $('body').css('background-image', "url('{{@BASE}}/images/warrior2.jpg");
-    $('body').css('background',"size('100%')");
-    };
-    if("{{@newchar->getClass() == 'Sorcerer'}}" == 1)
-    {
-    $('body').css('background-image', "url('{{@BASE}}/images/sorcerer2.jpg");
-    $('body').css('background',"size('100%')");
-    };
-    if("{{@newchar->getClass() == 'Rogue'}}" == 1)
-    {
-    $('body').css('background-image', "url('{{@BASE}}/images/rogue2.jpg");
-    $('body').css('background',"size('100%')");
-    };
-</script>
+    <script>
+        if("{{@newchar->getClass() == 'Warrior'}}" == 1)
+        {
+        $('body').css('background-image', "url('{{@BASE}}/images/warrior2.jpg");
+        $('body').css('background',"size('100%')");
+        };
+        if("{{@newchar->getClass() == 'Sorcerer'}}" == 1)
+        {
+        $('body').css('background-image', "url('{{@BASE}}/images/sorcerer2.jpg");
+        $('body').css('background',"size('100%')");
+        };
+        if("{{@newchar->getClass() == 'Rogue'}}" == 1)
+        {
+        $('body').css('background-image', "url('{{@BASE}}/images/rogue2.jpg");
+        $('body').css('background',"size('100%')");
+        };
+    </script>
 </body>
 </html>

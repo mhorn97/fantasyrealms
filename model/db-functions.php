@@ -6,6 +6,7 @@
  * Time: 11:01 AM
  * @author Michael Horn & Anthony Thompson
  * @version 1.0
+ * Used for functions connecting to the database
  */
 
 require("db-config-route.php");
@@ -260,6 +261,7 @@ function getUser($username)
 
     //check if 0 entries returned or more, return true false if exists
     $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
     if (count($result) > 0) {
         return true;  //username found existing
     } else {
@@ -276,19 +278,12 @@ function changePassword($username, $password)
 {
     global $dbh;
     $password = sha1($password);
+
     $sql = "UPDATE user SET password = :password WHERE username = :username";
+
     $statement = $dbh->prepare($sql);
+
     $statement->bindValue(':password', $password, PDO::PARAM_STR);
     $statement->bindValue(':username', $username, PDO::PARAM_STR);
     $statement->execute();
 }
-
-
-/* sql to insert stories
-  INSERT INTO `story`(`story`, `choice1`, `choice2`, `choice3`) VALUES (
-    '',
-    '',
-    '',
-    ''
-)
- */
