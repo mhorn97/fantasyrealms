@@ -107,17 +107,17 @@
 <script type="text/javascript">
     if ("<?= ($newchar->getRace() == 'Human') ?>" == 1) {
         $('body').css('background-image', "url('<?= ($BASE) ?>/images/human1.jpg");
-        $('body').css('background', "size('100%')");
+        //$('body').css('background', "100%");
     }
     ;
     if ("<?= ($newchar->getRace() == 'Elf') ?>" == 1) {
         $('body').css('background-image', "url('<?= ($BASE) ?>/images/elf1.jpg");
-        $('body').css('background', "size('100%')");
+        //$('body').css('background', "100%");
     }
     ;
     if ("<?= ($newchar->getRace() == 'Dwarf') ?>" == 1) {
         $('body').css('background-image', "url('<?= ($BASE) ?>/images/dwarf1.jpg");
-        $('body').css('background', "size('100%')");
+        //$('body').css('background', "100%");
     }
     ;
 </script>

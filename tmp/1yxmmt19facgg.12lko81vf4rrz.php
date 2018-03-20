@@ -45,17 +45,17 @@
         if("<?= ($newchar->getClass() == 'Warrior') ?>" == 1)
         {
         $('body').css('background-image', "url('<?= ($BASE) ?>/images/warrior2.jpg");
-        $('body').css('background',"size('100%')");
+        $('body').css('background-size',"100%");
         };
         if("<?= ($newchar->getClass() == 'Sorcerer') ?>" == 1)
         {
         $('body').css('background-image', "url('<?= ($BASE) ?>/images/sorcerer2.jpg");
-        $('body').css('background',"size('100%')");
+        $('body').css('background-size',"100%");
         };
         if("<?= ($newchar->getClass() == 'Rogue') ?>" == 1)
         {
         $('body').css('background-image', "url('<?= ($BASE) ?>/images/rogue2.jpg");
-        $('body').css('background',"size('100%')");
+        $('body').css('background-size',"100%");
         };
     </script>
 </body>
